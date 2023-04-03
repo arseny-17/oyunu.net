@@ -17,7 +17,7 @@ export default function Media(props) {
         }
 
         axios
-        .post('http://localhost:3000/api/fileupload', formData)
+        .post(`${process.env.NEXT_PUBLIC_HOST}/api/fileupload`, formData)
         .then((res) => res.data);
     }
 
@@ -68,7 +68,7 @@ export const getServerSideProps = withSessionSsr(
 
         let filesList = []
          
-        await axios.get('http://localhost:3000/api/files-list').then(
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/files-list`).then(
           (response) => {
             filesList = JSON.stringify(response.data.myFiles)
           }

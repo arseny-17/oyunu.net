@@ -48,7 +48,7 @@ export default function Pages(props) {
                                 const data = new FormData()
                                 data.append('filesData', file)
             
-                                const req = await fetch(`http://localhost:3000/api/fileupload-post`, {
+                                const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/fileupload-post`, {
                                     method: 'POST',
                                     body: data
                                 })
@@ -64,7 +64,7 @@ export default function Pages(props) {
                 }
             }, 
             onReady: () => {
-                console.log('Editor.js is ready to work!')
+                console.log(`Editor.js is ready to work on ${process.env.NEXT_PUBLIC_HOST}!`)
                 editor.render(JSON.parse(props.post.content))
             },
             onChange: (api, event) => {
@@ -100,7 +100,7 @@ export default function Pages(props) {
  
     const editPost = async () => {
         try{
-            await axios.post('http://localhost:3000/api/edit-post', {
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-post`, {
                 id, title, content, category, slug
             }).then(() => {
                 console.log('success')
@@ -112,7 +112,7 @@ export default function Pages(props) {
 
     const deletePost = async () => {
         try{
-            await axios.post('http://localhost:3000/api/delete-post', {
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-post`, {
                 id
             }).then(() => {
                 console.log('Page successfully deleted!')

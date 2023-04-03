@@ -15,7 +15,7 @@ export default function Options(props) {
   const updateOption = async(key, value) => {
     console.log(key, value)
     try{
-        await axios.post('http://localhost:3000/api/update-option', {
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/update-option`, {
             key, value
         }).then(() => {
             console.log(`Option ${key} successfully edited with value ${value}!`)

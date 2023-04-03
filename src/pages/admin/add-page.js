@@ -47,7 +47,7 @@ export default function Pages(props) {
                                 const data = new FormData()
                                 data.append('filesData', file)
             
-                                const req = await fetch(`http://localhost:3000/api/fileupload-post`, {
+                                const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/fileupload-post`, {
                                     method: 'POST',
                                     body: data
                                 })
@@ -98,7 +98,7 @@ export default function Pages(props) {
  
     const addPost = async () => {
             try{
-                await axios.post('http://localhost:3000/api/add-post', {
+                await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/add-post`, {
                     title, content, category, slug
                 }).then(() => {
                     console.log('success')

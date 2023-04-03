@@ -14,7 +14,7 @@ const router = useRouter()
 
 const addCategory = async () => {
     try{
-        await axios.post('http://localhost:3000/api/add-category', {
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/add-category`, {
             title, slug, attr
         }).then(() => {
             console.log('success')

@@ -16,7 +16,7 @@ export default function Category(props) {
 
     const editCategory = async () => {
         try{
-            await axios.post('http://localhost:3000/api/edit-category', {
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-category`, {
                 id, title, slug, attr
             }).then(() => {
                 console.log('Category successfully edited!')
@@ -29,7 +29,7 @@ export default function Category(props) {
 
     const deleteCategory = async () => {
         try{
-            await axios.post('http://localhost:3000/api/delete-category', {
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-category`, {
                 id
             }).then(() => {
                 console.log('Category successfully deleted!')
