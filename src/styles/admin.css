@@ -1,0 +1,105 @@
+
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
+body { overflow-x:hidden; background: var(--main);}
+a {text-decoration:none; transition: 0.3s; }
+input, button {border:none; box-shadow:none; transition:0.3s;}
+input {outline:none;}
+p, span, li, a { font-size:16px; line-height:28px;}
+h1, h2, h3, h4, h5, h6 {text-align:center; color: var(--text);}
+p, span, li, h1, h2, h3, a, b, i, label, input, button, td, tr, figcaption { color: var(--text);}
+/* li {list-style:none;} */
+button { cursor:pointer; background:transparent;}
+img {max-width:100%; display:block;}
+i {font-style:normal;  transition: 0.3s;}
+
+.wrapper {width:95%; max-width:1200px; margin:0 auto;}
+.h2 {display: flex; align-items: center; margin-bottom: 20px;}
+.h2 button {border-radius: var(--block-border-radius); padding: 10px 10px; background: var(--color-primary); color: #fff;
+position: relative;}
+.h2 button:hover {background: var(--color-secondary);}
+.h2 button i {color:#fff; font-size: 18px; padding-right: 5px; position: relative; top: 2px;}
+.h2 h2 {margin-left: 280px; margin-bottom: 0!important;}
+
+
+:root{
+--main: #f5f5f5;
+--text: #676c70;
+--light-back: #fff;
+--block-border-radius: 10px;
+--color-primary: #4d8ab9;
+--color-secondary: #376c97;
+}
+
+
+
+/* Header */
+header {padding: 20px 0;}
+.header_top {display: flex; justify-content: space-between;}
+.header_logo {display: flex; align-items: center;}
+.header_logo img {width: 40px; margin-right: 10px;}
+.header_logo span {font-size: 20px;}
+
+.header_admin {display: flex; align-items: center;}
+.header_admin img {width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;}
+.header_admin span {font-size: 14px;}
+
+
+
+/* Main content */
+.main_content {display: flex; justify-content: space-between}
+
+.sidebar {width: 220px; background: var(--light-back);padding: 20px 0; border-radius: var(--block-border-radius);
+min-height: 80vh; position: relative;}
+.sidebar span {font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 10px;
+padding-left: 15px;}
+.sidebar a {display: flex; width: 100%; align-items: center; padding: 10px 15px 10px 15px; position: relative;}
+.sidebar a:hover, .sidebar a.active {background: var(--color-primary); color: #fff;}
+.sidebar a i { color: var(--text); font-size: 18px; padding-right: 8px;}
+.sidebar a:hover i, .sidebar a.active i {color: #fff;}
+.sidebar .year {position: absolute; bottom: 20px;}
+
+.main_content .info {width: calc(100% - 240px); background: var(--light-back);  border-radius: var(--block-border-radius);}
+.main_content .info h2 {font-size: 24px; line-height: 32px; margin-bottom: 40px;}
+.info_content {padding: 30px; }
+
+
+.navigation_list {display: flex; justify-content: space-between;}
+.navigation_item {border-radius: var(--block-border-radius); background: var(--color-primary); display: flex;
+justify-content: center; align-items: center; width: 20%; margin-bottom: 20px;}
+.navigation_item i {display: block; font-size: 40px; text-align: center; padding-bottom: 20px; color: #fff;}
+.navigation_item a {font-size: 22px; color: #fff; display: block;width: 100%; height: 100%; padding: 30px; text-align: center;}
+.navigation_item:hover {background: var(--color-secondary);}
+
+.info_field {display: flex; margin-bottom: 20px;}
+.info_field span {background: #eee;font-size: 15px; padding: 5px 10px; width: 25%;
+border-radius: var(--block-border-radius) 0 0 var(--block-border-radius);}
+.info_field input {border: 1px solid #eee; padding: 5px 10px; width: 75%;
+border-radius: 0 var(--block-border-radius) var(--block-border-radius) 0;}
+.info_field input::placeholder {color: var(--text); opacity: 1; font-size: 16px;}
+
+
+
+.pages_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee;}
+.pages_item h3 {text-align: left; font-size: 16px; padding-left: 25px; position: relative;}
+.pages_item h3:before {content: ''; width: 20px; height: 20px; position: absolute; top: 2px; left: 0;
+background: url(../../public/admin/flags/Turkish-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
+.pages_item_moves {display: flex;}
+.pages_item_moves i {color: #b7b7b7; font-size: 14px; padding-right: 5px;}
+.pages_item .details {margin-right: 15px;}
+.pages_item .details:hover, .pages_item .details:hover i {color: var(--color-primary);}
+.pages_item .delete:hover, .pages_item .delete:hover i {color: #f80505;}
+
+
+.pages_bound {margin-left: 30px;padding: 20px 0;}
+.pages_bound_item a {text-align: left; font-size: 14px; padding-left: 25px; position: relative;}
+.pages_bound_item a:before {content: ''; width: 20px; height: 20px; position: absolute; top: 0px; left: 0;
+background: url(../../public/admin/flags/England-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
+.pages_bound_item a:hover {color: var(--color-secondary);}
+
+
+
+.category_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee;}
+.category_item a {text-align: left; font-size: 16px;}
+.category_item a:hover {color: var(--color-secondary);}
+
+

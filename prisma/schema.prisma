@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data.db"
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String
+  slug String
+  content String
+  featured String?
+  seo_title String?
+  seo_description String?
+  language_id Int
+  parent_id Int?
+}
+
+model Lang {
+  id Int @id @default(autoincrement())
+  title String @unique
+  slug String
+  attr String
+}
+
+model Options {
+  id Int @id @default(autoincrement())
+  key String @unique
+  value String
+}
