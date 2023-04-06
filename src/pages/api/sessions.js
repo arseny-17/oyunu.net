@@ -1,4 +1,4 @@
-import { withSessionRoute } from "../lib/config/withSession"
+import { withSessionRoute } from "@/lib/config/withSession"
 
 const VALID_EMAIL = "admin";
 const VALID_PASSWORD = "12345";
