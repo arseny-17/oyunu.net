@@ -81,8 +81,8 @@ border-radius: 0 var(--block-border-radius) var(--block-border-radius) 0;}
 
 .pages_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee;}
 .pages_item h3 {text-align: left; font-size: 16px; padding-left: 25px; position: relative;}
-.pages_item h3:before {content: `123`; width: 20px; height: 20px; position: absolute; top: 2px; left: 0;
-background: url(../../admin/flags/Turkish-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
+.pages_item h3:before {content: '123'; width: 20px; height: 20px; position: absolute; top: 2px; left: 0;
+background: url(../../public/admin/flags/Turkish-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
 .pages_item_moves {display: flex;}
 .pages_item_moves i {color: #b7b7b7; font-size: 14px; padding-right: 5px;}
 .pages_item .details {margin-right: 15px;}
@@ -93,7 +93,7 @@ background: url(../../admin/flags/Turkish-flag.png)no-repeat; background-size: c
 .pages_bound {margin-left: 30px;padding: 20px 0;}
 .pages_bound_item a {text-align: left; font-size: 14px; padding-left: 25px; position: relative;}
 .pages_bound_item a:before {content:''; width: 20px; height: 20px; position: absolute; top: 0px; left: 0;
-background: url(../admin/flags/England-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
+background: url(../../public/admin/flags/England-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
 .pages_bound_item a:hover {color: var(--color-secondary);}
 
 

@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import stylesheet from '../styles/admin.css'
 
 export default function Document() {
 
@@ -7,7 +6,6 @@ export default function Document() {
 
   return (
     <Html lang="en">
-     <link rel="stylesheet" href="/admin/admin.css" />
       <Head />
       <body>
         <Main />

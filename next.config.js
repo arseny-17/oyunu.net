@@ -21,10 +21,10 @@ const nextConfig = {
       // })
     )
 
-    config.module.rules.push({
-      test: /\.css$/,
-      use: 'raw-loader',
-    })
+    // config.module.rules.push({
+    //   test: /\.css$/,
+    //   use: 'raw-loader',
+    // })
 
     return config;
   },
