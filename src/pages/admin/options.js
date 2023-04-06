@@ -1,5 +1,5 @@
 import Layout from "../../components/admin/Layout"
-import { withSessionSsr } from '../lib/config/withSession'
+import { withSessionSsr } from '@/lib/config/withSession'
 import { PrismaClient } from '@prisma/client'
 import axios from 'axios'
 import React, { use } from "react"

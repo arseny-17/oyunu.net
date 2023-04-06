@@ -9,6 +9,7 @@ const nextConfig = {
   //   webpack5: true,
   // },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    
     config.plugins.push(
       // new CopyPlugin({
       //   patterns: [
@@ -18,7 +19,13 @@ const nextConfig = {
       //     },
       //   ],
       // })
-    );
+    )
+
+    config.module.rules.push({
+      test: /\.css$/,
+      use: 'raw-loader',
+    })
+
     return config;
   },
   // webpackDevMiddleware: (config) => {

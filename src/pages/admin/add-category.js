@@ -1,5 +1,5 @@
 import Layout from "../../components/admin/Layout"
-import { withSessionSsr } from '../lib/config/withSession'
+import { withSessionSsr } from '@/lib/config/withSession'
 import React, { use } from "react"
 import axios from 'axios'
 import { useRouter } from "next/router"

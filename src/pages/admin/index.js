@@ -1,6 +1,6 @@
 import Layout from "../../components/admin/Layout"
 import Link from "next/link"
-import { withSessionSsr } from '../../pages/lib/config/withSession'
+import { withSessionSsr } from '@/lib/config/withSession'
 
 export default function Admin({user}) {
 
