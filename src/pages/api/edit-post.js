@@ -10,6 +10,8 @@ export default async function handler(req, res) {
         id: parseInt(req.body.id),
       },
       data: {
+          seo_title: req.body.seoTitle,
+          seo_description: req.body.seoDescription,
           title: req.body.title,
           slug: req.body.slug,
           content: req.body.content,
@@ -18,7 +20,7 @@ export default async function handler(req, res) {
     })
     
     res.status(200).json({ 
-      cat: editPost
+      post: editPost
     })
 
   } catch(e){

@@ -1,0 +1,73 @@
+
+
+@mixin button {
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    font-size: 18px;
+    line-height: 28px; 
+    color: #fff;
+}
+
+.header {
+    background: #205685;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+    .headerInner {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        height: 100%;
+    
+        .menu {
+            height: 100%;
+        
+            a {
+                color: #fff; 
+                padding: 0 12px; 
+                font-size: 16px;
+                height: 100%;
+                display: inline-flex; 
+                align-items: center;
+            
+            &:hover {
+                background:#08f;
+                }
+            
+            &.active {
+                background:#08f;
+            } 
+
+            } 
+           
+        }
+        .buttons {
+
+            .logButton {
+                background: #7daa2f; 
+                margin-right: 15px;
+                @include button;
+
+                &:hover {
+                    background:#92c637;
+                    }
+
+            }
+            .regButton {
+                background: #276aa5; 
+                @include button;
+
+                &:hover {
+                    background:#3185ce;
+                    }
+
+            }
+        }
+
+     }
+
+}

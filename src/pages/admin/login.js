@@ -24,20 +24,26 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Email: <input type="text" ref={emailInput} />
-        </label>
-      </div>
-      <div>
-        <label>
-          Password: <input type="password" ref={passwordInput} />
-        </label>
-      </div>
-      <div>
-        <button type="submit">Sign in</button>
-      </div>
-    </form>
+    <div className="loginPage">
+      <form onSubmit={handleSubmit}>
+       <div className="header_logo">
+          <img src="/admin/seo.svg" alt="" />
+          <span><b>ALFA</b> Admin Panel</span>
+        </div>
+        <div>
+          <label>
+            <span>Логин</span> <input type="text" ref={emailInput} />
+          </label>
+        </div>
+        <div>
+          <label>
+          <span>Пароль</span> <input type="password" ref={passwordInput} />
+          </label>
+        </div>
+        <div className="loginButton">
+          <button type="submit">Войти</button>
+        </div>
+      </form>
+    </div>  
   )
 }

@@ -9,7 +9,7 @@ export default function Categories(props) {
   return (
    <Layout title="Список языков" user={props.user} cats={props.cats}>
         <div className="h2">
-            <h2>Languages</h2>
+            <h2>Языки</h2>
         </div>
         <div className="pages_list">
                 { props.cats.map(cat =>(

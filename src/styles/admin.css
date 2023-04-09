@@ -76,7 +76,9 @@ border-radius: var(--block-border-radius) 0 0 var(--block-border-radius);}
 .info_field input {border: 1px solid #eee; padding: 5px 10px; width: 75%;
 border-radius: 0 var(--block-border-radius) var(--block-border-radius) 0;}
 .info_field input::placeholder {color: var(--text); opacity: 1; font-size: 16px;}
-
+.info_field select {border-radius: 0 var(--block-border-radius) var(--block-border-radius) 0;
+border: 1px solid #eee; padding: 5px 10px; background: #fff; font-family: 'Poppins', sans-serif;
+font-size: 15px; color: var(--text);}
 
 
 .pages_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee;}
@@ -103,3 +105,28 @@ background: url(../../public/admin/flags/England-flag.png)no-repeat; background-
 .category_item a:hover {color: var(--color-secondary);}
 
 
+/* Page login */
+.loginPage {height: 100vh; display: flex;align-items: center; justify-content: center;}
+.loginPage .header_logo {display: flex; justify-content: center;}
+.loginPage form {padding: 30px; background: var(--light-back); border-radius: var(--block-border-radius);
+width: 100%; max-width: 400px;}
+.loginPage form div {margin-bottom: 15px;}
+.loginPage form label {display: flex;}
+.loginPage label span {background: #eee; font-size: 17px; padding: 5px 10px;
+ border-radius: var(--block-border-radius) 0 0 var(--block-border-radius); width: 25%;}
+.loginPage label input {border: 1px solid #eee; padding: 5px 10px; width: 75%;
+ border-radius: 0 var(--block-border-radius) var(--block-border-radius) 0; font-size: 17px;
+background: var(--light-back);}
+.loginPage .loginButton {display: flex;justify-content: center;}
+.loginPage button {background: var(--color-primary); color: #fff; font-size: 18px; 
+border-radius: var(--block-border-radius); padding: 10px 25px; text-transform: uppercase;}
+.loginPage button:hover {background: var(--color-secondary);}
+
+
+
+.buttonAdmin {background: var(--color-primary); color: #fff; font-size: 18px; 
+border-radius: var(--block-border-radius); padding: 10px 25px; text-transform: uppercase;}
+.buttonAdmin:hover {background: var(--color-secondary);}
+.buttonsParent {display: flex; justify-content: space-between;}
+.buttonDelete {background: #eee; font-size: 16px; border-radius: var(--block-border-radius); padding: 10px 15px;}
+.buttonDelete:hover {background: #e10404; color: #fff;}

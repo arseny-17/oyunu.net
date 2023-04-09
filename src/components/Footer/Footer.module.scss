@@ -1,0 +1,32 @@
+.footer{
+    background: #205685;
+    padding: 20px 0;
+
+    .footerInner{
+        display: flex; 
+        justify-content: center;
+
+        .copyright {
+            color: #fff;
+            font-size: 15px;
+        }
+
+    }
+
+    .scrollTop {
+        background: #08f;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        opacity:0;
+        cursor: pointer;
+    }
+
+
+}
+

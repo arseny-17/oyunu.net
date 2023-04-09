@@ -9,7 +9,7 @@ export default function Pages(props) {
   return (
    <Layout title="Список страниц" user={props.user} posts={props.posts}>
         <div className="h2">
-            <h2>Pages</h2>
+            <h2>Страницы</h2>
         </div>
         <div className="pages_list">
                 { props.posts.map(post =>(

@@ -22,7 +22,7 @@ const nextConfig = {
     )
 
     // config.module.rules.push({
-    //   test: /\.css$/,
+    //   test: /\.scss$/,
     //   use: 'raw-loader',
     // })
 

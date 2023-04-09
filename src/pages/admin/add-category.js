@@ -26,9 +26,9 @@ const addCategory = async () => {
 }
 
   return (
-   <Layout title="Создание новой категории" user={props.user}>
+   <Layout title="Создание нового языка" user={props.user}>
         <div className="h2">
-            <h2>Add new category</h2>
+            <h2>Добавить язык</h2>
         </div>
         <div className="info_content">
             <form onSubmit={ (e) => {
@@ -36,7 +36,7 @@ const addCategory = async () => {
                 addCategory()
                 }}>
                 <div className="info_field">
-                    <span>Заголовок</span>
+                    <span>Название</span>
                     <input type="text" required onChange={e => {
                         setTitle(e.target.value)
                     }} />
@@ -53,7 +53,7 @@ const addCategory = async () => {
                         setAttr(e.target.value)
                     }} />
                 </div>
-                <button type="submit">Создать категорию</button>
+                <button type="submit" className="buttonAdmin">Создать категорию</button>
             </form>
         </div>
    </Layout>

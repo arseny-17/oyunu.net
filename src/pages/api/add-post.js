@@ -7,6 +7,8 @@ export default async function handler(req, res) {
   try{
     const newPage = await prisma.post.create({
       data: {
+        seo_title: req.body.seoTitle,
+        seo_description: req.body.seoDescription,
         title: req.body.title,
         language_id: req.body.category,
         content: req.body.content,

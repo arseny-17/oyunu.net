@@ -26,9 +26,9 @@ export default function Options(props) {
   }
 
   return (
-   <Layout title="Страница опций" user={props.user}>
+   <Layout title="Опции" user={props.user}>
 
-        <h2>Main information about site</h2>
+        <h2>Опции</h2>
         <form action="">
             <div className="info_field">
                 <span>Название сайта</span>

@@ -90,6 +90,8 @@ export default function Pages(props) {
     }
 
     const [title, setTitle] = React.useState('')
+    const [seoTitle, setSeoTitle] = React.useState('')
+    const [seoDescription, setSeoDescription] = React.useState('')
     const [content, setContent] = React.useState('')
     const [category, setCategory] = React.useState('')
     const [slug, setSlug] = React.useState('')
@@ -113,15 +115,31 @@ export default function Pages(props) {
     return (
         <Layout title="Создание новой страницы" user={props.user}>
                 <div className="h2">
-                    <h2>Add new page</h2>
+                    <h2>Создать новую страницу</h2>
                 </div>
                 <div className="info_content">
                     <form onSubmit={ (e) => {
                         e.preventDefault()
                         addPost()
                     }}>
+                          <div className="info_field">
+                            <span>Title</span>
+                            <input type="text" required 
+                                onChange={e => {
+                                    setSeoTitle(e.target.value)
+                                }} 
+                            />
+                        </div>
                         <div className="info_field">
-                            <span>Заголовок</span>
+                            <span>Description</span>
+                            <input type="text" required 
+                                onChange={e => {
+                                    setSeoDescription(e.target.value)
+                                }} 
+                            />
+                        </div>
+                        <div className="info_field">
+                            <span>H1</span>
                             <input type="text" required onChange={e => {
                                 setTitle(e.target.value)
                                 setSlug( transliterate(e.target.value).toLowerCase() )
@@ -129,7 +147,7 @@ export default function Pages(props) {
                         </div>
                         <div id="editorjs"></div>
                         <div className="info_field">
-                            <span>Slug</span>
+                            <span>Url</span>
                             <input type="text" value={slug} required onChange={e => {
                                 setSlug( e.target.value )
                             }}/>
@@ -144,7 +162,7 @@ export default function Pages(props) {
                                 }
                             </select>
                         </div>
-                        <button type="submit">Создать страницу</button>
+                        <button className="buttonAdmin" type="submit">Создать страницу</button>
                     </form>
                 </div>
         </Layout>

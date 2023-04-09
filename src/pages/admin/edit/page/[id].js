@@ -91,17 +91,20 @@ export default function Pages(props) {
     }
 
     const [title, setTitle] = React.useState(props.post.title)
+    const [seoTitle, setSeoTitle] = React.useState(props.post.seo_title)
+    const [seoDescription, setSeoDescription] = React.useState(props.post.seo_description)
     const [content, setContent] = React.useState('')
     const [category, setCategory] = React.useState(parseInt(props.post.language_id))
     const [slug, setSlug] = React.useState(props.post.slug)
     const id = props.post.id
+
 
     const router = useRouter()
  
     const editPost = async () => {
         try{
             await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-post`, {
-                id, title, content, category, slug
+                id, title, content, category, slug, seoTitle, seoDescription
             }).then(() => {
                 console.log('success')
             })
@@ -135,7 +138,25 @@ export default function Pages(props) {
                         editPost()
                     }}>
                         <div className="info_field">
-                            <span>Заголовок</span>
+                            <span>Title</span>
+                            <input type="text" required 
+                                defaultValue={props.post.seo_title} 
+                                onChange={e => {
+                                    setSeoTitle(e.target.value)
+                                }} 
+                            />
+                        </div>
+                        <div className="info_field">
+                            <span>Description</span>
+                            <input type="text" required 
+                                defaultValue={props.post.seo_description} 
+                                onChange={e => {
+                                    setSeoDescription(e.target.value)
+                                }} 
+                            />
+                        </div>
+                        <div className="info_field">
+                            <span>H1</span>
                             <input type="text" required 
                                 defaultValue={props.post.title} 
                                 onChange={e => {
@@ -146,7 +167,7 @@ export default function Pages(props) {
                         </div>
                         <div id="editorjs"></div>
                         <div className="info_field">
-                            <span>Slug</span>
+                            <span>Url</span>
                             <input 
                                 type="text" 
                                 defaultValue={props.post.slug} 
@@ -164,9 +185,11 @@ export default function Pages(props) {
                                 }
                             </select>
                         </div>
-                        <button type="submit">Редактировать страницу</button>
+                        <div className="buttonsParent"> 
+                           <button className="buttonAdmin" type="submit">Сохранить</button>
+                           <button className="buttonDelete" onClick={deletePost}>Удалить страницу</button>
+                        </div>
                     </form>
-                    <button onClick={deletePost}>Удалить страницу</button>
                 </div>
         </Layout>
         )
