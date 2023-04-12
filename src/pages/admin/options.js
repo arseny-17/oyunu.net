@@ -11,6 +11,7 @@ export default function Options(props) {
   const [sitename, setSitename] = React.useState(props.options.find(x => x.key === 'sitename').value)
   const [mainlink, setMainLink] = React.useState(props.options.find(x => x.key === 'mainLink').value)
   const [mainlang, setMainLang] = React.useState(props.options.find(x => x.key === 'mainLang').value)
+  const [mainpage, setMainPage] = React.useState(props.options.find(x => x.key === 'mainPageID').value)
 
   const updateOption = async(key, value) => {
     console.log(key, value)
@@ -30,6 +31,23 @@ export default function Options(props) {
 
         <h2>Опции</h2>
         <form action="">
+            <div className="info_field">
+                <span>Главная страница</span>
+                <select onChange={e => {
+                    setMainPage( parseInt(e.target.value))
+                    updateOption('mainPageID', e.target.value)
+                    }} required>
+                    <option 
+                        key={props.mainPage.id}
+                        defaultValue={props.mainPage.id}>
+                        {props.mainPage.title}
+                    </option>
+                    { props.posts.map(post =>(
+                        <option value={post.id} key={post.id}>{post.title}</option>
+                        )) 
+                    }
+                </select>
+            </div>
             <div className="info_field">
                 <span>Название сайта</span>
                 <input 
@@ -82,16 +100,26 @@ export const getServerSideProps = withSessionSsr(
         let user = req.session.user || null
 
         const categories = await prisma.lang.findMany() || null
+        const posts = await prisma.post.findMany() || null
         const options = await prisma.options.findMany() || null
         const currentLang = await prisma.options.findUnique({
             where: {
               key: 'mainLang',
             },
         })
-        
+        const currentPage = await prisma.options.findUnique({
+            where: {
+              key: 'mainPageID',
+            },
+        })
         const currentLangObject = await prisma.lang.findUnique({
             where: {
               id: parseInt(currentLang.value),
+            },
+        })
+        const currentMainPageObject = await prisma.post.findUnique({
+            where: {
+              id: parseInt(currentPage.value),
             },
         })
   
@@ -100,7 +128,9 @@ export const getServerSideProps = withSessionSsr(
                 user: user,
                 options: options,
                 categories: categories,
-                currentLangObject: currentLangObject || {}
+                currentLangObject: currentLangObject || {},
+                posts: posts,
+                mainPage: currentMainPageObject || {},
             }
         }
     }
