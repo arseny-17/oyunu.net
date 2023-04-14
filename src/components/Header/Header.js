@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./Header.module.scss"
 import Button from "../Button";
+
 
 const navigation =  [
     {id:1, title:'1xBet', path:'/'},
@@ -18,8 +18,8 @@ const Header = (props) =>  {
         console.log('header', props)
 
         return (
-            <header className={styles.header}>
-                <div className={`${styles.headerInner} wrapper`}>
+            <header className="header">
+                <div className="headerInner wrapper">
                     <div className="logo">
                         <Image src="/1x-logo.png" alt="Logo 1xBet" width={156} height={40}/>
                     </div>
@@ -30,16 +30,16 @@ const Header = (props) =>  {
                         <span>noamp</span>
                     )}
 
-                    <div className={styles.menu}>
+                    <div className="menu">
                         {navigation.map(({id, title, path}) => (
-                            <Link className={pathname === path ? styles.active : null} key={id} href={path}>
+                            <Link className={pathname === path ? "active" : null} key={id} href={path}>
                                 {title}
                             </Link>
                         ))}                       
                     </div>
-                    <div className={styles.buttons}>
-                        <Button text='KAYIT' buttonStyle={styles.logButton} amp={props.amp} link={props.mainLink} split='buttonLog'/>
-                        <Button text='GİRİŞ' buttonStyle={styles.regButton} amp={props.amp} link={props.mainLink} split='buttonReg'/>
+                    <div className="buttons">
+                        <Button text='KAYIT' buttonStyle="logButton" amp={props.amp} link={props.mainLink} split='buttonLog'/>
+                        <Button text='GİRİŞ' buttonStyle="regButton" amp={props.amp} link={props.mainLink} split='buttonReg'/>
                         {/* <button onClick={brandClick} onTap={brandClick} >KAYIT</button>
                         <button onClick={brandClick} onTap={brandClick} className={styles.regButton}>GİRİŞ</button> */}
                     </div>

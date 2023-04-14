@@ -5,12 +5,15 @@ import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
 import renderCustomHTML from "../../helpers/render";
+import getCSS from "../../helpers/generateCSS";
 
 export const config = { amp: 'hybrid' }
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
 
+   const isAmp = context.query.amp ? true : false
    const prisma = new PrismaClient()
+   const style = getCSS()
    
    const options = await axios
    .get('http://localhost:3000/api/get-options')
@@ -25,10 +28,14 @@ export async function getServerSideProps(){
       },
   })
 
+  const rendered = await renderCustomHTML(post, isAmp)
+
    return {
       props: {
          options_obj: options,
-         post: post
+         post: post,
+         rendered: rendered,
+         ampStyle: style
       }
    }
 
@@ -40,13 +47,11 @@ const Home = (props) => {
    
    const isAmp = useAmp()
 
-   const ampStyle = ``
-
    return (
       <>
          <Heading 
             amp={isAmp}    
-            ampStyle={ampStyle}
+            ampStyle={props.ampStyle}
             seotitle={props.post.seo_title}
             seodescription={props.post.seo_description}
          />
@@ -57,7 +62,7 @@ const Home = (props) => {
          <h1>{ props.post.title }</h1>
 
          <div className="content-block" 
-              dangerouslySetInnerHTML={{__html: renderCustomHTML(props.post, isAmp) }}>
+              dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
          </div>
 
          {isAmp ? (

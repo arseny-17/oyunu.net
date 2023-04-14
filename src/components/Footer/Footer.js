@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./Footer.module.scss"
 import {useEffect, useRef} from 'react'
 
 let year = new Date().getFullYear()
@@ -29,12 +28,12 @@ const Footer = () =>  {
 
       }, [])
 
-    return (<footer className={styles.footer}>
-        <div className={`${styles.footerInner} wrapper`}>
+    return (<footer className="footer">
+        <div className="footerInner wrapper">
 
-            <span className={styles.copyright}>© Copyright {year}</span>
+            <span className="copyright">© Copyright {year}</span>
         </div>
-        <div className={styles.scrollTop} onClick={scrollTop} ref={buttonRef}>
+        <div className="scrollTop" onClick={scrollTop} ref={buttonRef}>
             <img src="/up-arrow.svg" width="13px" height="13px" alt="scroll to top" />
         </div>
     </footer>
