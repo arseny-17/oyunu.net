@@ -54,6 +54,7 @@ const Home = (props) => {
             ampStyle={props.ampStyle}
             seotitle={props.post.seo_title}
             seodescription={props.post.seo_description}
+            content={props.post.content}
          />
          <Header 
             amp={isAmp} 

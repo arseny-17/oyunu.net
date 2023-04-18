@@ -15,6 +15,11 @@ export class FAQ {
       this.data = data; 
     }
 
+    static init(data) {
+        this.data = data
+        console.log('Data from init: ', this.data)
+    }
+
     render() {
 
         let setData = (data) => { this.data = data }
@@ -22,9 +27,9 @@ export class FAQ {
         wrapper.setAttribute('class', style.faqWrapper)
 
         ReactDOM.render(<FaqList 
-                            data = {this.data}
-                            css = {style} 
-                            setData = {setData} />, wrapper) 
+                            data={this.data.data}
+                            css={style} 
+                            setData={setData} />, wrapper) 
         return wrapper
 
     }

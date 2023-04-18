@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 
-export default function FaqList(props) { 
+export default function FaqList( {data, css, setData} ) { 
 
-    const [ values, setValues ] = useState([props.data])
+    const initialValues = (Array.isArray(data)) 
+                        ? data 
+                        : [{ question: '', 
+                             answer: ''
+                        }]
+    
+    console.log(data, ' Our props.data')
+
+    const [ values, setValues ] = useState(initialValues)
 
     const addRow = () => {
         setValues([...values, {
             question: '', 
             answer: ''
         }])
-        props.setData(values)
+        setData(values)
     }
 
     const removeRow = (event, index) => {
         let rows = [...values]
         rows.splice(index, 1)
         setValues(rows)
-        props.setData(rows)
+        setData(rows)
     }
 
     const changeInput = (event, index) => {
@@ -24,17 +32,17 @@ export default function FaqList(props) {
         let rows = [...values]
         rows[index][name] = value
         setValues(rows)
-        props.setData(rows)
+        setData(rows)
     }
 
     return(
 
-        <div className={props.css.container}>
+        <div className={css.container}>
             {values.map((item, index) => {
                 let { question, answer } = item
 
                 return(
-                    <div key={index} className={props.css.item}>
+                    <div key={index} className={css.item}>
                         <div>
                             <input 
                             type="text"

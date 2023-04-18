@@ -67,7 +67,11 @@ export default function Pages(props) {
             }, 
             onReady: () => {
                 console.log(`Editor.js is ready to work on ${process.env.NEXT_PUBLIC_HOST}!`)
-                editor.render(JSON.parse(props.post.content))
+                let content = JSON.parse(props.post.content)
+                editor.render(content)
+                FAQ.init(content.blocks.find(obj => {
+                    return obj.type == 'faq'
+                }))
             },
             onChange: (api, event) => {
                 //console.log('Now I know that Editor\'s content changed!', event)
