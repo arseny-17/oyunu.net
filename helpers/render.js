@@ -56,6 +56,13 @@ export default async function renderCustomHTML(post, amp) {
                 }
                 HTML += '</tbody></table>'
                 break;
+            case 'faq':
+                let faqList = block.data
+                HTML += '<div class="faq-container">'
+                    for (let item of faqList) {
+                        HTML += `<div class="faq-item"><p>${ item.question }</p><p>${ item.answer }</p></div>`
+                    }
+                HTML += '</div>'
             case 'raw':
                 break;
             case 'columns':

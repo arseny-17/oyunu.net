@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import React, { use, useEffect } from "react"
 import axios from 'axios'
 import { useRouter } from "next/router"
+import { FAQ } from "@/plugins/faq/Faq"
 
 
 const prisma = new PrismaClient()
@@ -38,6 +39,7 @@ export default function Pages(props) {
                 table: Table,
                 raw: Raw,
                 list: List,
+                faq: FAQ,
                 image: {
                     class: ImageTool,
                     config: {
