@@ -8,7 +8,7 @@ export default function FaqList( {data, css, setData} ) {
                              answer: ''
                         }]
     
-    console.log(data, ' Our props.data')
+    console.log(data, ' FAQ props.data')
 
     const [ values, setValues ] = useState(initialValues)
 
@@ -38,6 +38,7 @@ export default function FaqList( {data, css, setData} ) {
     return(
 
         <div className={css.container}>
+            <h4>Вопрос-ответ</h4>
             {values.map((item, index) => {
                 let { question, answer } = item
 

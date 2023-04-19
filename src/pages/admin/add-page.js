@@ -5,6 +5,7 @@ import React, { use, useEffect } from "react"
 import axios from 'axios'
 import { useRouter } from "next/router"
 import { FAQ } from "@/plugins/faq/Faq"
+import { Toc } from "@/plugins/toc/Toc"
 
 
 const prisma = new PrismaClient()
@@ -40,6 +41,7 @@ export default function Pages(props) {
                 raw: Raw,
                 list: List,
                 faq: FAQ,
+                toc: Toc,
                 image: {
                     class: ImageTool,
                     config: {
@@ -70,15 +72,22 @@ export default function Pages(props) {
             onChange: (api, event) => {
                 //console.log('Now I know that Editor\'s content changed!', event)
                 editor.save().then((outputData) => {
+
+                    let content = outputData
+
                     console.log('Article data: ', outputData)
-                    setContent(JSON.stringify(outputData))
+                    setContent(JSON.stringify(content))
+                    
+                    Toc.init(content.blocks.filter(obj => {
+                        return obj.type == 'header'
+                    }))
+                
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
                 })
             },
             autofocus: true,
             placeholder: 'Let`s write an awesome story!',
-        
         })
     
     }, [])

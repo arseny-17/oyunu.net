@@ -5,6 +5,7 @@ import React, { use, useEffect } from "react"
 import axios from 'axios'
 import { useRouter } from "next/router"
 import { FAQ } from "@/plugins/faq/Faq"
+import { Toc } from "@/plugins/toc/Toc"
 
 const prisma = new PrismaClient()
 
@@ -41,6 +42,7 @@ export default function Pages(props) {
                 raw: Raw,
                 list: List,
                 faq: FAQ,
+                toc: Toc,
                 image: {
                     class: ImageTool,
                     config: {
@@ -69,15 +71,25 @@ export default function Pages(props) {
                 console.log(`Editor.js is ready to work on ${process.env.NEXT_PUBLIC_HOST}!`)
                 let content = JSON.parse(props.post.content)
                 editor.render(content)
-                FAQ.init(content.blocks.find(obj => {
-                    return obj.type == 'faq'
-                }))
+
+                Toc.saveData(content.blocks.find(obj => {
+                    return obj.type == 'toc'
+                }).data)
+                // FAQ.init(content.blocks.find(obj => {
+                //     return obj.type == 'faq'
+                // }))
             },
             onChange: (api, event) => {
                 //console.log('Now I know that Editor\'s content changed!', event)
                 editor.save().then((outputData) => {
                     console.log('Article data: ', outputData)
-                    setContent(JSON.stringify(outputData))
+                    let content = outputData
+                    setContent(JSON.stringify(content))
+                    
+                    Toc.init(content.blocks.filter(obj => {
+                        return obj.type == 'header'
+                    }))
+                    
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
                 })

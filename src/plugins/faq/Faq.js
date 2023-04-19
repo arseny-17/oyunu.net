@@ -12,7 +12,8 @@ export class FAQ {
     }
 
     constructor(data) {
-      this.data = data; 
+      this.data = data
+      console.log('FAQ init', this.data)
     }
 
     static init(data) {
@@ -22,7 +23,10 @@ export class FAQ {
 
     render() {
 
-        let setData = (data) => { this.data = data }
+        let setData = (data) => { 
+          this.data = data
+          console.log('data from faq child', this.data)
+        }
         let wrapper = document.createElement('div')
         wrapper.setAttribute('class', style.faqWrapper)
 
