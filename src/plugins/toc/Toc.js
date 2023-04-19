@@ -16,8 +16,6 @@ export class Toc {
 
     constructor(data) {
       this.data = data
-      this.dataFromEditor = this.data.data
-      console.log('TOC init', this.data.data)
     }
 
     static init(data) {
