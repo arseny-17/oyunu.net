@@ -20,8 +20,6 @@ const Button = (props) => {
             </button>
         )
 
-       
-
     )
 
 }

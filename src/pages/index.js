@@ -26,22 +26,24 @@ export async function getServerSideProps(context){
       where: {
         id: mainID,
       },
-  })
+   })
 
-  const rendered = await renderCustomHTML(post, isAmp)
+   const rendered = await renderCustomHTML(post, isAmp)
+
+   const response = await fetch('http://localhost:3000/api/get-posts');
+   const data = await response.json();
 
    return {
       props: {
          options_obj: options,
          post: post,
          rendered: rendered,
-         ampStyle: style
+         ampStyle: style,
+         posts: data
       }
    }
 
 }
-
-
 
 const Home = (props) => {
    
@@ -56,27 +58,25 @@ const Home = (props) => {
             seodescription={props.post.seo_description}
             content={props.post.content}
          />
-         <Header 
-            amp={isAmp} 
-            mainLink={props.options_obj.find(x => x.key === 'mainLink').value}/>
+         <div id="scroll"></div>
+          {/*isAmp ? (
+              <span>amp</span>
+          ) : (
+              <span>noamp</span>
+          )*/}
+         <Header
+            amp={isAmp}
+            mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+            posts={props.posts}
+         />
          <div className="content wrapper">
-         <h1>{ props.post.title }</h1>
-
-         <div className="content-block" 
-              dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
+             <h1>{ props.post.title }</h1>
+             <div className="content-block"
+                  dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
+             </div>
          </div>
-
-         {isAmp ? (
-            <span>amp</span>
-            ) : (
-            <span>noamp</span>
-         )}
-
-         
-   
-         </div>
-   <Footer/>
-   </>
+         <Footer amp={isAmp} />
+      </>
    )
 }
 
