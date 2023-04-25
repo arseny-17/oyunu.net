@@ -12,7 +12,8 @@ export default async function handler(req, res) {
       data: {
           title: req.body.title,
           slug: req.body.slug,
-          attr: req.body.attr
+          attr: req.body.attr,
+          flag: req.body.flag
       }
     })
     

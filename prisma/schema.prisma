@@ -24,6 +24,7 @@ model Lang {
   title String @unique
   slug String
   attr String
+  flag String?
 }
 
 model Options {

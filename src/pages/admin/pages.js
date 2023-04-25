@@ -6,6 +6,9 @@ import Link from 'next/link'
 const prisma = new PrismaClient()
 
 export default function Pages(props) {
+
+const main_page_id = props.options.find(x => x.key === 'mainPageID').value
+
   return (
    <Layout title="Список страниц" user={props.user} posts={props.posts}>
         <div className="h2">
@@ -14,9 +17,11 @@ export default function Pages(props) {
         <div className="pages_list">
                 { props.posts.map(post =>(
                     <div className="pages_item" key={post.id}>
-                        <h3>{ post.title }</h3>
+                        <h3>{ post.title } { (post.id == main_page_id) ? <span>Главная страница</span> : '' }</h3>
                         <div className="pages_item_moves">
-                            <Link href={`/admin/edit/page/${post.id}`} className="details"><i className="fa fa-pencil" aria-hidden="true"></i>редактировать</Link>
+                            <Link href={`/admin/edit/page/${post.id}`} className="details">
+                                <span class="material-icons">edit</span>редактировать
+                            </Link>
                         </div> 
                     </div>
                     )) 
@@ -32,11 +37,13 @@ export const getServerSideProps = withSessionSsr(
     
         let user = req.session.user || null
         let posts = await prisma.post.findMany() || null
+        let options = await prisma.options.findMany() || null
   
         return {
             props: { 
                 user: user, 
-                posts: posts 
+                posts: posts,
+                options: options
             }
         }
     }

@@ -50,10 +50,11 @@ header {padding: 20px 0;}
 
 .sidebar {width: 220px; background: var(--light-back);padding: 20px 0; border-radius: var(--block-border-radius);
 min-height: 80vh; position: relative;}
-.sidebar span {font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 10px;
-padding-left: 15px;}
+.sidebar span {font-size: 12px;display: block;}
+.sidebar .material-icons { font-size: 24px; margin-right: 12px; }
 .sidebar a {display: flex; width: 100%; align-items: center; padding: 10px 15px 10px 15px; position: relative;}
 .sidebar a:hover, .sidebar a.active {background: var(--color-primary); color: #fff;}
+.sidebar a:hover span { color: #fff; }
 .sidebar a i { color: var(--text); font-size: 18px; padding-right: 8px;}
 .sidebar a:hover i, .sidebar a.active i {color: #fff;}
 .sidebar .year {position: absolute; bottom: 20px;}
@@ -81,13 +82,12 @@ border: 1px solid #eee; padding: 5px 10px; background: #fff; font-family: 'Poppi
 font-size: 15px; color: var(--text);}
 
 
-.pages_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee;}
-.pages_item h3 {text-align: left; font-size: 16px; padding-left: 25px; position: relative;}
-.pages_item h3:before {content: '123'; width: 20px; height: 20px; position: absolute; top: 2px; left: 0;
-background: url(../../public/admin/flags/Turkish-flag.png)no-repeat; background-size: cover; border-radius: 50%;}
+.pages_item {padding: 10px 10px 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center;}
+.pages_item h3 {text-align: left; font-size: 16px; position: relative; margin: 0 12px;}
+.pages_item img { width: 40px; flex: 0 0 auto; height: 40px; }
 .pages_item_moves {display: flex;}
 .pages_item_moves i {color: #b7b7b7; font-size: 14px; padding-right: 5px;}
-.pages_item .details {margin-right: 15px;}
+.pages_item .details { display: flex; align-items: center; }
 .pages_item .details:hover, .pages_item .details:hover i {color: var(--color-primary);}
 .pages_item .delete:hover, .pages_item .delete:hover i {color: #f80505;}
 

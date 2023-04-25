@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 
 export default function Sidebar(){
@@ -6,15 +5,12 @@ export default function Sidebar(){
         <>
       
         <div className="sidebar">
-            <span>Navigation</span>
-            <Link href="/admin"><i className="fa fa-globe" aria-hidden="true"></i>Console</Link>
-            <Link href="/admin/options"><i className="fa fa-anchor" aria-hidden="true"></i>Опции</Link>
-            <Link href="/admin/pages"><i className="fa fa-file-text" aria-hidden="true"></i>Страницы</Link>
-            <Link href="/admin/add-page"><i className="fa fa-object-ungroup" aria-hidden="true"></i>Создать страницу</Link>
-            <Link href="/admin/categories"><i className="fa fa-object-ungroup" aria-hidden="true"></i>Языки</Link>
-            <Link href="/admin/add-category"><i className="fa fa-object-ungroup" aria-hidden="true"></i>Добавить язык</Link>
-            <Link href="/admin/media-library"><i className="fa fa-object-ungroup" aria-hidden="true"></i>Медиабиблиотека</Link>
-            <span className="year">2023, Alfa admin Panel for SEO</span>
+            <Link href="/admin/options"><span class="material-icons">settings_suggest</span>Опции</Link>
+            <Link href="/admin/pages"><span class="material-icons">article</span>Страницы</Link>
+            <Link href="/admin/add-page"><span class="material-icons">post_add</span>Создать страницу</Link>
+            <Link href="/admin/categories"><span class="material-icons">translate</span>Языки</Link>
+            <Link href="/admin/add-category"><span class="material-icons">language</span>Добавить язык</Link>
+            <Link href="/admin/media-library"><span class="material-icons">perm_media</span>Медиабиблиотека</Link>
           </div>
     </>
     )

@@ -13,8 +13,11 @@ const layout = ({
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
+                <link
+                    rel="stylesheet"
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                />
             </Head>
-
             <header>
                 <div className="header_top wrapper">
                     <div className="header_logo">

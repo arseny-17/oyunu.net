@@ -12,8 +12,6 @@ const prisma = new PrismaClient()
 export default function Pages(props) {
 
     useEffect(() => {
-
-        console.log('props', props.post.content)
         
         const Editorjs = require('@editorjs/editorjs')
         const Header = require('@editorjs/header')
@@ -70,11 +68,10 @@ export default function Pages(props) {
             onReady: () => {
                 console.log(`Editor.js is ready to work on ${process.env.NEXT_PUBLIC_HOST}!`)
                 let content = JSON.parse(props.post.content)
-                editor.render(content)
-
-                Toc.saveData(content.blocks.find(obj => {
-                    return obj.type == 'toc'
-                }).data)
+                props.post.content ? editor.render(content) : ''
+                props.post.content ? Toc.saveData(content.blocks.find(obj => {
+                    return obj.type == 'toc' || []}).data) 
+                    : ''
                 // FAQ.init(content.blocks.find(obj => {
                 //     return obj.type == 'faq'
                 // }))
@@ -111,7 +108,7 @@ export default function Pages(props) {
     const [title, setTitle] = React.useState(props.post.title)
     const [seoTitle, setSeoTitle] = React.useState(props.post.seo_title)
     const [seoDescription, setSeoDescription] = React.useState(props.post.seo_description)
-    const [content, setContent] = React.useState('')
+    const [content, setContent] = React.useState(props.post.content)
     const [category, setCategory] = React.useState(parseInt(props.post.language_id))
     const [slug, setSlug] = React.useState(props.post.slug)
     const id = props.post.id
@@ -204,8 +201,10 @@ export default function Pages(props) {
                             </select>
                         </div>
                         <div className="buttonsParent"> 
-                           <button className="buttonAdmin" type="submit">Сохранить</button>
-                           <button className="buttonDelete" onClick={deletePost}>Удалить страницу</button>
+                           <button className="buttonAdmin" type="submit">
+                           <span class="material-icons">save</span> Сохранить</button>
+                           <button className="buttonDelete" onClick={deletePost}>
+                           <span class="material-icons">delete</span> Удалить страницу</button>
                         </div>
                     </form>
                 </div>

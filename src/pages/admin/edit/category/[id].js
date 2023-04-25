@@ -10,6 +10,7 @@ export default function Category(props) {
     const [title, setTitle] = React.useState(props.category.title)
     const [slug, setSlug] = React.useState(props.category.slug)
     const [attr, setAttr] = React.useState(props.category.attr)
+    const [flag, setFlag] = React.useState(props.category.flag)
     const id = props.category.id
     
     const router = useRouter()
@@ -17,7 +18,7 @@ export default function Category(props) {
     const editCategory = async () => {
         try{
             await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-category`, {
-                id, title, slug, attr
+                id, title, slug, attr, flag
             }).then(() => {
                 console.log('Category successfully edited!')
                 return router.push("/admin/categories")
@@ -39,6 +40,8 @@ export default function Category(props) {
             console.log(e)
         }
     }
+
+    const flags_data = JSON.parse(props.flags)
 
     return (
     <Layout title="Редактирование категории" user={props.user}>
@@ -77,7 +80,32 @@ export default function Category(props) {
                             required
                         />
                     </div>
-                    <button type="submit">Редактировать категорию</button>
+                    <div className="info_field">
+                        <span>Флаг</span>
+                        <div className="input">
+                            <label for="flag">{flag}</label>
+                        </div>
+                            { 
+                            flags_data.map(fl =>(
+                                <>
+                                    <div className="input">
+                                        <label for={fl}>
+                                            <input defaultValue={fl} 
+                                                onChange={e => setFlag(e.target.value)} 
+                                                checked={ fl == flag ? 'checked' : false }
+                                                type="radio" name="flag" id={fl}/>
+                                            <img src={`/uploads/img/flags/${fl}`} 
+                                                width="40"
+                                                alt="" />
+                                            {fl}
+                                        </label>
+                                    </div>
+                                    
+                                </>
+                                )) 
+                            }
+                    </div>
+                        <button type="submit">Редактировать категорию</button>
                 </form>
                 <button onClick={deleteCategory}>Удалить категорию</button>
             </div>
@@ -98,11 +126,20 @@ export const getServerSideProps = withSessionSsr(
               id: parseInt(params.id),
             },
         })
+
+        let flags = []
+         
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/flags-list`).then(
+          (response) => {
+            flags = JSON.stringify(response.data.flags)
+          }
+        )
   
         return {
             props: { 
                 user: user,
-                category: category
+                category: category,
+                flags: flags
             }
         }
     }

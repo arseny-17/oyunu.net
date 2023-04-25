@@ -14,9 +14,11 @@ export default function Categories(props) {
         <div className="pages_list">
                 { props.cats.map(cat =>(
                     <div className="pages_item" key={cat.id}>
+                        <img src={`/uploads/img/flags/${cat.flag}`} alt="" width="40" />
                         <h3>{ cat.title }</h3>
                         <div className="pages_item_moves">
-                            <Link href={`/admin/edit/category/${cat.id}`} className="details"><i className="fa fa-pencil" aria-hidden="true"></i>редактировать</Link>
+                            <Link href={`/admin/edit/category/${cat.id}`} className="details">
+                                <span class="material-icons">edit</span> редактировать</Link>
                         </div> 
                     </div>
                     )) 
