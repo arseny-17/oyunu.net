@@ -25,10 +25,18 @@ model Lang {
   slug String
   attr String
   flag String?
+  menu_id Int?
 }
 
 model Options {
   id Int @id @default(autoincrement())
   key String @unique
+  value String
+}
+
+
+model Menu {
+  id Int @id @default(autoincrement())
+  name String @unique
   value String
 }

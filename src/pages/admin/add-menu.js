@@ -1,14 +1,18 @@
 import { useState } from "react"
+import axios from 'axios'
 import Layout from "../../components/admin/Layout"
 import { withSessionSsr } from '@/lib/config/withSession'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export default function addMenu(props){
 
     const [cardList, setCardList]  = useState([
-        {id: 1, order: 3, text: 'MainPage', anchor: 'MainPage', link: '/'},
-        {id: 2, order: 1, text: 'Slots', anchor: 'Slots', link: '/slots'},
-        {id: 3, order: 2, text: 'Register', anchor: 'Register', link: '/register'},
-        {id: 4, order: 4, text: 'Mobile', anchor: 'Mobile', link: '/mobile'}
+        // {id: 1, order: 3, text: 'MainPage', anchor: 'MainPage', link: '/'},
+        // {id: 2, order: 1, text: 'Slots', anchor: 'Slots', link: '/slots'},
+        // {id: 3, order: 2, text: 'Register', anchor: 'Register', link: '/register'},
+        // {id: 4, order: 4, text: 'Mobile', anchor: 'Mobile', link: '/mobile'}
     ])
 
     const [currentCard, setCurrentCard] = useState(null)
@@ -79,10 +83,33 @@ export default function addMenu(props){
         }
     }
 
+    async function generateMenu(e) {
+        try{
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/get-posts-by-lang`, {
+                id: parseInt(e.target.value)
+            })
+            .then(json => setCardList(json.data.data))
+            console.log(cardList, 'cardlist')
+        } catch(e){
+            console.log(e)
+        }
+    } 
+
     return(
         <Layout title="Создание меню" user={props.user}>
             <h2>Menu creation</h2>
             <div className="cardList">
+                <div className="select">
+                    {props.categories.map(lang => 
+                        <div key={lang.id}>
+                            <input type="radio" id={lang.slug} name="languages" defaultValue={lang.id}
+                            onChange={(e) => generateMenu(e)}/>
+                            <label htmlFor={lang.slug}>{lang.title}</label>
+                        </div>
+                    )}
+                    
+                </div>
+
                 {cardList.sort(sortCards).map((card, index) => 
                     <div 
                         className="cardItem"
@@ -122,8 +149,8 @@ export default function addMenu(props){
                             />
                         </div>
                     </div>
-                )}
-            <button 
+                )} 
+             <button 
                 className="addItem"
                 onClick={addCardItem}
             >
@@ -142,9 +169,12 @@ export const getServerSideProps = withSessionSsr(
     
         let user = req.session.user || null
 
+        const categories = await prisma.lang.findMany() || null
+
         return {
             props: { 
-                user: user
+                user: user,
+                categories: categories
             }
         }
     }

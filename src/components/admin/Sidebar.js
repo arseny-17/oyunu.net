@@ -11,6 +11,8 @@ export default function Sidebar(){
             <Link href="/admin/categories"><span class="material-icons">translate</span>Языки</Link>
             <Link href="/admin/add-category"><span class="material-icons">language</span>Добавить язык</Link>
             <Link href="/admin/media-library"><span class="material-icons">perm_media</span>Медиабиблиотека</Link>
+            <Link href="/admin/add-menu"><span class="material-icons">perm_media</span>Добавить меню</Link>
+            <Link href="/admin/menu"><span class="material-icons">perm_media</span>Все меню</Link>
           </div>
     </>
     )
