@@ -130,3 +130,18 @@ border-radius: var(--block-border-radius); padding: 10px 25px; text-transform: u
 .buttonsParent {display: flex; justify-content: space-between;}
 .buttonDelete {background: #eee; font-size: 16px; border-radius: var(--block-border-radius); padding: 10px 15px;}
 .buttonDelete:hover {background: #e10404; color: #fff;}
+
+
+.cardList { display: flex; align-items: center; flex-wrap: wrap;}
+.cardList .cardItem { margin: 16px 8px 16px 0; padding: 20px; border:1px #eee solid; border-radius: 4px; cursor: grab; 
+position: relative; width: 48%; }
+.cardList .cardItem .remove {position: absolute; cursor: pointer; right: 16px;top: 16px;font-size: 24px;
+background: red; border-radius: 50%;width: 24px; height: 24px;
+display: flex; justify-content: center;align-items: center;}
+.cardList .cardItem .remove span {  color: #fff; }
+.cardList button.addItem { width: 48%;height: 160px;background: #eee;
+display: flex;align-items: center; justify-content: center; }
+.cardList button.addItem span {font-size: 32px;color: #333; }
+.cardList .cardItem .input { margin-bottom: 12px; display: flex; justify-content: space-between;
+align-items: center; }
+.cardList .cardItem input { margin-left: 12px; background: #eee; padding: 10px; flex-grow: .9; }

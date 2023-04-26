@@ -5,7 +5,7 @@ const Heading = function(props) {
 
     const content = JSON.parse(props.content)
     const faq = content.blocks.find(obj => {
-        return obj.type == 'faq'
+        return obj.type == 'faq' || {}
     })
 
     return (
