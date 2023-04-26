@@ -8,12 +8,7 @@ const prisma = new PrismaClient()
 
 export default function addMenu(props){
 
-    const [cardList, setCardList]  = useState([
-        // {id: 1, order: 3, text: 'MainPage', anchor: 'MainPage', link: '/'},
-        // {id: 2, order: 1, text: 'Slots', anchor: 'Slots', link: '/slots'},
-        // {id: 3, order: 2, text: 'Register', anchor: 'Register', link: '/register'},
-        // {id: 4, order: 4, text: 'Mobile', anchor: 'Mobile', link: '/mobile'}
-    ])
+    const [cardList, setCardList]  = useState([])
 
     const [currentCard, setCurrentCard] = useState(null)
     const [val, setVal] = useState('')
@@ -66,13 +61,11 @@ export default function addMenu(props){
 
     function addCardItem(){
         setCardList([...cardList, {
-            id: cardList.length + 1,
-            order: cardList.length + 1,
-            text: 'Custom',
-            anchor: '',
-            link: ''
+            id: Math.max(...cardList.map(i => i.id)) + 1,
+            order: Math.max(...cardList.map(i => i.id)) + 1,
+            title: 'Custom title',
+            slug: '#'
         }])
-        console.log('cardList from add', cardList)
     }
 
     const sortCards = (a,b) => {
@@ -88,8 +81,12 @@ export default function addMenu(props){
             await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/get-posts-by-lang`, {
                 id: parseInt(e.target.value)
             })
-            .then(json => setCardList(json.data.data))
-            console.log(cardList, 'cardlist')
+            .then(json => {
+                //setCardList(json.data.data)
+                setCardList(json.data.data.map( c => {
+                    return{...c, order: c.id}   
+                }))
+            })
         } catch(e){
             console.log(e)
         }
@@ -127,11 +124,11 @@ export default function addMenu(props){
                         >
                             <span>x</span>
                         </div>
-                        <h3>{card.text}</h3>
+                        <h3>{card.title}</h3>
                         <div className="input">
                             <span>Текст ссылки: </span> 
-                            <input type="text" name="anchor"
-                                defaultValue={card.anchor} 
+                            <input type="text" name="title"
+                                defaultValue={card.title} 
                                 onChange={ e => {
                                     setVal(e.target.value)
                                     setValInList(e, card, index)
@@ -140,8 +137,8 @@ export default function addMenu(props){
                         </div>
                         <div className="input">
                             <span>URL ссылки: </span> 
-                            <input type="text" name="link"
-                                defaultValue={card.link} 
+                            <input type="text" name="slug"
+                                defaultValue={card.slug} 
                                 onChange={ e => {
                                     setVal(e.target.value)
                                     setValInList(e, card, index)

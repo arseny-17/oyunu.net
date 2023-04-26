@@ -9,6 +9,11 @@ export default async function handler(req, res) {
       where: {
         language_id: req.body.id,
       },
+      select: {
+        id: true,
+        title: true,
+        slug: true
+      },
     })
 
     res.status(200).json({ 
