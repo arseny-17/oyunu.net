@@ -11,6 +11,8 @@ export default function Category(props) {
     const [slug, setSlug] = React.useState(props.category.slug)
     const [attr, setAttr] = React.useState(props.category.attr)
     const [flag, setFlag] = React.useState(props.category.flag)
+    const [menu, setMenu] = React.useState(props.category.menu_id)
+
     const id = props.category.id
     
     const router = useRouter()
@@ -18,7 +20,7 @@ export default function Category(props) {
     const editCategory = async () => {
         try{
             await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-category`, {
-                id, title, slug, attr, flag
+                id, title, slug, attr, flag, menu
             }).then(() => {
                 console.log('Category successfully edited!')
                 return router.push("/admin/categories")
@@ -105,7 +107,17 @@ export default function Category(props) {
                                 )) 
                             }
                     </div>
-                        <button type="submit">Редактировать категорию</button>
+                    <div className="info_field">
+                            <span>Меню в шапке</span>
+                            <select onChange={e => setMenu( parseInt(e.target.value))} required>
+                                <option defaultValue={props.currentMenu.id}>{props.currentMenu.name}</option>
+                                { props.menuList.map(m =>(
+                                    <option value={m.id}>{m.name}</option>
+                                    )) 
+                                }
+                            </select>
+                    </div>
+                    <button type="submit">Редактировать категорию</button>
                 </form>
                 <button onClick={deleteCategory}>Удалить категорию</button>
             </div>
@@ -134,12 +146,31 @@ export const getServerSideProps = withSessionSsr(
             flags = JSON.stringify(response.data.flags)
           }
         )
+
+        let menu = await prisma.menu.findMany({
+            select: {
+              id: true,
+              name: true
+            }
+        })
+
+        const currentMenu = await prisma.menu.findUnique({
+            where: {
+              id: category.menu_id
+            },
+            select: {
+                id: true,
+                name: true
+            }
+        })
   
         return {
             props: { 
                 user: user,
                 category: category,
-                flags: flags
+                flags: flags,
+                menuList: menu,
+                currentMenu: currentMenu
             }
         }
     }

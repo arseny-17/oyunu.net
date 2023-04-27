@@ -13,6 +13,7 @@ export default function addMenu(props){
     const [currentCard, setCurrentCard] = useState(null)
     const [val, setVal] = useState('')
     const [link, setLink] = useState('')
+    const [menuName, setMenuName] = useState('Новое меню')
 
     function setValInList(e, card, index){
         let { name, value } = e.target
@@ -68,6 +69,20 @@ export default function addMenu(props){
         }])
     }
 
+    async function saveMenu (){
+        try{
+            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/save-menu`, {
+                name: menuName,
+                value: JSON.stringify(cardList)
+            }).then(() => {
+                console.log('success')
+                return router.push("/admin/pages")
+            })
+        } catch(e){
+            console.log(e)
+        }
+    }
+
     const sortCards = (a,b) => {
         if (a.order > b.order) {
             return 1
@@ -106,6 +121,17 @@ export default function addMenu(props){
                     )}
                     
                 </div>
+
+                {cardList.length > 0 ?      
+                    <div className="menuName">
+                        <input 
+                            type="text" 
+                            placeholder="Введите название меню"
+                            onChange={(e) => setMenuName(e.target.value)}
+                            defaultValue={menuName}
+                        />
+                    </div>
+                : '' }
 
                 {cardList.sort(sortCards).map((card, index) => 
                     <div 
@@ -147,12 +173,25 @@ export default function addMenu(props){
                         </div>
                     </div>
                 )} 
-             <button 
-                className="addItem"
-                onClick={addCardItem}
-            >
-                <span>+</span>
-            </button>
+
+            {cardList.length > 0 ?
+                <>
+                    <button 
+                        className="addItem"
+                        onClick={addCardItem}
+                    >
+                        <span>+</span>
+                    </button>
+                    <div className="saveButton">
+                        <button 
+                            className="buttonAdmin"
+                            onClick={saveMenu}
+                        >
+                            Сохранить меню
+                        </button>
+                    </div>
+                </>
+            : ''}
             </div>
         </Layout>
         

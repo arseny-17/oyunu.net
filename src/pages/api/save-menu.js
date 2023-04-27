@@ -5,21 +5,15 @@ const prisma = new PrismaClient()
 export default async function handler(req, res) {
 
   try{
-    const editCat = await prisma.lang.update({
-      where: {
-        id: parseInt(req.body.id),
-      },
+    const newMenu = await prisma.menu.create({
       data: {
-          title: req.body.title,
-          slug: req.body.slug,
-          attr: req.body.attr,
-          flag: req.body.flag,
-          menu_id: req.body.menu
+        name: req.body.name,
+        value: req.body.value,
       }
     })
     
     res.status(200).json({ 
-      cat: editCat
+      menu: newMenu
     })
 
   } catch(e){

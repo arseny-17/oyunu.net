@@ -133,15 +133,26 @@ border-radius: var(--block-border-radius); padding: 10px 25px; text-transform: u
 
 
 .cardList { display: flex; align-items: center; flex-wrap: wrap;}
-.cardList .cardItem { margin: 16px 8px 16px 0; padding: 20px; border:1px #eee solid; border-radius: 4px; cursor: grab; 
-position: relative; width: 48%; }
-.cardList .cardItem .remove {position: absolute; cursor: pointer; right: 16px;top: 16px;font-size: 24px;
+.cardList .cardItem { margin: 16px 0px 0px 0; padding: 10px; border:1px #eee solid; border-radius: 4px; 
+cursor: grab;  position: relative;  width: 100%;}
+.cardList .cardItem h3 {padding: 0 0 10px 0; text-align: left; font-size: 16px;}
+.cardList .cardItem .remove {position: absolute; cursor: pointer; right: 16px;top: 8px;font-size: 24px;
 background: red; border-radius: 50%;width: 24px; height: 24px;
 display: flex; justify-content: center;align-items: center;}
 .cardList .cardItem .remove span {  color: #fff; }
-.cardList button.addItem { width: 48%;height: 160px;background: #eee;
+.cardList button.addItem { width: 100%;height: 100px;background: #eee; margin-top: 16px;
 display: flex;align-items: center; justify-content: center; }
 .cardList button.addItem span {font-size: 32px;color: #333; }
 .cardList .cardItem .input { margin-bottom: 12px; display: flex; justify-content: space-between;
 align-items: center; }
-.cardList .cardItem input { margin-left: 12px; background: #eee; padding: 10px; flex-grow: .9; }
+.cardList .cardItem input { width: calc(100% - 120px); background: #eee; padding: 10px; flex-grow: .9; }
+.cardList .cardItem .input span {width: 120px; font-size: 15px;}
+
+.cardList .select {width: 100%; display: flex;}
+.cardList .select div {margin-right: 15px;}
+.cardList .select div input {margin-right: 5px;}
+
+.saveButton {width: 100%; margin: 20px 0; display: flex; justify-content: flex-end;}
+.cardList  .menuName {width: 100%; margin-top: 16px;}
+.cardList  .menuName input {border: 1px solid #eee; padding: 10px 10px; width: 500px;
+border-radius: var(--block-border-radius); }
