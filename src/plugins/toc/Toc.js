@@ -14,8 +14,9 @@ export class Toc {
       };
     }
 
-    constructor(data) {
+    constructor({ data, block }) {
       this.data = data
+      this.blockAPI = block
     }
 
     static init(data) {
@@ -25,9 +26,9 @@ export class Toc {
         if (Array.isArray(data)) {
           for ( let item of data ) {
             headings.push({
-                  heading: item.data.text, 
-                  checked: true
-              })
+                heading: item.data.text, 
+                checked: true
+            })
           }
         }
       console.log('data from TOC init', headings)
@@ -40,14 +41,16 @@ export class Toc {
 
     static saveData(data){
       console.log('data from saveData', data)
-      this.dataFromEditor = data
+      this.dataFromEditor = data 
+
     }
 
     render() {
 
         let setData = (data) => { 
           this.dataFromEditor = data 
-          console.log('data from child', this.dataFromEditor)
+          console.log('data from toc child', this.dataFromEditor)
+          this.blockAPI.dispatchChange()
         }
 
         let wrapper = document.createElement('div')
@@ -64,6 +67,7 @@ export class Toc {
     }
 
     save() {
+      console.log('saving TOC...', this.dataFromEditor)
       return this.dataFromEditor
     }
 

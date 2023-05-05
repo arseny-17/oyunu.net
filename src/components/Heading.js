@@ -3,6 +3,8 @@ import FaqSchema from "./FaqSchema";
 
 const Heading = function(props) {
 
+    console.log('props55', props)
+
     const content = JSON.parse(props.content)
     const faq = content.blocks.find(obj => {
         return obj.type == 'faq' || {}

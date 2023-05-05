@@ -1,7 +1,8 @@
-import Image from "next/image";
-import Button from "../Button";
-import Menu from "../Menu";
-import MobileMenu from "../MobileMenu";
+import Image from "next/image"
+import Button from "../Button"
+import Menu from "../Menu"
+import Link from "next/link"
+import MobileMenu from "../MobileMenu"
 
 const Header = (props) =>  {
 
@@ -10,7 +11,9 @@ const Header = (props) =>  {
                 { props.amp ? <div className="overlay"></div> : '' }
                 <div className="headerInner wrapper">
                     <div className="logo">
-                        <Image src="/1x-logo.png" alt="Logo 1xBet" width={156} height={40}/>
+                        <Link href="/">
+                            <Image src="/1x-logo.png" alt="Logo 1xBet" width={156} height={40}/>
+                        </Link>
                     </div>
 
                     <Menu list={props.menu} />

@@ -11,9 +11,9 @@ export class FAQ {
       };
     }
 
-    constructor(data) {
+    constructor({ data, block }) {
       this.data = data
-      console.log('FAQ init', this.data)
+      this.blockAPI = block
     }
 
     static init(data) {
@@ -26,14 +26,13 @@ export class FAQ {
         let setData = (data) => { 
           this.data = data
           console.log('data from faq child', this.data)
+          this.blockAPI.dispatchChange()
         }
+
         let wrapper = document.createElement('div')
         wrapper.setAttribute('class', style.faqWrapper)
 
-        ReactDOM.render(<FaqList 
-                            data={this.data.data}
-                            css={style} 
-                            setData={setData} />, wrapper) 
+        ReactDOM.render(<FaqList data={this.data} css={style} setData={setData} />, wrapper) 
         return wrapper
 
     }

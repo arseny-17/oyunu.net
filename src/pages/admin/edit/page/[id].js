@@ -67,14 +67,15 @@ export default function Pages(props) {
             }, 
             onReady: () => {
                 console.log(`Editor.js is ready to work on ${process.env.NEXT_PUBLIC_HOST}!`)
+                
                 let content = JSON.parse(props.post.content)
                 props.post.content ? editor.render(content) : ''
                 props.post.content ? Toc.saveData(content.blocks.find(obj => {
                     return obj.type == 'toc' || []}).data) 
                     : ''
-                // FAQ.init(content.blocks.find(obj => {
-                //     return obj.type == 'faq'
-                // }))
+                FAQ.init(content.blocks.find(obj => {
+                    return obj.type == 'faq'
+                }))
             },
             onChange: (api, event) => {
                 //console.log('Now I know that Editor\'s content changed!', event)
@@ -112,7 +113,6 @@ export default function Pages(props) {
     const [category, setCategory] = React.useState(parseInt(props.post.language_id))
     const [slug, setSlug] = React.useState(props.post.slug)
     const id = props.post.id
-
 
     const router = useRouter()
  

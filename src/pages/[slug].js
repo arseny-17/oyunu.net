@@ -1,36 +1,56 @@
-import Heading from "../components/Heading";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Heading from "@/components/Heading";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import ContentSidebar from "@/components/ContentSidebar/ContentSidebar";
 import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
+import renderCustomHTML from "../../helpers/render";
+import getCSS from "../../helpers/generateCSS";
 
 
 export const config = { amp: 'hybrid' }
 
-export async function getServerSideProps({req, res, params}){
+export async function getServerSideProps(context){
 
    const prisma = new PrismaClient()
+   const isAmp = context.query.amp ? true : false
+   const style = getCSS()
 
    const options = await axios
    .get('http://localhost:3000/api/get-options')
    .then( (response) => {
       return response.data.options_data
    })
-   
-   console.log('post', params.slug)
+
 
    const post = await prisma.post.findFirst({
       where: {
-        slug: params.slug,
+        slug: context.query.slug,
       },
   })
 
+  const category = await prisma.lang.findUnique({
+      where: {
+      id: post.language_id,
+      },
+   })
+
+   const menu = await prisma.menu.findUnique({
+      where: {
+      id: category.menu_id,
+      },
+   })
+   
+   const rendered = await renderCustomHTML(post, isAmp)
 
    return {
       props: {
          options_obj: options,
-         post_obj: post
+         post_obj: post,
+         menu: menu,
+         rendered: rendered,
+         ampStyle: style
       }
    }
 
@@ -44,7 +64,6 @@ const Page = (props) => {
 
    const ampStyle = ''
 
-
    return (
       <>
          <Heading 
@@ -52,20 +71,28 @@ const Page = (props) => {
             ampStyle={ampStyle} 
             seotitle={props.post_obj.seo_title}
             seodescription={props.post_obj.seo_description}
+            content={props.post_obj.content}
          />
-         <Header amp={isAmp} mainLink={props.options_obj.find(x => x.key === 'mainLink').value}/>
+         
+         <Header 
+            amp={isAmp} 
+            mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+            menu={props.menu}
+         />
+         
          <div className="content wrapper">
       
             <div className="contentMain">
-   <           h1>{props.post_obj.title}</h1>
-               <div>
-                  {console.log(props.post_obj.content)}
+               <h1>{props.post_obj.title}</h1>
+               <div className="content-block"
+                     dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
                </div>
             </div>
 
-            <div className="contentSidebar">
-               <p>123</p>
-            </div>
+            <ContentSidebar 
+               amp={isAmp} 
+               mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+            />
             
         </div>
         <Footer/>

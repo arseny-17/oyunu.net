@@ -1,7 +1,7 @@
-import Heading from "../components/Heading";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import ContentSidebar from "../components/ContentSidebar/ContentSidebar";
+import Heading from "@/components/Heading";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import ContentSidebar from "@/components/ContentSidebar/ContentSidebar";
 import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'

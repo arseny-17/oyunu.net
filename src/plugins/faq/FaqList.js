@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useEffect } from "react"
 
 export default function FaqList( {data, css, setData} ) { 
 
-    const initialValues = (Array.isArray(data)) 
-                        ? data 
-                        : [{ question: '', 
-                             answer: ''
-                        }]
+    const initialValues = (Array.isArray(data)) ? data : [{ question: '', answer: ''}]
     
-    console.log(data, ' FAQ props.data')
+    console.log(data, 'FAQ props.data')
 
     const [ values, setValues ] = useState(initialValues)
+
+    useEffect(() => {
+        console.log('FAQ was changed', values)
+        setData(values)
+     }, [values])
 
     const addRow = () => {
         setValues([...values, {

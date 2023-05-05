@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useEffect } from "react"
 
 export default function TocList({css, data, setData}) { 
 
@@ -7,6 +8,11 @@ export default function TocList({css, data, setData}) {
     console.log(data, ' TOC props.data')
 
     const [ values, setValues ] = useState(initialValues)
+
+    useEffect(() => {
+        console.log('TOC was changed', values)
+        setData(values)
+     }, [values])
 
     const changeInput = (event, index) => {
 
