@@ -4,6 +4,10 @@ import React, { use } from "react"
 import axios from 'axios'
 import { PrismaClient } from '@prisma/client'
 import { useRouter } from "next/router"
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 export default function Category(props) {
 
@@ -31,16 +35,29 @@ export default function Category(props) {
     }
 
     const deleteCategory = async () => {
-        try{
-            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-category`, {
-                id
-            }).then(() => {
-                console.log('Category successfully deleted!')
-                return router.push("/admin/categories")
-            })
-        } catch(e){
-            console.log(e)
-        }
+
+        MySwal.fire({
+            title: 'Точно хотите удалить язык?',
+            showDenyButton: true,
+            confirmButtonText: 'Точно',
+            denyButtonText: 'Не хочу',
+          }).then(async (result) => {
+           
+            if (result.isConfirmed) {
+                try{
+                    await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-category`, {
+                        id
+                    }).then(() => {
+                        console.log('Category successfully deleted!')
+                        return router.push("/admin/categories")
+                    })
+                } catch(e){
+                    console.log(e)
+                }
+            } else if (result.isDenied) {
+              return false
+            }
+        })
     }
 
     const flags_data = JSON.parse(props.flags)
