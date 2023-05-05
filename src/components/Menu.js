@@ -7,7 +7,7 @@ const Menu = (props) => {
 
     return (
         <div className="menu">
-            {props.posts.data && props.posts.data.map(({ id, title, slug }) => (
+            { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (
                 <Link className={pathname === slug ? "active" : null} key={id} href={slug}>
                     {title}
                 </Link>

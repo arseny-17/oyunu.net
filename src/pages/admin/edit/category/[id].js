@@ -152,11 +152,11 @@ export const getServerSideProps = withSessionSsr(
               id: true,
               name: true
             }
-        })
+        }) 
 
         const currentMenu = await prisma.menu.findUnique({
             where: {
-              id: category.menu_id
+              id: category.menu_id || 1
             },
             select: {
                 id: true,

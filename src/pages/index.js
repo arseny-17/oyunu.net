@@ -17,30 +17,40 @@ export async function getServerSideProps(context){
    const style = getCSS()
    
    const options = await axios
-   .get('http://localhost:3000/api/get-options')
-   .then( (response) => {
+      .get('http://localhost:3000/api/get-options')
+      .then( (response) => {
       return response.data.options_data
    })
 
    const mainID = parseInt(options.find(x => x.key === 'mainPageID').value) 
+
    const post = await prisma.post.findUnique({
       where: {
         id: mainID,
       },
    })
 
-   const rendered = await renderCustomHTML(post, isAmp)
+   const category = await prisma.lang.findUnique({
+      where: {
+        id: post.language_id,
+      },
+   })
 
-   const response = await fetch('http://localhost:3000/api/get-posts');
-   const data = await response.json();
+   const menu = await prisma.menu.findUnique({
+      where: {
+        id: category.menu_id,
+      },
+   })
+
+   const rendered = await renderCustomHTML(post, isAmp)
 
    return {
       props: {
          options_obj: options,
          post: post,
+         menu: menu,
          rendered: rendered,
-         ampStyle: style,
-         posts: data
+         ampStyle: style
       }
    }
 
@@ -60,18 +70,12 @@ const Home = (props) => {
             content={props.post.content}
          />
          <div id="scroll"></div>
-          {/*isAmp ? (
-              <span>amp</span>
-          ) : (
-              <span>noamp</span>
-          )*/}
          <Header
             amp={isAmp}
             mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
-            posts={props.posts}
+            menu={props.menu}
          />
          <div className="content wrapper">
-
             <div className="contentMain">
                <h1>{ props.post.title }</h1>
                <div className="content-block"
