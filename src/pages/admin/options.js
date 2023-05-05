@@ -1,10 +1,13 @@
-import Layout from "../../components/admin/Layout"
+import Layout from "@/components/admin/Layout"
 import { withSessionSsr } from '@/lib/config/withSession'
 import { PrismaClient } from '@prisma/client'
 import axios from 'axios'
 import React, { use } from "react"
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 
 const prisma = new PrismaClient()
+const MySwal = withReactContent(Swal)
 
 export default function Options(props) {
 
@@ -19,10 +22,22 @@ export default function Options(props) {
         await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/update-option`, {
             key, value
         }).then(() => {
+            MySwal.fire({
+                title: 'Опция обновлена',
+                text: 'Спасибо за работу:)',
+                icon: 'success',
+                confirmButtonText: 'OK'
+              })
             console.log(`Option ${key} successfully edited with value ${value}!`)
         })
     } catch(e){
         console.log(e)
+        MySwal.fire({
+            title: 'Опция не обновлена:(',
+            text: 'Обратитесь к ближайшему доступному прогеру',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
     }
   }
 

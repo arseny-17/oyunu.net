@@ -6,8 +6,11 @@ import axios from 'axios'
 import { useRouter } from "next/router"
 import { FAQ } from "@/plugins/faq/Faq"
 import { Toc } from "@/plugins/toc/Toc"
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 
 const prisma = new PrismaClient()
+const MySwal = withReactContent(Swal)
 
 export default function Pages(props) {
 
@@ -122,23 +125,48 @@ export default function Pages(props) {
                 id, title, content, category, slug, seoTitle, seoDescription
             }).then(() => {
                 console.log('success')
+                MySwal.fire({
+                    title: 'Страница обновлена',
+                    text: 'Спасибо за работу:)',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                  })
             })
         } catch(e){
             console.log(e)
+            MySwal.fire({
+                title: 'Страница не обновлена:(',
+                text: 'Обратитесь к ближайшему доступному прогеру',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              })
          }
     }
 
     const deletePost = async () => {
-        try{
-            await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-post`, {
-                id
-            }).then(() => {
-                console.log('Page successfully deleted!')
-                return router.push("/admin/pages")
-            })
-        } catch(e){
-            console.log(e)
-        }
+
+        MySwal.fire({
+            title: 'Точно хотите удалить статью?',
+            showDenyButton: true,
+            confirmButtonText: 'Точно',
+            denyButtonText: 'Не хочу',
+          }).then(async (result) => {
+           
+            if (result.isConfirmed) {
+                try{
+                    await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/delete-post`, {
+                        id
+                    }).then(() => {
+                        console.log('Page successfully deleted!')
+                        return router.push("/admin/pages")
+                    })
+                } catch(e){
+                    console.log(e)
+                }
+            } else if (result.isDenied) {
+              return false
+            }
+        })
     }
 
 
@@ -148,10 +176,7 @@ export default function Pages(props) {
                     <h2>Редактирование страницы</h2>
                 </div>
                 <div className="info_content">
-                    <form onSubmit={ (e) => {
-                        e.preventDefault()
-                        editPost()
-                    }}>
+                    <form>
                         <div className="info_field">
                             <span>Title</span>
                             <input type="text" required 
@@ -201,10 +226,19 @@ export default function Pages(props) {
                             </select>
                         </div>
                         <div className="buttonsParent"> 
-                           <button className="buttonAdmin" type="submit">
-                           <span class="material-icons">save</span> Сохранить</button>
-                           <button className="buttonDelete" onClick={deletePost}>
-                           <span class="material-icons">delete</span> Удалить страницу</button>
+                           <button className="buttonAdmin" 
+                                onClick={ (e) => {
+                                    e.preventDefault()
+                                    editPost()
+                                }}>
+                                <span class="material-icons">save</span> Сохранить
+                            </button>
+                           <button className="buttonDelete" onClick={ (e) => {
+                                    e.preventDefault()
+                                    deletePost()
+                                }}>
+                                <span class="material-icons">delete</span> Удалить страницу
+                            </button>
                         </div>
                     </form>
                 </div>
