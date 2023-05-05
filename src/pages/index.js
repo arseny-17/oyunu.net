@@ -1,6 +1,7 @@
 import Heading from "../components/Heading";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import ContentSidebar from "../components/ContentSidebar/ContentSidebar";
 import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
@@ -70,10 +71,19 @@ const Home = (props) => {
             posts={props.posts}
          />
          <div className="content wrapper">
-             <h1>{ props.post.title }</h1>
-             <div className="content-block"
-                  dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
-             </div>
+
+            <div className="contentMain">
+               <h1>{ props.post.title }</h1>
+               <div className="content-block"
+                     dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
+               </div>
+            </div>
+
+            <ContentSidebar 
+               amp={isAmp} 
+               mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+            />
+
          </div>
          <Footer amp={isAmp} />
       </>

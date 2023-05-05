@@ -3,6 +3,7 @@ import '@/styles/admin.css'
 import Layout from '@/components/Layout'
 import footerStyles from '@/components/Footer/Footer.scss'
 import headerStyles from '@/components/Header/Header.scss'
+import contentSidebarStyles from '@/components/ContentSidebar/ContentSidebar.scss'
 
 
 

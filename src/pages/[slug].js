@@ -55,10 +55,18 @@ const Page = (props) => {
          />
          <Header amp={isAmp} mainLink={props.options_obj.find(x => x.key === 'mainLink').value}/>
          <div className="content wrapper">
-            <h1>{props.post_obj.title}</h1>
-            <div>
-               {console.log(props.post_obj.content)}
+      
+            <div className="contentMain">
+   <           h1>{props.post_obj.title}</h1>
+               <div>
+                  {console.log(props.post_obj.content)}
+               </div>
             </div>
+
+            <div className="contentSidebar">
+               <p>123</p>
+            </div>
+            
         </div>
         <Footer/>
    </>

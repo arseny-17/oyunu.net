@@ -20,7 +20,10 @@ i {font-style:normal;}
 
 }
 
-.content {position: relative; padding-top: 80px;}
+.content {position: relative; padding-top: 80px; display: flex; justify-content: space-between;}
+.contentMain {width: calc(100% - 370px);}
+
+
 .contentImg {display: flex; justify-content: center; padding: 20px 0; flex-direction: column;}
 .contentImg img {max-width: 800px; margin: 0 auto; }
 .contentImg figcaption {text-align: center; margin-top: 15px; font-size: 15px;}

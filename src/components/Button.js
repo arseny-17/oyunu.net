@@ -5,17 +5,22 @@ const Button = (props) => {
     }
 
     const ampLink = `tap:AMP.navigateTo(url='${props.link}&split=${props.split}')`
+    const areaLabel = props.areaLabel ? props.areaLabel : ''
 
     return(
 
         props.amp ? (
-            <button className={props.buttonStyle} 
+            <button 
+            className={props.buttonStyle} 
+            area-label={areaLabel}
             on={ampLink}>
                 {props.text}
             </button>
         ) : (
             <button className={props.buttonStyle} 
-            onClick={brandClick} >
+            onClick={brandClick} 
+            area-label={areaLabel}
+            >
                 {props.text}
             </button>
         )

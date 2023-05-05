@@ -24,7 +24,7 @@ try {
           console.error(err)
       })
   
-      sharp(file.buffer).resize(300).toBuffer()
+      sharp(file.buffer).resize(800).toBuffer()
         .then(
         newBuffer => {
           fs.writeFile(`./public/uploads/img/webp/${file.originalname}.webp`, newBuffer, (err) => {
