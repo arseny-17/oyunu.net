@@ -28,8 +28,6 @@ const ScrollToTop = (props) => {
 
     const ampScroll = `tap:scroll.scrollTo(duration=200)`
 
-    console.log('scroll', props)
-
     return (
         props.amp ? (
             <div className="scrollTop pam_content" on={ampScroll}>

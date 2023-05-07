@@ -6,7 +6,6 @@ export default async function renderCustomHTML(post, amp) {
     const postObject = post ? JSON.parse(post.content) : {}
 
     for (let block of postObject.blocks) {
-        console.log(block)
         switch (block.type) {
             case 'header':
                 HTML += `<h${block.data.level} class="general-h">${block.data.text}</h${block.data.level}>`

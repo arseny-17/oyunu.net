@@ -4,8 +4,6 @@ let year = new Date().getFullYear()
 
 const Footer = (props) =>  {
 
-    console.log('footer', props)
-
     return (
         <footer className="footer">
             <div className="footerInner wrapper">

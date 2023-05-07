@@ -1,6 +1,6 @@
 .contentSidebar {
     width:350px; 
-    height: 500px; 
+    height: 470px; 
     position: sticky; 
     right: 0; 
     top: 100px;
@@ -39,7 +39,7 @@
         }
 
         &:hover {
-            background: red;
+            background: #7daa2f;
         }
 
         .appInfo {
@@ -64,5 +64,13 @@
 
    
 
+
+}
+
+@media screen and (max-width: 1250px) {
+
+    .contentSidebar {
+        display: none;
+    }
 
 }
