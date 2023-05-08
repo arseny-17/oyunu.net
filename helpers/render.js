@@ -17,8 +17,27 @@ export default async function renderCustomHTML(post, amp) {
                 await Jimp.read(block.data.file.url).then((img) => {
 
                     let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical";
+                    let imageData = (block.data.caption !== undefined)
+                    ? block.data.caption.split('|')
+                    : []
+                    let [caption, alt,  title] = imageData
 
-                    HTML += amp ? `<amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img>` : `<img src="${block.data.file.url}"  width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}" />`
+                    HTML += amp ? `<figure><amp-img layout="intrinsic" 
+                    alt="${ alt ? alt.trim() : ''}"
+                    width="${img.bitmap.width}" 
+                    height="${img.bitmap.height}" 
+                    src="${block.data.file.url}" 
+                    class="general-image ${imageType}"></amp-img>
+                    <figcaption>${caption.trim()}</figcaption>
+                    </figure>` 
+                    : 
+                    `<figure><img src="${block.data.file.url}" 
+                    alt="${ alt ? alt.trim() : ''}" 
+                    width="${img.bitmap.width}" 
+                    height="${img.bitmap.height}" 
+                    class="general-image ${imageType}" />
+                    <figcaption>${caption.trim()}</figcaption>
+                    </figure>`
                 })
                 break;
 

@@ -195,12 +195,22 @@ i {
 }
 
 /*Image*/
+figure {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+figcaption {
+	color: #888888;
+	font-size: 14px;
+}
+
 .general-image {
 	display: block;
 	border-radius: 15px;
 	width: auto;
 	height: auto;
-	margin: 0 auto 20px auto;
+	margin: 0 auto 10px auto;
 }
 
 .general-image.vertical {
