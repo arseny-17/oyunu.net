@@ -1,5 +1,6 @@
 import Jimp from "jimp"
 
+
 export default async function renderCustomHTML(post, amp) {
 
     let HTML = ''
@@ -8,7 +9,11 @@ export default async function renderCustomHTML(post, amp) {
     for (let block of postObject.blocks) {
         switch (block.type) {
             case 'header':
-                HTML += `<h${block.data.level} class="general-h">${block.data.text}</h${block.data.level}>`
+                HTML += `<h${block.data.level} 
+                class="general-h"
+                id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">
+                ${block.data.text}
+                </h${block.data.level}>`
                 break;
             case 'paragraph':
                 HTML += `<p class="general-p">${block.data.text}</p>`
@@ -115,7 +120,11 @@ export default async function renderCustomHTML(post, amp) {
             case 'toc':
                 HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">Table of contents</label><div class="table_box">'
                 for (let item of block.data) {
-                    HTML += `<a class="table_link">${item.heading}</a>`
+                    HTML += `<a class="table_link"
+                    href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}"
+                    
+                    >
+                    ${item.heading}</a>`
                 }
                 HTML += '</div></div>'
                 break;
