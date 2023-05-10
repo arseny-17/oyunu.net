@@ -8,7 +8,6 @@ import { PrismaClient } from '@prisma/client'
 import renderCustomHTML from "../../helpers/render";
 import getCSS from "../../helpers/generateCSS";
 
-
 export const config = { amp: 'hybrid' }
 
 export async function getServerSideProps(context){

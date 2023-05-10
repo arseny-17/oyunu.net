@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Button from "../Button";
+import ImageWrap from "../ImageWrap";
 
 const ContentSidebar = (props) =>  {
 
@@ -13,7 +13,13 @@ const ContentSidebar = (props) =>  {
         <div className="contentSidebar">
             <p className="appName">Download the 1xBet app for Android or iOS for free!</p>
             <div className="appImg">
-                <Image src="/app.png" alt="Download 1xBet" width={170} height={200}/>
+                <ImageWrap 
+                    amp={props.amp} 
+                    imgsrc="/app.png" 
+                    imgalt="Download 1xBet" 
+                    imgwidth="170" 
+                    imgheight="200"
+                /> 
             </div>
             <div className="appItem">
                 <Button 
@@ -22,7 +28,13 @@ const ContentSidebar = (props) =>  {
                     areaLabel="Download Android"
                     split='buttonAndroid'
                     buttonStyle="btn-android"/>
-                <Image src="/android.png" alt="download android" width={25} height={25}/> 
+                <ImageWrap 
+                    amp={props.amp} 
+                    imgsrc="/android.png" 
+                    imgalt="download android" 
+                    imgwidth="25" 
+                    imgheight="25"
+                /> 
                 <div className="appInfo">
                     <span className="appInfoTitle">Download application for Android</span>
                     <span className="appInfoSubtitle">158003 downloads</span>
@@ -35,7 +47,13 @@ const ContentSidebar = (props) =>  {
                     areaLabel="Download Android"
                     split='buttonAndroid'
                     buttonStyle="btn-ios"/>
-                <Image src="/ios.png" alt="download ios" width={25} height={25}/> 
+                <ImageWrap 
+                    amp={props.amp} 
+                    imgsrc="/ios.png" 
+                    imgalt="download ios" 
+                    imgwidth="25" 
+                    imgheight="25"
+                /> 
                 <div className="appInfo">
                     <span className="appInfoTitle">Download application for IOS</span>
                     <span className="appInfoSubtitle">3560584 downloads</span>
