@@ -456,6 +456,101 @@ figcaption {
 	}
 }
 
+@mixin button {
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    font-size: 18px;
+    line-height: 28px; 
+    color: #fff;
+}
+
+.content404Page.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	max-width: 100%;
+	width: 100%;
+	background: #205685;
+
+	.content404 {
+		
+		display: flex;
+		flex-direction: column;
+		width: 280px;
+
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		h1 {
+			color: #fff;
+		}
+
+		button {
+			display: inline-block;
+			background: #7daa2f; 
+			margin-right: 15px;
+			@include button;
+
+			&:hover {
+				background:#92c637;
+			}
+		}
+	}
+}
+
+
+.contentMap {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	max-width: 100%;
+	width: 100%;
+	background: #205685;
+
+	h1 {
+		text-align: left;
+		color: #fff;
+		margin-bottom: 64px;
+	}
+	
+	.sitemapLinks {
+
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		max-width: 640px;
+	
+		a {
+			display: inline-block;
+			color: #fff;
+			margin: 0 auto 12px;
+			position: relative;
+
+			&:before{
+				position: absolute;
+				left: -16px;
+				top: calc(50% - 4px);
+				content: no-open-quote;
+				width: 8px;
+				height: 8px;
+				background: #fff;
+				border-radius: 50%;
+			} 
+
+			&:hover {
+				color: #92c637;
+			}
+		}
+	}
+}
+
+
 @media screen and (max-width: 1250px) {
 
 	.content .contentMain {

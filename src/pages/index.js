@@ -60,6 +60,26 @@ const Home = (props) => {
    
    const isAmp = useAmp()
 
+   function clickHandler(e) {
+
+      if (!isAmp){
+         const el = e.target.closest(".table_link")
+
+         if (el && e.currentTarget.contains(el)) {
+
+            e.preventDefault()
+
+            const blockID = el.getAttribute('href').replace('#', '')
+            window.scrollTo({
+            behavior: 'smooth',
+            top: document.getElementById(blockID).getBoundingClientRect().top -
+               document.body.getBoundingClientRect().top - 70,
+         })
+      }
+   }
+
+  }
+
    return (
       <>
          <Heading 
@@ -79,6 +99,7 @@ const Home = (props) => {
             <div className="contentMain">
                <h1>{ props.post.title }</h1>
                <div className="content-block"
+                     onClick={clickHandler}
                      dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
                </div>
             </div>

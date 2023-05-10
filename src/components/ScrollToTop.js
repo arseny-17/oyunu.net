@@ -9,15 +9,19 @@ const ScrollToTop = (props) => {
 
     const buttonRef = useRef()
 
-    useEffect( () => {
-        const handleClick = () => {
+    const handleClick = () => {
+        if ( buttonRef ) {
             if ( window.scrollY > 1000) {
                 buttonRef.current.style.opacity = '1';
             } else {
                 buttonRef.current.style.opacity = '0';
             }
-        }
+        } 
+    }
 
+
+    useEffect( () => {
+    
         window.addEventListener('scroll', handleClick);
 
         return () => {

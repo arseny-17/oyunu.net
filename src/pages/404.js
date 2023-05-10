@@ -1,22 +1,61 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Heading from "@/components/Heading"
+import Button from "@/components/Button"
+import { useAmp } from 'next/amp'
+import { useEffect, useState } from "react"
+import axios from "axios"
+import Image from "next/image"
 
-const Error = () => {
+const Error = function() {
 
-    const router = useRouter ();
+    const [mainLink, setMainLink] = useState('')
 
-    useEffect (() => {
-        setTimeout ( () => {
-            router.push('/')
-            }, 3000)
-    }, [router]);
+    async function getOption(){
+        await axios
+            .get('http://localhost:3000/api/get-options')
+            .then( (response) => {
+                let link = response.data.options_data.find(x => x.key === 'mainLink').value
+                setMainLink(link)
+                return link
+            })
+    }
+    
+   useEffect(getOption, [])
+
+    const isAmp = useAmp()
+    const style = `.logButton {
+        background: #7daa2f;
+        margin-right: 15px;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 18px;
+        line-height: 28px;
+        color: #fff;
+      }`
 
     return (
-        <div className="content wrapper pageError">
-            <h1>404 Page not found</h1>
+        <>
+        <Heading 
+           amp={isAmp}    
+           ampStyle={style}
+           seotitle="Not found"
+           seodescription="Not found page"
+           content=""
+        />
+        <div id="scroll"></div>
+        
+        <div className="content404Page wrapper">
+           <div className="content404">
+                <Image src="/1x-logo.png" alt="" width="250" height="64" />
+              <h1>Page not found</h1>
+              <Button text="KAYIT" buttonStyle="logButton" amp={isAmp} link={mainLink} split="button404"/>
+           </div>
+
         </div>
+     </>
     )
 
 }
   
 export default Error;
+
+

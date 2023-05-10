@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 const Menu = (props) => {
 
     const { pathname, asPath } = useRouter()
+    const ampPostfix = props.amp ? '?amp=1' : ''
 
     return (
         <div className="menu">
@@ -13,7 +14,7 @@ const Menu = (props) => {
                    {
                     ( id === 1 ) 
                     ? <Link href="/" className={pathname == "/" ? "active" : ""}>{title}</Link> 
-                    : <Link key={id} className={asPath.includes(slug) ? "active" : ""} href={slug}>{title}</Link> 
+                    : <Link key={id} className={asPath.includes(slug) ? "active" : ""} href={slug + ampPostfix}>{title}</Link> 
                    } 
                 </>
                 

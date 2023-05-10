@@ -8,6 +8,7 @@ const MobileMenu = (props) => {
 
     const menuRef = useRef()
     const mobileOverlay = useRef()
+    const ampPostfix = props.amp ? '?amp=1' : ''
 
     const openCloseMenu = () => {
         menuRef.current.toggleAttribute('hidden')
@@ -44,7 +45,7 @@ const MobileMenu = (props) => {
                     </div>
                     <div className="mobileMenuLinks">
                     { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (
-                        <Link className={pathname === slug ? "active" : null} key={id} href={slug}>
+                        <Link className={pathname === slug ? "active" : null} key={id} href={slug + ampPostfix}>
                             {title}
                         </Link>
                     ))}

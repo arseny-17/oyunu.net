@@ -21,6 +21,7 @@ const Heading = function(props) {
             <title>{props.seotitle}</title>
             <meta name="description" content={props.seodescription}/>
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }
+            <link rel="icon" href="/favicon.png" />
         </Head>
     )
         

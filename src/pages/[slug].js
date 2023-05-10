@@ -30,6 +30,12 @@ export async function getServerSideProps(context){
       },
   })
 
+  if (!post) {
+      return {
+      notFound: true
+      };
+   }
+
   const category = await prisma.lang.findUnique({
       where: {
       id: post.language_id,
@@ -64,11 +70,29 @@ const Page = (props) => {
 
    const ampStyle = ''
 
+   function clickHandler(e) {
+
+      if (!isAmp){
+         const el = e.target.closest(".table_link")
+
+         if (el && e.currentTarget.contains(el)) {
+
+            e.preventDefault()
+
+            const blockID = el.getAttribute('href').replace('#', '')
+            window.scrollTo({
+            behavior: 'smooth',
+            top: document.getElementById(blockID).getBoundingClientRect().top -
+               document.body.getBoundingClientRect().top - 70,
+            })
+         }
+      }
+   }
    return (
       <>
          <Heading 
             amp={isAmp} 
-            ampStyle={ampStyle} 
+            ampStyle={props.ampStyle}
             seotitle={props.post_obj.seo_title}
             seodescription={props.post_obj.seo_description}
             content={props.post_obj.content}
@@ -85,7 +109,8 @@ const Page = (props) => {
             <div className="contentMain">
                <h1>{props.post_obj.title}</h1>
                <div className="content-block"
-                     dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
+                  onClick={clickHandler}
+                  dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
                </div>
             </div>
 

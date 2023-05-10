@@ -26,8 +26,8 @@ const Sitemap = (props) => {
           />
           <div id="scroll"></div>
           
-          <div className="content wrapper">
-             <div className="contentMain">
+          <div className="contentMapWrap">
+             <div className="contentMap">
                 <h1>Sitemap</h1>
             
                 <div className="sitemapLinks">
