@@ -2,7 +2,6 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import { useRef } from "react";
-import Menu from "../Menu"
 
 const MobileMenu = (props) => {
 
@@ -45,7 +44,12 @@ const MobileMenu = (props) => {
                     </div>
                     <div className="mobileMenuLinks">
                     { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (
-                        <Link className={pathname === slug ? "active" : null} key={id} href={slug + ampPostfix}>
+                        <Link 
+                            className={pathname === slug ? "active" : null} 
+                            key={id} 
+                            href={slug + ampPostfix}
+                            onClick={openCloseMenu}
+                        >
                             {title}
                         </Link>
                     ))}

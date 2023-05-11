@@ -4,8 +4,8 @@ import FaqSchema from "./FaqSchema";
 const Heading = function(props) {
 
 
-    const content = {} || JSON.parse(props.content)
-    const faq = ( Array.isArray(content) ) ? content.blocks.find( (item) => item.type === 'faq') : {}
+    const content = props.content ? JSON.parse(props.content) : ''
+    const faq = ( Array.isArray(content.blocks) ) ? content.blocks.find( (item) => item.type === 'faq') : {}
 
     
     console.log('faq', faq)

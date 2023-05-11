@@ -51,6 +51,12 @@ h6 {
 	color: #333;
 }
 
+h1 {font-size: 36px; line-height: 40px;}
+h2 {font-size: 32px; line-height: 40px;}
+h3 {font-size: 26px; line-height: 36px;}
+h4 {font-size: 20px; line-height: 28px;}
+h5, h6 {font-size: 18px; line-height: 28px;}
+
 p,
 span,
 li,
@@ -419,7 +425,8 @@ figcaption {
 		overflow: hidden;
 		transition: max-height .25s ease-in-out;
 		display: flex;
-		max-width: 55%;
+		width: 100%;
+		max-width: 500px;
 		flex-direction: column;
 	}
 
@@ -552,6 +559,16 @@ figcaption {
 
 
 @media screen and (max-width: 1250px) {
+
+	h1 {font-size: 26px; line-height: 30px;}
+	h2 {font-size: 22px; line-height: 32px;}
+	h3 {font-size: 20px; line-height: 30px;}
+	h4 {font-size: 18px; line-height: 28px;}
+	h5, h6 {font-size: 16px; line-height: 26px;}
+
+	.content {
+		padding-top: 50px;
+	}
 
 	.content .contentMain {
 		width: 100%;
