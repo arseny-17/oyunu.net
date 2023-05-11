@@ -11,7 +11,7 @@ const Error = function() {
 
     async function getOption(){
         await axios
-            .get('http://localhost:3000/api/get-options')
+            .get(`${process.env.NEXT_PUBLIC_HOST}/api/get-options`)
             .then( (response) => {
                 let link = response.data.options_data.find(x => x.key === 'mainLink').value
                 setMainLink(link)

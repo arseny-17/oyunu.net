@@ -17,7 +17,7 @@ export async function getServerSideProps(context){
    const style = getCSS()
    
    const options = await axios
-      .get('http://localhost:3000/api/get-options')
+      .get(`${process.env.NEXT_PUBLIC_HOST}/api/get-options`)
       .then( (response) => {
       return response.data.options_data
    })

@@ -1,6 +1,6 @@
-import Heading from "../../components/Heading";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Heading from "@/components/Heading";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
@@ -12,7 +12,7 @@ export async function getServerSideProps(){
    const prisma = new PrismaClient()
 
    const options = await axios
-   .get('http://localhost:3000/api/get-options')
+   .get(`${process.env.NEXT_PUBLIC_HOST}/api/get-options`)
    .then( (response) => {
       
       return response.data.options_data
