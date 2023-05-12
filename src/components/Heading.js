@@ -9,7 +9,10 @@ const Heading = function(props) {
 
     return (
         <Head>
-            {props.amp && <style amp-custom="">{props.ampStyle}</style>}
+            {props.amp 
+                ? <style amp-custom="">{props.ampStyle}</style> 
+                : <link rel="amphtml" href={`${props.ampLink}/?amp=1`}/>
+            }
             <title>{props.seotitle}</title>
             <meta name="description" content={props.seodescription}/>
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }

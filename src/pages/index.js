@@ -83,6 +83,7 @@ const Home = (props) => {
    return (
       <>
          <Heading 
+            ampLink={process.env.NEXT_PUBLIC_HOST}
             amp={isAmp}    
             ampStyle={props.ampStyle}
             seotitle={props.post.seo_title}
