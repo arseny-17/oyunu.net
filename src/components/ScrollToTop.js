@@ -34,11 +34,11 @@ const ScrollToTop = (props) => {
 
     return (
         props.amp ? (
-            <div className="scrollTop pam_content" on={ampScroll}>
+            <div className="scrollTop pam_content" role="button" tabIndex="0" on={ampScroll}>
                 <amp-img src="/up-arrow.svg" width={13} height={13} alt="scroll to top"></amp-img>
             </div>
         ) : (
-            <div className="scrollTop" onClick={scrollTop} ref={buttonRef}>
+            <div className="scrollTop" role="button" tabIndex="0" onClick={scrollTop} ref={buttonRef}>
                 <Image src="/up-arrow.svg" width={13} height={13} alt="scroll to top" />
             </div>
         )

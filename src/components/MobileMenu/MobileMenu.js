@@ -20,28 +20,32 @@ const MobileMenu = (props) => {
 
     return (
         <>
-            <div className="overlay" 
+            <Link className="overlay" 
                 id="overlay"
                 onClick={openCloseMenu} 
                 ref={mobileOverlay} 
+                href="#"
                 on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
-                hidden></div>
+                hidden>
+            </Link>
           
          
-            <div className="burger burgerAmp" 
+            <Link className="burger burgerAmp" 
+                href="#"
                 on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
                 onClick={openCloseMenu}>
                 <Image src="/burger.svg" width={28} height={28} alt="Burger icon" />
-            </div>               
+            </Link>               
             
             <div className="mobileMenu" ref={menuRef} id="mobileMenu" hidden>
                 
-                    <div className="close" 
-                    onClick={openCloseMenu}
-                    on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
+                    <Link className="close" 
+                        href="#"
+                        onClick={openCloseMenu}
+                        on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
                     >
                         <Image src="/close.svg" width={28} height={28} alt="Close icon" />
-                    </div>
+                    </Link>
                     <div className="mobileMenuLinks">
                     { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (
                         <Link 

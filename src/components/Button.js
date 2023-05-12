@@ -11,15 +11,15 @@ const Button = (props) => {
 
         props.amp ? (
             <button 
-            className={props.buttonStyle} 
-            area-label={areaLabel}
-            on={ampLink}>
+                className={props.buttonStyle} 
+                name={areaLabel}
+                on={ampLink}>
                 {props.text}
             </button>
         ) : (
             <button className={props.buttonStyle} 
-            onClick={brandClick} 
-            area-label={areaLabel}
+                onClick={brandClick} 
+                name={areaLabel}
             >
                 {props.text}
             </button>

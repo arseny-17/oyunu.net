@@ -167,7 +167,7 @@ i {
 		margin-left: 15px;
 		margin-bottom: 20px;
 
-		.general-li {
+		li {
 			position: relative;
 			padding-bottom: 10px;
 			padding-left: 25px;
@@ -175,7 +175,7 @@ i {
 
 		}
 
-		.general-li::before {
+		li::before {
 			content: no-open-quote;
 			position: absolute;
 			width: 20px;

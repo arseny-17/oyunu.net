@@ -3,7 +3,12 @@ const path = require("path");
 //const CopyPlugin = require("copy-webpack-plugin");
 
 const nextConfig = {
+  trailingSlash: true,
   reactStrictMode: false,
+  i18n: {
+    locales: ["tr"],
+    defaultLocale: "tr",
+  },
   swcMinify: true,
   // future: {
   //   webpack5: true,

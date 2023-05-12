@@ -10,13 +10,12 @@ export default async function renderCustomHTML(post, amp) {
         switch (block.type) {
             case 'header':
                 HTML += `<h${block.data.level} 
-                class="general-h"
                 id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">
                 ${block.data.text}
                 </h${block.data.level}>`
                 break;
             case 'paragraph':
-                HTML += `<p class="general-p">${block.data.text}</p>`
+                HTML += `<p>${block.data.text}</p>`
                 break;
             case 'image':
                 await Jimp.read(block.data.file.url).then((img) => {
@@ -52,7 +51,7 @@ export default async function renderCustomHTML(post, amp) {
 
                 HTML += `<${listType} class="general-${listType}">`
                 for (let item of listItems) {
-                    HTML += `<li class="general-li">${item}</li>`
+                    HTML += `<li>${item}</li>`
                 }
                 HTML += `</${listType}>`
                 break;
@@ -118,7 +117,7 @@ export default async function renderCustomHTML(post, amp) {
                 HTML += '</div>'
                 break;
             case 'toc':
-                HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">Table of contents</label><div class="table_box">'
+                HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">İçindekiler:</label><div class="table_box">'
                 for (let item of block.data) {
                     HTML += `<a class="table_link"
                     href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}"

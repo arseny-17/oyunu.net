@@ -23,7 +23,7 @@ position: relative;}
 
 :root{
 --main: #f5f5f5;
---text: #676c70;
+--text: #000;
 --light-back: #fff;
 --block-border-radius: 10px;
 --color-primary: #4d8ab9;
