@@ -24,7 +24,10 @@ try {
           console.error(err)
       })
   
-      sharp(file.buffer).resize(800).toBuffer()
+      sharp(file.buffer)
+        .resize(800)
+        .webp({ lossless: true })
+        .toBuffer()
         .then(
         newBuffer => {
           fs.writeFile(`./public/uploads/img/webp/${file.originalname}.webp`, newBuffer, (err) => {
@@ -32,12 +35,13 @@ try {
           })   
         })
         .then( () => {
+
           return res.status(200).json({
-                success: 1,
-                file: {
-                  url: `${process.env.NEXT_PUBLIC_HOST}/uploads/img/webp/${file.originalname}.webp`
-                }
-              })
+            success: 1,
+            file: {
+              url: `${process.env.NEXT_PUBLIC_HOST}/uploads/img/webp/${file.originalname}.webp`
+            }
+          })
         })
         .catch( err => { console.log(err) })
   })

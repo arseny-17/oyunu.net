@@ -9,16 +9,16 @@ export default async function renderCustomHTML(post, amp) {
     for (let block of postObject.blocks) {
         switch (block.type) {
             case 'header':
-                HTML += `<h${block.data.level} 
-                id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">
-                ${block.data.text}
-                </h${block.data.level}>`
+                HTML += `<h${block.data.level} id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${block.data.text}</h${block.data.level}>`
                 break;
             case 'paragraph':
                 HTML += `<p>${block.data.text}</p>`
                 break;
             case 'image':
-                await Jimp.read(block.data.file.url).then((img) => {
+
+                let jimp_img = block.data.file.url.replace('.webp', '').replace('/webp', '')
+
+                await Jimp.read(jimp_img).then((img) => {
 
                     let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical";
                     let imageData = (block.data.caption !== undefined)
@@ -26,22 +26,8 @@ export default async function renderCustomHTML(post, amp) {
                     : []
                     let [caption, alt,  title] = imageData
 
-                    HTML += amp ? `<figure><amp-img layout="intrinsic" 
-                    alt="${ alt ? alt.trim() : ''}"
-                    width="${img.bitmap.width}" 
-                    height="${img.bitmap.height}" 
-                    src="${block.data.file.url}" 
-                    class="general-image ${imageType}"></amp-img>
-                    <figcaption>${caption.trim()}</figcaption>
-                    </figure>` 
-                    : 
-                    `<figure><img src="${block.data.file.url}" 
-                    alt="${ alt ? alt.trim() : ''}" 
-                    width="${img.bitmap.width}" 
-                    height="${img.bitmap.height}" 
-                    class="general-image ${imageType}" />
-                    <figcaption>${caption.trim()}</figcaption>
-                    </figure>`
+                    HTML += amp ? `<figure><amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img><figcaption>${caption.trim()}</figcaption></figure>` 
+                    : `<figure><img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}"><figcaption>${caption.trim()}</figcaption></figure>`
                 })
                 break;
 
@@ -104,11 +90,14 @@ export default async function renderCustomHTML(post, amp) {
                             HTML += `<p class="column-p">${item.data.text}</p>`
                         }
                         else if (item.type == 'image') {
-                            await Jimp.read(item.data.file.url).then((img) => {
+
+                            let jimp_img = item.data.file.url.replace('.webp', '').replace('/webp', '')
+
+                            await Jimp.read(jimp_img).then((img) => {
 
                                 let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical"; 
 
-                                HTML += amp ? `<amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>` : `<img src="${item.data.file.url}"  width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}" />`
+                                HTML += amp ? `<amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>` : `<img src="${item.data.file.url}"  width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">`
                             })
                         }
                     }
@@ -119,11 +108,7 @@ export default async function renderCustomHTML(post, amp) {
             case 'toc':
                 HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">İçindekiler:</label><div class="table_box">'
                 for (let item of block.data) {
-                    HTML += `<a class="table_link"
-                    href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}"
-                    
-                    >
-                    ${item.heading}</a>`
+                    HTML += `<a class="table_link" href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${item.heading}</a>`
                 }
                 HTML += '</div></div>'
                 break;

@@ -11,7 +11,7 @@ const Heading = function(props) {
         <Head>
             {props.amp 
                 ? <style amp-custom="">{props.ampStyle}</style> 
-                : <link rel="amphtml" href={`${props.ampLink}/?amp=1`}/>
+                : <link rel="amphtml" href={`${props.ampLink}/?amp=1`} />
             }
             <title>{props.seotitle}</title>
             <meta name="description" content={props.seodescription}/>

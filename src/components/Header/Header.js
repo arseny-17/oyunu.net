@@ -11,15 +11,15 @@ const Header = (props) =>  {
                 <div className="headerInner wrapper">
                     <div className="logo">
                         <Link href="/">
-                            <Image src="/1x-logo.png" alt="Logo 1xBet" width={125} height={32}/>
+                            <Image src="/1x-logo.png" alt="Logo 1xBet" width={125} height={32}></Image>
                         </Link>
                     </div>
 
                     <Menu list={props.menu} amp={props.amp} />
 
                     <div className="buttons">
-                        <Button text="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.mainLink} split="buttonLog"/>
-                        <Button text="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.mainLink} split="buttonReg"/>
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.mainLink} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.mainLink} split="buttonReg"/>
                     </div>
 
                     <MobileMenu list={props.menu} amp={props.amp} />

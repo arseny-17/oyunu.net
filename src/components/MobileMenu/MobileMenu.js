@@ -9,6 +9,10 @@ const MobileMenu = (props) => {
     const mobileOverlay = useRef()
     const ampPostfix = props.amp ? '?amp=1' : ''
 
+    const ampEvent = {
+        on: 'tap:mobileMenu.toggleVisibility,overlay.toggleVisibility',
+    }
+
     const openCloseMenu = () => {
         menuRef.current.toggleAttribute('hidden')
         mobileOverlay.current.toggleAttribute('hidden')
@@ -23,18 +27,18 @@ const MobileMenu = (props) => {
             <Link className="overlay" 
                 id="overlay"
                 onClick={openCloseMenu} 
+                {...(props.amp ? ampEvent : '')}
                 ref={mobileOverlay} 
-                href="#"
-                on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
+                href=""
                 hidden>
             </Link>
           
          
             <Link className="burger burgerAmp" 
                 href="#"
-                on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
+                {...(props.amp ? ampEvent : '')}
                 onClick={openCloseMenu}>
-                <Image src="/burger.svg" width={28} height={28} alt="Burger icon" />
+                <Image src="/burger.svg" width={28} height={28} alt="Burger icon"></Image>
             </Link>               
             
             <div className="mobileMenu" ref={menuRef} id="mobileMenu" hidden>
@@ -42,9 +46,9 @@ const MobileMenu = (props) => {
                     <Link className="close" 
                         href="#"
                         onClick={openCloseMenu}
-                        on="tap:mobileMenu.toggleVisibility,overlay.toggleVisibility"
+                        {...(props.amp ? ampEvent : '')}
                     >
-                        <Image src="/close.svg" width={28} height={28} alt="Close icon" />
+                        <Image src="/close.svg" width={28} height={28} alt="Close icon"></Image>
                     </Link>
                     <div className="mobileMenuLinks">
                     { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (

@@ -19,7 +19,7 @@ const ImageWrap = (props) => {
                 alt={props.imgalt}
                 width={props.imgwidth}
                 height={props.imgheight}
-            />
+            ></Image>
         )
 
     )
