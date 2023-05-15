@@ -2,6 +2,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import { useRef } from "react";
+import Button from "../Button";
 
 const MobileMenu = (props) => {
 
@@ -61,7 +62,11 @@ const MobileMenu = (props) => {
                             {title}
                         </Link>
                     ))}
-                    </div>              
+                    </div>  
+                    <div className="buttons">
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.link} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.link} split="buttonReg"/>
+                    </div>           
             </div>
         </>
             

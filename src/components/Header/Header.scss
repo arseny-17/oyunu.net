@@ -44,31 +44,32 @@
             } 
            
         }
-        .buttons {
-
-            .logButton {
-                background: #7daa2f; 
-                margin-right: 15px;
-                @include button;
-
-                &:hover {
-                    background:#92c637;
-                    }
-
-            }
-            .regButton {
-                background: #276aa5; 
-                @include button;
-
-                &:hover {
-                    background:#3185ce;
-                    }
-
-            }
-        }
 
      }
 
+}
+
+.buttons {
+
+    .logButton {
+        background: #7daa2f; 
+        margin-right: 15px;
+        @include button;
+
+        &:hover {
+            background:#92c637;
+            }
+
+    }
+    .regButton {
+        background: #276aa5; 
+        @include button;
+
+        &:hover {
+            background:#3185ce;
+            }
+
+    }
 }
 
 @media screen and (max-width: 1250px) {
@@ -85,5 +86,5 @@
         display: none;
     }
 
-
 }
+

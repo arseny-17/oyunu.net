@@ -1,6 +1,7 @@
 import Heading from "@/components/Heading";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import Banner from "@/components/Banner/Banner";
 import ContentSidebar from "@/components/ContentSidebar/ContentSidebar";
 import axios from "axios"
 import { useAmp } from 'next/amp'
@@ -80,6 +81,8 @@ const Home = (props) => {
 
   }
 
+  const mainLink = props.options_obj.find(x => x.key === 'mainLink').value
+
    return (
       <>
          <Heading 
@@ -91,27 +94,16 @@ const Home = (props) => {
             content={props.post.content}
          />
          <div id="scroll"></div>
-         <Header
-            amp={isAmp}
-            mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
-            menu={props.menu}
-         />
+         <Header amp={isAmp} mainLink={mainLink} menu={props.menu} />
          <div className="content wrapper">
             <div className="contentMain">
                <h1>{ props.post.title }</h1>
-               <div className="content-block"
-                     onClick={clickHandler}
-                     dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}>
-               </div>
+               <Banner amp={isAmp} mainLink={mainLink} />
+               <div className="content-block" onClick={clickHandler} dangerouslySetInnerHTML={{__html: props.rendered, isAmp }}></div>
             </div>
-
-            <ContentSidebar 
-               amp={isAmp} 
-               mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
-            />
-
+            <ContentSidebar amp={isAmp} mainLink={mainLink}/>
          </div>
-         <Footer amp={isAmp} />
+         <Footer amp={isAmp} mainLink={mainLink} />
       </>
    )
 }

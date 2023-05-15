@@ -1,0 +1,35 @@
+.banner {
+    height: 190px;
+    margin-bottom: 32px;
+    position: relative;
+
+    .banner-btn {
+        margin-bottom: 20px;
+        animation: pulse 1.5s infinite;
+        position: absolute;
+        bottom: 0;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 3px;
+        width: auto;
+        left: 25px;
+        line-height: 1.2;
+        padding: 10px 15px;
+        color: #fff;
+        text-transform: uppercase;
+        display: inline-block;
+        background-color: #81ad31;
+      }
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

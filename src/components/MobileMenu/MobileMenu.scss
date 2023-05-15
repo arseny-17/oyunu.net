@@ -17,6 +17,16 @@
     padding: 30px 20px;
     transition: right 0.8s; 
 
+    .buttons {
+        display: block;
+        margin-top: 32px;
+
+        button {
+            display: block;
+            margin-bottom: 12px;
+            width: 50%;
+        }
+    }
 
     &[hidden] {
         right: -200%;

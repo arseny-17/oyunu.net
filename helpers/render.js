@@ -72,7 +72,7 @@ export default async function renderCustomHTML(post, amp) {
                 if (Array.isArray(faqList)) {
                     HTML += '<div class="faq-container">'
                     for (let item of faqList) {
-                        HTML += `<div class="faq-item"><input type="checkbox" class="toggle"><p class="faq-question">${item.question}</p><div class="icon"></div><p class="faq-answer">${item.answer}</p></div>`
+                        HTML += `<div class="faq-item"><input type="checkbox" class="toggle" aria-label="question"><p class="faq-question">${item.question}</p><div class="icon"></div><p class="faq-answer">${item.answer}</p></div>`
                     }
                     HTML += '</div>'
                 }

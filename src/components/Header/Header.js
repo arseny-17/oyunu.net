@@ -22,7 +22,7 @@ const Header = (props) =>  {
                         <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.mainLink} split="buttonReg"/>
                     </div>
 
-                    <MobileMenu list={props.menu} amp={props.amp} />
+                    <MobileMenu list={props.menu} amp={props.amp} link={props.mainLink} />
                 </div>
             </header> 
         )    
