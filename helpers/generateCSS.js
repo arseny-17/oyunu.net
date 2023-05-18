@@ -11,8 +11,9 @@ export default function getCSS() {
     let sidebar = sass.compileString(fs.readFileSync('./src/components/ContentSidebar/ContentSidebar.scss').toString()).css
     let mobileMenu = sass.compileString(fs.readFileSync('./src/components/MobileMenu/MobileMenu.scss').toString()).css 
     let banner = sass.compileString(fs.readFileSync('./src/components/Banner/Banner.scss').toString()).css
+    let breadcrumbs = sass.compileString(fs.readFileSync('./src/components/Breadcrumbs/Breadcrumbs.scss').toString()).css
 
-    styleSheet = global + header + banner + mobileMenu + sidebar + footer
+    styleSheet = global + header + breadcrumbs + banner + mobileMenu + sidebar + footer
 
     return styleSheet
 }

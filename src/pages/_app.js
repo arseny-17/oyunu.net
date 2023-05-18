@@ -6,7 +6,7 @@ import headerStyles from '@/components/Header/Header.scss'
 import contentSidebarStyles from '@/components/ContentSidebar/ContentSidebar.scss'
 import mobileMenuStyles from '@/components/MobileMenu/MobileMenu.scss'
 import bannerStyles from '@/components/Banner/Banner.scss'
-
+import breadcrumbsStyles from '@/components/Breadcrumbs/Breadcrumbs.scss'
 
 
 export default function MyApp ({Component, pageProps}) {

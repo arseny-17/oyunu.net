@@ -6,11 +6,13 @@ import MobileMenu from "../MobileMenu/MobileMenu"
 
 const Header = (props) =>  {
 
+    const ampPostfix = props.amp ? '?amp=1' : ''
+
         return (
             <header className="header">
                 <div className="headerInner wrapper">
                     <div className="logo">
-                        <Link href="/">
+                        <Link href={"/" + ampPostfix}>
                             <Image src="/1x-logo.png" alt="Logo 1xBet" width={125} height={32}></Image>
                         </Link>
                     </div>

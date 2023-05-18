@@ -17,8 +17,7 @@ export default function FaqSchema({ faq }) {
         })
     }
 
-    return( 
-        
+    return(
         <script dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}} type="application/ld+json">
         </script>
     )

@@ -1,0 +1,28 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 25px 0 15px 0;
+  overflow-x: hidden;
+
+  a {
+    color: #08f;
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+  .last {
+    position: relative;
+    margin-left: 10px;
+  }
+
+  .sep {
+    width: 13px;
+    height: 13px;
+    background-image: url(/arrow-right.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+  }
+}

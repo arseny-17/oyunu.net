@@ -26,8 +26,30 @@ export default async function renderCustomHTML(post, amp) {
                     : []
                     let [caption, alt,  title] = imageData
 
-                    HTML += amp ? `<figure><amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img><figcaption>${caption.trim()}</figcaption></figure>` 
-                    : `<figure><img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}"><figcaption>${caption.trim()}</figcaption></figure>`
+                    HTML += amp ? `<a href="#${block.id}" class="imgWrap">
+                        <figure>
+                            <span id="#${block.id}-copy"></span>
+                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                <figcaption>${caption.trim()}</figcaption>
+                            </figure>
+                        </a>
+                        <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                            <div class="img-popup">
+                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img>
+                            </div>
+                        </a>`
+                    : `<a href="#${block.id}" class="imgWrap">
+                           <figure>
+                                <span id="${block.id}-copy"></span>
+                                <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
+                                <figcaption>${caption.trim()}</figcaption>
+                           </figure>
+                       </a>
+                       <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                            <div class="img-popup">
+                                <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
+                            </div>
+                       </a>`
                 })
                 break;
 
@@ -97,7 +119,32 @@ export default async function renderCustomHTML(post, amp) {
 
                                 let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical"; 
 
-                                HTML += amp ? `<amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>` : `<img src="${item.data.file.url}"  width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">`
+                                let imageData = (block.data.caption !== undefined)
+                                ? block.data.caption.split('|')
+                                : []
+                                let [caption, alt,  title] = imageData
+
+                                HTML += amp ? `
+                                    <a href="#${block.id}" class="imgWrap">
+                                        <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                    </a>
+                                    <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                                        <span id="${block.id}-copy"></span>
+                                        <div class="img-popup">
+                                            <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                        </div>
+                                    </a>` : `
+                                <a href="#${block.id}" class="imgWrap">
+                                    <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
+                                </a>
+                                <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                                    <span id="${block.id}-copy"></span>
+                                    <div class="img-popup">
+                                        <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
+                                    </div>
+                                </a>
+                                <div id="${block.id}-copy"></div>
+                                `
                             })
                         }
                     }

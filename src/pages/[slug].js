@@ -7,6 +7,7 @@ import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
 import renderCustomHTML from "../../helpers/render";
 import getCSS from "../../helpers/generateCSS";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 export const config = { amp: 'hybrid' }
 
@@ -96,6 +97,8 @@ const Page = (props) => {
             seotitle={props.post_obj.seo_title}
             seodescription={props.post_obj.seo_description}
             content={props.post_obj.content}
+            title={props.post_obj.title}
+            link={props.post_obj.slug}
          />
          
          <Header 
@@ -107,6 +110,11 @@ const Page = (props) => {
          <div className="content wrapper">
       
             <div className="contentMain">
+               <Breadcrumbs
+                   title={props.post_obj.title}
+                   amp={isAmp}
+                   sitename={props.options_obj.find(x => x.key === 'sitename').value}
+               />
                <h1>{props.post_obj.title}</h1>
                <div className="content-block"
                   onClick={clickHandler}
