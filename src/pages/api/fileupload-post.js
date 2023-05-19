@@ -39,7 +39,7 @@ try {
           return res.status(200).json({
             success: 1,
             file: {
-              url: `${process.env.NEXT_PUBLIC_HOST}/uploads/img/webp/${file.originalname}.webp`
+              url: `/uploads/img/webp/${file.originalname}.webp`
             }
           })
         })

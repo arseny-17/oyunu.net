@@ -18,7 +18,7 @@ export default async function renderCustomHTML(post, amp) {
 
                 let jimp_img = block.data.file.url.replace('.webp', '').replace('/webp', '')
 
-                await Jimp.read(jimp_img).then((img) => {
+                await Jimp.read(`${process.env.NEXT_PUBLIC_HOST}${jimp_img}`).then((img) => {
 
                     let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical";
                     let imageData = (block.data.caption !== undefined)
@@ -29,25 +29,25 @@ export default async function renderCustomHTML(post, amp) {
                     HTML += amp ? `<a href="#${block.id}" class="imgWrap">
                         <figure>
                             <span id="#${block.id}-copy"></span>
-                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" class="general-image ${imageType}"></amp-img>
                                 <figcaption>${caption.trim()}</figcaption>
                             </figure>
                         </a>
                         <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
                             <div class="img-popup">
-                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${block.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" class="general-image ${imageType}"></amp-img>
                             </div>
                         </a>`
                     : `<a href="#${block.id}" class="imgWrap">
                            <figure>
                                 <span id="${block.id}-copy"></span>
-                                <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
+                                <img src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
                                 <figcaption>${caption.trim()}</figcaption>
                            </figure>
                        </a>
                        <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
                             <div class="img-popup">
-                                <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
+                                <img src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
                             </div>
                        </a>`
                 })
@@ -115,7 +115,7 @@ export default async function renderCustomHTML(post, amp) {
 
                             let jimp_img = item.data.file.url.replace('.webp', '').replace('/webp', '')
 
-                            await Jimp.read(jimp_img).then((img) => {
+                            await Jimp.read(`${process.env.NEXT_PUBLIC_HOST}${jimp_img}`).then((img) => {
 
                                 let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical"; 
 
@@ -126,21 +126,21 @@ export default async function renderCustomHTML(post, amp) {
 
                                 HTML += amp ? `
                                     <a href="#${block.id}" class="imgWrap">
-                                        <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                        <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_HOST}${item.data.file.url}" class="general-image ${imageType}"></amp-img>
                                     </a>
                                     <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
                                         <span id="${block.id}-copy"></span>
                                         <div class="img-popup">
-                                            <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${item.data.file.url}" class="general-image ${imageType}"></amp-img>
+                                            <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_HOST}${item.data.file.url}" class="general-image ${imageType}"></amp-img>
                                         </div>
                                     </a>` : `
                                 <a href="#${block.id}" class="imgWrap">
-                                    <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
+                                    <img src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
                                 </a>
                                 <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
                                     <span id="${block.id}-copy"></span>
                                     <div class="img-popup">
-                                        <img src="${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
+                                        <img src="${process.env.NEXT_PUBLIC_HOST}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
                                     </div>
                                 </a>
                                 <div id="${block.id}-copy"></div>
