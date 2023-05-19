@@ -1,11 +1,8 @@
 import Head from "next/head"
 import FaqSchema from "./FaqSchema";
 import BreadcrumbsSchema from "./BreadcrumbsSchema";
-import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
-//import BreadcrumbsSchema from "./BreadcrumbsSchema";
 
 const Heading = function(props) {
-
 
     const content = props.content ? JSON.parse(props.content) : ''
     const faq = ( Array.isArray(content.blocks) ) ? content.blocks.find( (item) => item.type === 'faq') : {}
@@ -19,11 +16,7 @@ const Heading = function(props) {
             <title>{props.seotitle}</title>
             <meta name="description" content={props.seodescription}/>
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }
-            <BreadcrumbsSchema
-                title={props.title}
-                link={props.link}
-                amp={props.amp}
-            />
+            {props.breadcrumbs ? <BreadcrumbsSchema title={props.title} link={props.link} amp={props.amp}/>: ""}
             <link rel="icon" href="/favicon.png" />
         </Head>
     )

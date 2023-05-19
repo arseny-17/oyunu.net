@@ -111,6 +111,7 @@ export default function Pages(props) {
 
     const [title, setTitle] = React.useState(props.post.title)
     const [seoTitle, setSeoTitle] = React.useState(props.post.seo_title)
+    const [shortTitle, setShortTitle] = React.useState(props.post.shortTitle)
     const [seoDescription, setSeoDescription] = React.useState(props.post.seo_description)
     const [content, setContent] = React.useState(props.post.content)
     const [category, setCategory] = React.useState(parseInt(props.post.language_id))
@@ -122,7 +123,7 @@ export default function Pages(props) {
     const editPost = async () => {
         try{
             await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/edit-post`, {
-                id, title, content, category, slug, seoTitle, seoDescription
+                id, title, content, category, slug, seoTitle, shortTitle, seoDescription
             }).then(() => {
                 console.log('success')
                 MySwal.fire({
@@ -169,6 +170,10 @@ export default function Pages(props) {
         })
     }
 
+    function changeHandler(e) {
+        setSeoTitle(e.target.value)
+        setShortTitle(e.target.value)
+    }
 
     return (
         <Layout title="Редактирование страницы" user={props.user}>
@@ -184,6 +189,14 @@ export default function Pages(props) {
                                 onChange={e => {
                                     setSeoTitle(e.target.value)
                                 }} 
+                            />
+                        </div>
+                        <div className="info_field">
+                            <span>ShortTitle</span>
+                            <input type="text" required value={shortTitle}
+                                   onChange={e => {
+                                       setShortTitle(e.target.value)
+                                   }}
                             />
                         </div>
                         <div className="info_field">

@@ -101,6 +101,7 @@ export default function Pages(props) {
     }
 
     const [title, setTitle] = React.useState('')
+    const [shortTitle, setShortTitle] = React.useState('')
     const [seoTitle, setSeoTitle] = React.useState('')
     const [seoDescription, setSeoDescription] = React.useState('')
     const [content, setContent] = React.useState('')
@@ -112,7 +113,7 @@ export default function Pages(props) {
     const addPost = async () => {
             try{
                 await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/add-post`, {
-                    title, content, category, slug
+                    title, content, category, slug, shortTitle
                 }).then(() => {
                     console.log('success')
                     return router.push("/admin/pages")
@@ -122,6 +123,10 @@ export default function Pages(props) {
             }
         }
 
+    function changeHandler(e) {
+        setSeoTitle(e.target.value)
+        setShortTitle(e.target.value)
+    }
 
     return (
         <Layout title="Создание новой страницы" user={props.user}>
@@ -136,9 +141,19 @@ export default function Pages(props) {
                           <div className="info_field">
                             <span>Title</span>
                             <input type="text" required 
-                                onChange={e => {
+                                /*onChange={e => {
+                                    setShortTitle(e.target.value)
                                     setSeoTitle(e.target.value)
-                                }} 
+                                }} */
+                                onChange={e => changeHandler(e)}
+                            />
+                        </div>
+                        <div className="info_field">
+                            <span>ShortTitle</span>
+                            <input type="text" required value={shortTitle}
+                                   onChange={e => {
+                                       setShortTitle(e.target.value)
+                                   }}
                             />
                         </div>
                         <div className="info_field">

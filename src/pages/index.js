@@ -92,6 +92,7 @@ const Home = (props) => {
             seotitle={props.post.seo_title}
             seodescription={props.post.seo_description}
             content={props.post.content}
+            breadcrumbs={false}
          />
          <div id="scroll"></div>
          <Header amp={isAmp} mainLink={mainLink} menu={props.menu} />

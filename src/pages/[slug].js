@@ -99,6 +99,7 @@ const Page = (props) => {
             content={props.post_obj.content}
             title={props.post_obj.title}
             link={props.post_obj.slug}
+            breadcrumbs={true}
          />
          
          <Header 
@@ -111,7 +112,7 @@ const Page = (props) => {
       
             <div className="contentMain">
                <Breadcrumbs
-                   title={props.post_obj.title}
+                   title={props.post_obj.shortTitle}
                    amp={isAmp}
                    sitename={props.options_obj.find(x => x.key === 'sitename').value}
                />
