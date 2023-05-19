@@ -14,6 +14,7 @@ const Heading = function(props) {
                 : <link rel="amphtml" href={`${props.ampLink}/?amp=1`} />
             }
             <title>{props.seotitle}</title>
+            <meta name="robots" content="noindex,nofollow" />
             <meta name="description" content={props.seodescription}/>
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }
             {props.breadcrumbs ? <BreadcrumbsSchema title={props.title} link={props.link} amp={props.amp}/>: ""}
