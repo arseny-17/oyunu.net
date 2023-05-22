@@ -48,7 +48,7 @@ export async function getServerSideProps(context){
       },
    })
    
-   const rendered = await renderCustomHTML(post, isAmp)
+   const rendered = await renderCustomHTML(post, isAmp, options)
 
    return {
       props: {

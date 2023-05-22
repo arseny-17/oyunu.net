@@ -1,19 +1,34 @@
 import Jimp from "jimp"
 
-
-export default async function renderCustomHTML(post, amp) {
+export default async function renderCustomHTML(post, amp, options) {
 
     let HTML = ''
     const postObject = post ? JSON.parse(post.content) : {}
+    let mainLink = options.find(x => x.key === 'mainLink').value
 
     for (let block of postObject.blocks) {
+        
         switch (block.type) {
+            
             case 'header':
+                
                 HTML += `<h${block.data.level} id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${block.data.text}</h${block.data.level}>`
                 break;
+            
+            case 'button':
+                
+                let [text, id, splitBtn] = block.data.button.split('/')
+                let ampLink = `tap:AMP.navigateTo(url='${mainLink}&split=${splitBtn}')`
+                let brandClick = `"location.href='${mainLink}&split=${splitBtn}'"`
+                amp 
+                    ? HTML += `<div class="button-block"><button id="${id}" on=${ampLink}>${text}</button></div>`
+                    : HTML += `<div class="button-block"><button id="${id}" onClick=${brandClick}>${text}</button></div>`
+                break;
+            
             case 'paragraph':
                 HTML += `<p>${block.data.text}</p>`
                 break;
+            
             case 'image':
 
                 let jimp_img = block.data.file.url.replace('.webp', '').replace('/webp', '')
@@ -54,6 +69,7 @@ export default async function renderCustomHTML(post, amp) {
                 break;
 
             case 'list':
+                
                 let listItems = block.data.items
                 let listType = (block.data.style === 'unordered') ? 'ul' : 'ol'
 
@@ -63,7 +79,9 @@ export default async function renderCustomHTML(post, amp) {
                 }
                 HTML += `</${listType}>`
                 break;
+            
             case 'table':
+                
                 let tableItems = block.data.content
                 let withHeadings = block.data.withHeadings
 
@@ -89,6 +107,7 @@ export default async function renderCustomHTML(post, amp) {
                 }
                 HTML += '</tbody></table>'
                 break;
+            
             case 'faq':
                 let faqList = block.data
                 if (Array.isArray(faqList)) {
@@ -98,8 +117,10 @@ export default async function renderCustomHTML(post, amp) {
                     }
                     HTML += '</div>'
                 }
+            
             case 'raw':
                 break;
+           
             case 'columns':
                 HTML += '<div class="columns">'
                 for (let items of block.data.cols) {
@@ -152,6 +173,7 @@ export default async function renderCustomHTML(post, amp) {
                 }
                 HTML += '</div>'
                 break;
+            
             case 'toc':
                 HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">İçindekiler:</label><div class="table_box">'
                 for (let item of block.data) {

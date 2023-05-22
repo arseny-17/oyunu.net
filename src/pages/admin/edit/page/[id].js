@@ -8,6 +8,7 @@ import { FAQ } from "@/plugins/faq/Faq"
 import { Toc } from "@/plugins/toc/Toc"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import { Button } from "@/plugins/button/Button"
 
 const prisma = new PrismaClient()
 const MySwal = withReactContent(Swal)
@@ -44,6 +45,7 @@ export default function Pages(props) {
                 list: List,
                 faq: FAQ,
                 toc: Toc,
+                button: Button,
                 image: {
                     class: ImageTool,
                     config: {

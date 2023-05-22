@@ -600,6 +600,28 @@ figcaption {
 	}
 }
 
+/* Button content */
+
+.button-block {
+	text-align: center;
+	margin-bottom: 20px;
+
+	button {
+		background: #276aa5;
+		padding: 5px 15px;
+		border-radius: 5px;
+		font-size: 18px;
+		line-height: 28px;
+		color: #fff;
+		width: 200px;
+		animation: pulse 1.5s infinite;
+
+		&:hover {
+			background: #3185ce;
+		}
+	}
+}
+
 @media screen and (max-width: 1250px) {
 
 	h1 {font-size: 26px; line-height: 30px;}

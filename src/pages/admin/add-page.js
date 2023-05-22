@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useRouter } from "next/router"
 import { FAQ } from "@/plugins/faq/Faq"
 import { Toc } from "@/plugins/toc/Toc"
+import { Button } from "@/plugins/button/Button"
 
 
 const prisma = new PrismaClient()
@@ -42,6 +43,7 @@ export default function Pages(props) {
                 list: List,
                 faq: FAQ,
                 toc: Toc,
+                button: Button,
                 image: {
                     class: ImageTool,
                     config: {
