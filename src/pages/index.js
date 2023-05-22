@@ -13,6 +13,11 @@ export const config = { amp: 'hybrid' }
 
 export async function getServerSideProps(context){
 
+   const UA = context.req.headers['user-agent']
+   const isMobile = Boolean(UA.match(
+      /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+   ))
+
    const isAmp = context.query.amp ? true : false
    const prisma = new PrismaClient()
    const style = getCSS()
@@ -43,7 +48,7 @@ export async function getServerSideProps(context){
       },
    })
 
-   const rendered = await renderCustomHTML(post, isAmp, options)
+   const rendered = await renderCustomHTML(post, isAmp, options, isMobile)
 
    return {
       props: {
