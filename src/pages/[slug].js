@@ -2,12 +2,11 @@ import Heading from "@/components/Heading";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ContentSidebar from "@/components/ContentSidebar/ContentSidebar";
-import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
 import renderCustomHTML from "../../helpers/render";
 import getCSS from "../../helpers/generateCSS";
-import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 export const config = { amp: 'hybrid' }
 
@@ -17,23 +16,18 @@ export async function getServerSideProps(context){
    const isAmp = context.query.amp ? true : false
    const style = getCSS()
 
-   const options = await axios
-   .get(`${process.env.NEXT_PUBLIC_HOST}/api/get-options`)
-   .then( (response) => {
-      return response.data.options_data
-   })
-
+   const options = await prisma.options.findMany()
+   const mainLink = options.find(x => x.key == 'mainLink').value
+   const sitename = options.find(x => x.key == 'sitename').value
 
    const post = await prisma.post.findFirst({
       where: {
         slug: context.query.slug,
-      },
+      }
   })
 
   if (!post) {
-      return {
-      notFound: true
-      };
+      return { notFound: true }
    }
 
   const category = await prisma.lang.findUnique({
@@ -52,11 +46,13 @@ export async function getServerSideProps(context){
 
    return {
       props: {
-         options_obj: options,
+         mainLink: mainLink,
          post_obj: post,
          menu: menu,
          rendered: rendered,
-         ampStyle: style
+         ampStyle: style,
+         sitename: sitename,
+         slug: post.slug
       }
    }
 
@@ -104,7 +100,7 @@ const Page = (props) => {
          
          <Header 
             amp={isAmp} 
-            mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+            mainLink={props.mainLink}
             menu={props.menu}
          />
          
@@ -114,7 +110,7 @@ const Page = (props) => {
                <Breadcrumbs
                    title={props.post_obj.shortTitle}
                    amp={isAmp}
-                   sitename={props.options_obj.find(x => x.key === 'sitename').value}
+                   sitename={props.sitename}
                />
                <h1>{props.post_obj.title}</h1>
                <div className="content-block"
@@ -125,7 +121,7 @@ const Page = (props) => {
 
             <ContentSidebar 
                amp={isAmp} 
-               mainLink={props.options_obj.find(x => x.key === 'mainLink').value}
+               mainLink={props.mainLink}
             />
             
         </div>

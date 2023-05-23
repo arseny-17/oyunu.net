@@ -3,17 +3,18 @@ import Button from "../Button"
 import Menu from "../Menu"
 import Link from "next/link"
 import MobileMenu from "../MobileMenu/MobileMenu"
+import ImageWrap from "../ImageWrap"
 
 const Header = (props) =>  {
 
-    const ampPostfix = props.amp ? '?amp=1' : ''
+    const ampPostfix = props.amp ? '/amp' : ''
 
         return (
             <header className="header">
                 <div className="headerInner wrapper">
                     <div className="logo">
                         <Link href={"/" + ampPostfix}>
-                            <Image src="/1x-logo.png" alt="Logo 1xBet" width={125} height={32}></Image>
+                            <ImageWrap imgsrc="/1x-logo.png" imgalt="Logo 1xBet" imgwidth={125} imgheight={32}></ImageWrap>
                         </Link>
                     </div>
 

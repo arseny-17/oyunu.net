@@ -8,7 +8,7 @@ const MobileMenu = (props) => {
 
     const menuRef = useRef()
     const mobileOverlay = useRef()
-    const ampPostfix = props.amp ? '?amp=1' : ''
+    const ampPostfix = props.amp ? '/amp' : ''
 
     const ampEvent = {
         on: 'tap:mobileMenu.toggleVisibility,overlay.toggleVisibility',

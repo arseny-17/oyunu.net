@@ -1,12 +1,9 @@
 import Jimp from "jimp"
 
-export default async function renderCustomHTML(post, amp, options, isMobile) {
-
-    
+export default async function renderCustomHTML(post, amp, mainLink) {
 
     let HTML = ''
     const postObject = post ? JSON.parse(post.content) : {}
-    let mainLink = options.find(x => x.key === 'mainLink').value
 
     for (let block of postObject.blocks) {
         
@@ -37,8 +34,11 @@ export default async function renderCustomHTML(post, amp, options, isMobile) {
 
                 await Jimp.read(`${process.env.NEXT_PUBLIC_HOST}${jimp_img}`).then((img) => {
 
-                    let im_width = isMobile ? parseInt(img.bitmap.width / 2.5) : img.bitmap.width
-                    let im_height = isMobile ? parseInt(img.bitmap.height / 2.5) : img.bitmap.height
+                    // let im_width = isMobile ? parseInt(img.bitmap.width / 2.5) : img.bitmap.width
+                    // let im_height = isMobile ? parseInt(img.bitmap.height / 2.5) : img.bitmap.height
+
+                    let im_width = img.bitmap.width
+                    let im_height = img.bitmap.height
 
                     let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical";
                     let imageData = (block.data.caption !== undefined)
