@@ -1,6 +1,10 @@
 import generate from "../../helpers/generateData"
 import Container from "@/components/Container"
 
+export const config = {
+   unstable_runtimeJS: false
+}
+
 export const getStaticPaths = async () => {
    return {
      paths: [

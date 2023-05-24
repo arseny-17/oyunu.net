@@ -3,6 +3,7 @@ const path = require("path");
 
 const nextConfig = {
   trailingSlash: true,
+  //output: 'export',
   reactStrictMode: false,
   // i18n: {
   //   locales: ["tr"],
