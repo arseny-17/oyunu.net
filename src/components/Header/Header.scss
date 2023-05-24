@@ -52,12 +52,12 @@
 .buttons {
 
     .logButton {
-        background: #7daa2f; 
+        background: #92c637;
         margin-right: 15px;
         @include button;
 
         &:hover {
-            background:#92c637;
+            background:#7daa2f;
             }
 
     }

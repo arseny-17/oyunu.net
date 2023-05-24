@@ -53,12 +53,13 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                             imgheight={img.bitmap.height} 
                             imgwidth={img.bitmap.width} 
                             imgclass={`general-image ${imageType}`}
+                            fill={true}
                         />
                     )
 
 
                     HTML += `<a href="#${block.id}" class="imgWrap">
-                           <figure>
+                           <figure class="${imageType}">
                                 <span id="${block.id}-copy"></span>
                                     ${imgComponent}
                                 <figcaption>${caption.trim()}</figcaption>
