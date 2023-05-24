@@ -2,6 +2,8 @@ import Image from "next/image";
 
 const ImageWrap = (props) => {
 
+    const imgClass = props.imgclass ? props.imgclass : ''
+
     return(
 
         props.amp ? (
@@ -10,6 +12,7 @@ const ImageWrap = (props) => {
                 alt={props.imgalt}
                 width={props.imgwidth}
                 height={props.imgheight}
+                className={imgClass}
             >
             
             </amp-img>
@@ -19,6 +22,7 @@ const ImageWrap = (props) => {
                 alt={props.imgalt}
                 width={props.imgwidth}
                 height={props.imgheight}
+                className={imgClass}
             ></Image>
         )
 

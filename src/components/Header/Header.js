@@ -18,7 +18,7 @@ const Header = (props) =>  {
                         </Link>
                     </div>
 
-                    <Menu list={props.menu} amp={props.amp} />
+                    <Menu list={props.menu} amp={props.amp} mainID={props.mainID} />
 
                     <div className="buttons">
                         <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.mainLink} split="buttonLog"/>

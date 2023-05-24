@@ -1,8 +1,13 @@
 import Jimp from "jimp"
+import ImageWrap from "@/components/ImageWrap"
+import Button from "@/components/Button"
+import { renderToString } from 'react-dom/server'
+
 
 export default async function renderCustomHTML(post, amp, mainLink) {
 
     let HTML = ''
+    
     const postObject = post ? JSON.parse(post.content) : {}
 
     for (let block of postObject.blocks) {
@@ -12,20 +17,23 @@ export default async function renderCustomHTML(post, amp, mainLink) {
             case 'header':
                 
                 HTML += `<h${block.data.level} id="${block.data.text.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${block.data.text}</h${block.data.level}>`
+                
                 break;
             
             case 'button':
                 
-                let [text, id, splitBtn] = block.data.button.split('/')
+                let [text, btnClass, splitBtn] = block.data.button.split('/')
                 let ampLink = `tap:AMP.navigateTo(url='${mainLink}&split=${splitBtn}')`
                 let brandClick = `"location.href='${mainLink}&split=${splitBtn}'"`
                 amp 
-                    ? HTML += `<div class="button-block"><button id="${id}" on=${ampLink}>${text}</button></div>`
-                    : HTML += `<div class="button-block"><button id="${id}" onClick=${brandClick}>${text}</button></div>`
+                    ? HTML += `<div class="button-block"><button class="${btnClass}" on=${ampLink}>${text}</button></div>`
+                    : HTML += `<div class="button-block"><button class="${btnClass}" onClick=${brandClick}>${text}</button></div>`
                 break;
             
             case 'paragraph':
+                
                 HTML += `<p>${block.data.text}</p>`
+                
                 break;
             
             case 'image':
@@ -34,43 +42,35 @@ export default async function renderCustomHTML(post, amp, mainLink) {
 
                 await Jimp.read(`${process.env.NEXT_PUBLIC_DEV}${jimp_img}`).then((img) => {
 
-                    // let im_width = isMobile ? parseInt(img.bitmap.width / 2.5) : img.bitmap.width
-                    // let im_height = isMobile ? parseInt(img.bitmap.height / 2.5) : img.bitmap.height
-
-                    let im_width = img.bitmap.width
-                    let im_height = img.bitmap.height
-
-                    let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical";
-                    let imageData = (block.data.caption !== undefined)
-                    ? block.data.caption.split('|')
-                    : []
+                    let imageType = (img.bitmap.height >= img.bitmap.height) ? "horizontal" : "vertical";
+                    let imageData = (block.data.caption !== undefined) ? block.data.caption.split('|') : []
                     let [caption, alt,  title] = imageData
+                    
+                    let imgComponent = renderToString(
+                        <ImageWrap 
+                            imgsrc={`${block.data.file.url}`} 
+                            imgalt={alt ? alt.trim() : ''} 
+                            imgheight={img.bitmap.height} 
+                            imgwidth={img.bitmap.width} 
+                            imgclass={`general-image ${imageType}`}
+                        />
+                    )
 
-                    HTML += amp ? `<a href="#${block.id}" class="imgWrap">
-                        <figure>
-                            <span id="#${block.id}-copy"></span>
-                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${im_width}" height="${im_height}" src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" class="general-image ${imageType}"></amp-img>
-                                <figcaption>${caption.trim()}</figcaption>
-                            </figure>
-                        </a>
-                        <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
-                            <div class="img-popup">
-                                <amp-img layout="intrinsic" alt="${ alt ? alt.trim() : ''}"width="${im_width}" height="${im_height}" src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" class="general-image ${imageType}"></amp-img>
-                            </div>
-                        </a>`
-                    : `<a href="#${block.id}" class="imgWrap">
+
+                    HTML += `<a href="#${block.id}" class="imgWrap">
                            <figure>
                                 <span id="${block.id}-copy"></span>
-                                <img src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${im_width}" height="${im_height}" class="general-image ${imageType}">
+                                    ${imgComponent}
                                 <figcaption>${caption.trim()}</figcaption>
                            </figure>
                        </a>
                        <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
                             <div class="img-popup">
-                                <img src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${im_width}" height="${im_height}" class="general-image ${imageType}">   
+                                ${imgComponent}
                             </div>
                        </a>`
                 })
+                
                 break;
 
             case 'list':
@@ -79,10 +79,13 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                 let listType = (block.data.style === 'unordered') ? 'ul' : 'ol'
 
                 HTML += `<${listType} class="general-${listType}">`
+                
                 for (let item of listItems) {
                     HTML += `<li>${item}</li>`
                 }
+                
                 HTML += `</${listType}>`
+                
                 break;
             
             case 'table':
@@ -91,6 +94,7 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                 let withHeadings = block.data.withHeadings
 
                 withHeadings ? HTML += '<table class="general-table"><thead><tr>' : HTML += '<table class="general-table">'
+                
                 if (withHeadings) {
                     for (let i = 0; i < tableItems.length; i++) {
                         if (i > 0) {
@@ -101,8 +105,10 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                         }
                     }
                 }
+
                 withHeadings ? HTML += '</tr></thead>' : ''
                 HTML += '<tbody class="general-tbody">'
+                
                 for (let i = withHeadings ? 1 : 0; i < tableItems.length; i++) {
                     HTML += '<tr class="general-tr">'
                     for (let item of tableItems[i]) {
@@ -110,11 +116,15 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                     }
                     HTML += '</tr>'
                 }
+                
                 HTML += '</tbody></table>'
+                
                 break;
             
             case 'faq':
+                
                 let faqList = block.data
+                
                 if (Array.isArray(faqList)) {
                     HTML += '<div class="faq-container">'
                     for (let item of faqList) {
@@ -122,12 +132,17 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                     }
                     HTML += '</div>'
                 }
+
+                break;
             
             case 'raw':
+                
                 break;
            
             case 'columns':
+                
                 HTML += '<div class="columns">'
+                
                 for (let items of block.data.cols) {
                     HTML += '<div class="column">'
                     for (let item of items.blocks) {
@@ -144,47 +159,51 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                             await Jimp.read(`${process.env.NEXT_PUBLIC_DEV}${jimp_img}`).then((img) => {
 
                                 let imageType = (img.bitmap.width >= img.bitmap.height) ? "horizontal" : "vertical"; 
-
-                                let imageData = (block.data.caption !== undefined)
-                                ? block.data.caption.split('|')
-                                : []
+                                let imageData = (block.data.caption !== undefined) ? block.data.caption.split('|') : []
                                 let [caption, alt,  title] = imageData
 
-                                HTML += amp ? `
-                                    <a href="#${block.id}" class="imgWrap">
-                                        <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_DEV}${item.data.file.url}" class="general-image ${imageType}"></amp-img>
-                                    </a>
-                                    <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
-                                        <span id="${block.id}-copy"></span>
-                                        <div class="img-popup">
-                                            <amp-img layout="intrinsic" width="${img.bitmap.width}" height="${img.bitmap.height}" src="${process.env.NEXT_PUBLIC_DEV}${item.data.file.url}" class="general-image ${imageType}"></amp-img>
-                                        </div>
-                                    </a>` : `
-                                <a href="#${block.id}" class="imgWrap">
-                                    <img src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">
+                                let imgComponent = renderToString(
+                                    <ImageWrap 
+                                        imgsrc={`${block.data.file.url}`} 
+                                        imgalt={alt ? alt.trim() : ''} 
+                                        imgheight={img.bitmap.height} 
+                                        imgwidth={img.bitmap.width} 
+                                        imgclass={`general-image ${imageType}`}
+                                    />
+                                )
+
+                                HTML +=  `<a href="#${block.id}" class="imgWrap">
+                                <figure>
+                                     <span id="${block.id}-copy"></span>
+                                         ${imgComponent}
+                                     <figcaption>${caption.trim()}</figcaption>
+                                </figure>
                                 </a>
                                 <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
-                                    <span id="${block.id}-copy"></span>
                                     <div class="img-popup">
-                                        <img src="${process.env.NEXT_PUBLIC_DEV}${block.data.file.url}" alt="${ alt ? alt.trim() : ''}" width="${img.bitmap.width}" height="${img.bitmap.height}" class="general-image ${imageType}">   
+                                        ${imgComponent}
                                     </div>
-                                </a>
-                                <div id="${block.id}-copy"></div>
-                                `
+                                </a>`
                             })
                         }
                     }
                     HTML += '</div>'
                 }
+
                 HTML += '</div>'
+                
                 break;
             
             case 'toc':
+                
                 HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">İçindekiler:</label><div class="table_box">'
+                
                 for (let item of block.data) {
                     HTML += `<a class="table_link" href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${item.heading}</a>`
                 }
+                
                 HTML += '</div></div>'
+                
                 break;
         }
 

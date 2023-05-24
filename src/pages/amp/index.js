@@ -1,8 +1,3 @@
-import Heading from "@/components/Heading"
-import Header from "@/components/Header/Header"
-import Footer from "@/components/Footer/Footer"
-import Banner from "@/components/Banner/Banner"
-import ContentSidebar from "@/components/ContentSidebar/ContentSidebar"
 import generate from "../../../helpers/generateData"
 import Page from "../[[...slug]]"
 export const config = { amp: true }
