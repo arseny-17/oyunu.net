@@ -606,6 +606,9 @@ figcaption {
 		position: relative;
 		transition: all 5s ease-in-out;
 	}
+
+	.img-popup.horizontal { aspect-ratio: 1/.2; }
+	.img-popup.vartical { aspect-ratio: .5/1; }
 }
 
 /* Button content */

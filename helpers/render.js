@@ -66,7 +66,7 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                            </figure>
                        </a>
                        <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
-                            <div class="img-popup">
+                            <div class="img-popup ${imageType}">
                                 ${imgComponent}
                             </div>
                        </a>`
