@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Breadcrumbs = (props) => {
 
-    const ampPostfix = props.amp ? '?amp=1' : ''
+    const ampPostfix = props.amp ? 'amp' : ''
 
     return (
         <nav className="breadcrumbs">
