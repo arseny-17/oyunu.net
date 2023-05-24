@@ -5,7 +5,6 @@ import Banner from "@/components/Banner/Banner"
 import ContentSidebar from "@/components/ContentSidebar/ContentSidebar"
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs"
 import clickHandler from "../../helpers/clickHandler"
-import Script from 'next/script'
 
 export default function Container({...props}){
 

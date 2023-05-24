@@ -14,3 +14,6 @@ for ( let link of table_links ) {
          })
     })
 }
+
+document.querySelector('.scrollTop').addEventListener('click', () => 
+    window.scrollTo({ top: 0, behavior: 'smooth' }))
