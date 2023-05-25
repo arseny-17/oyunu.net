@@ -9,7 +9,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script defer src="/uploads/main.js"></script>
+        { process.env.NEXT_PUBLIC_MODE == 'production' ? <script defer src="/uploads/main.js"></script> : ''}
       </body>
     </Html>
   )
