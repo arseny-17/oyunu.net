@@ -14,6 +14,10 @@ export default async function generate(amp, slug){
     const post = slug
       ? await prisma.post.findFirst({where: {slug: slug}})
       : await prisma.post.findUnique({where: {id: mainID}})
+
+   if (!post) {
+      return false
+   }
  
     const category = await prisma.lang.findUnique({
        where: {

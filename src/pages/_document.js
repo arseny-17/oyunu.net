@@ -9,7 +9,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script src="/uploads/main.js"></script>
+        <script defer src="/upload/main.js"></script>
       </body>
     </Html>
   )

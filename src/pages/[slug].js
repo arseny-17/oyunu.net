@@ -10,7 +10,7 @@ export async function getServerSideProps(context){
 
    const generatedProps = await generate(isAmp, context.query.slug)
 
-  if (!generatedProps.post) {
+   if (!generatedProps.post) {
       return { notFound: true }
    }
 
