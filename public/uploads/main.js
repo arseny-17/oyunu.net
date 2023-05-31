@@ -17,3 +17,12 @@ for ( let link of table_links ) {
 
 document.querySelector('.scrollTop').addEventListener('click', () => 
     window.scrollTo({ top: 0, behavior: 'smooth' }))
+
+function openCloseMenu(){
+    document.getElementById('mobileMenu').toggleAttribute('hidden')
+    document.querySelector('.overlay').toggleAttribute('hidden')
+}
+
+document.querySelector('.burger').addEventListener('click', openCloseMenu)
+document.querySelector('.close').addEventListener('click', openCloseMenu)
+document.querySelector('.overlay').addEventListener('click', openCloseMenu)

@@ -19,8 +19,6 @@ const MobileMenu = (props) => {
         mobileOverlay.current.toggleAttribute('hidden')
     }
 
-  
-
     const { pathname } = useRouter()
 
     return (

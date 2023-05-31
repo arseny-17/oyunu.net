@@ -59,10 +59,18 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                     )
 
 
-                    HTML += `<figure class="${imageType}">
+                    HTML += `<a href="#${block.id}" class="imgWrap">
+                           <figure class="${imageType}">
+                                <span id="${block.id}-copy"></span>
                                     ${imgComponent}
                                 <figcaption>${caption.trim()}</figcaption>
-                           </figure>`
+                           </figure>
+                       </a>
+                       <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                            <div class="img-popup ${imageType}">
+                                ${imgComponent}
+                            </div>
+                       </a>`
                 })
                 
                 break;
@@ -166,10 +174,18 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                                     />
                                 )
 
-                                HTML +=  `<figure>
+                                HTML +=  `<a href="#${block.id}" class="imgWrap">
+                                <figure>
+                                     <span id="${block.id}-copy"></span>
                                          ${imgComponent}
                                      <figcaption>${caption.trim()}</figcaption>
-                                </figure>`
+                                </figure>
+                                </a>
+                                <a href="#${block.id}-copy" id="${block.id}" class="img-overlay">
+                                    <div class="img-popup">
+                                        ${imgComponent}
+                                    </div>
+                                </a>`
                             })
                         }
                     }
