@@ -1,20 +1,25 @@
 import Button from "../Button";
-import ImageWrap from "../ImageWrap";
+import ImageWrap from "../ImageWrap"
+import { useContext } from 'react'
+import { PageContext } from "@/providers/PageContext"
 
-const ContentSidebar = (props) =>  {
+const ContentSidebar = () =>  {
+
+    const context = useContext({...PageContext})
+    const {amp, mainLink} = context
 
     const brandClick = function(){
-        location.href=`${props.mainLink}`
+        location.href=`${mainLink}`
     }
 
-    const ampLink = `tap:AMP.navigateTo(url='${props.mainLink}')`
+    const ampLink = `tap:AMP.navigateTo(url='${mainLink}')`
 
     return (
         <div className="contentSidebar">
             <p className="appName">Android veya iOS için 1xBet uygulamasını ücretsiz indirin!</p>
             <div className="appImg">
                 <ImageWrap 
-                    amp={props.amp} 
+                    amp={amp} 
                     imgsrc="/app.png" 
                     imgalt="İndir 1xBet" 
                     imgwidth="170" 
@@ -23,13 +28,13 @@ const ContentSidebar = (props) =>  {
             </div>
             <div className="appItem">
                 <Button 
-                    amp={props.amp} 
-                    link={props.mainLink}
+                    amp={amp} 
+                    link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
                     buttonStyle="btn-android"/>
                 <ImageWrap 
-                    amp={props.amp} 
+                    amp={amp} 
                     imgsrc="/android.png" 
                     imgalt="android'i indir" 
                     imgwidth="25" 
@@ -42,13 +47,13 @@ const ContentSidebar = (props) =>  {
             </div>
             <div className="appItem">
                 <Button 
-                    amp={props.amp} 
-                    link={props.mainLink}
+                    amp={amp} 
+                    link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
                     buttonStyle="btn-ios"/>
                 <ImageWrap 
-                    amp={props.amp} 
+                    amp={amp} 
                     imgsrc="/ios.png" 
                     imgalt="ios'u indirin" 
                     imgwidth="25" 

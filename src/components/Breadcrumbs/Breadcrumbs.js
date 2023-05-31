@@ -1,14 +1,18 @@
-import Link from "next/link";
+import Link from "next/link"
+import { useContext } from 'react'
+import { PageContext } from "@/providers/PageContext"
 
-const Breadcrumbs = (props) => {
+const Breadcrumbs = () => {
 
-    const ampPostfix = props.amp ? 'amp' : ''
+    const context = useContext({...PageContext})
+    const {amp, title, sitename} = context
+    const ampPostfix = amp ? 'amp' : ''
 
     return (
         <nav className="breadcrumbs">
-            <Link href={"/" + ampPostfix}>{props.sitename}</Link>
+            <Link href={"/" + ampPostfix}>{sitename}</Link>
             <span className="sep"></span>
-            <span className="last">{props.title}</span>
+            <span className="last">{title}</span>
         </nav>
 
     )

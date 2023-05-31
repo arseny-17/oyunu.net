@@ -32,7 +32,7 @@ const Home = (props) => {
 
    return (
       <>
-         <Container {...propsClone} />
+         <Container {...propsClone}/>
       </> 
    )
 }

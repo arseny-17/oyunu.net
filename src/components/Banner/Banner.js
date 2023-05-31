@@ -1,6 +1,12 @@
 import Button from "../Button"
+import { useContext } from 'react'
+import { PageContext } from "@/providers/PageContext"
 
 export default function Banner(props){
+
+    const context = useContext({...PageContext})
+
+    const {amp, mainLink} = context
 
     return (
         <div 
@@ -12,8 +18,8 @@ export default function Banner(props){
             }}>
             <Button 
                 text="Bonus almak"
-                amp={props.amp} 
-                link={props.mainLink}
+                amp={amp} 
+                link={mainLink}
                 areaLabel="Bonus almak"
                 split="buttonBanner"
                 buttonStyle="banner-btn"/>

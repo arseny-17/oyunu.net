@@ -4,12 +4,19 @@ import Menu from "../Menu"
 import Link from "next/link"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import ImageWrap from "../ImageWrap"
+import { useContext } from 'react'
+import { PageContext } from "@/providers/PageContext"
 
-const Header = (props) =>  {
+const Header = () =>  {
 
-    const ampPostfix = props.amp ? '/amp' : ''
+    const context = useContext({...PageContext})
+
+    const {amp, mainLink,mainID, menu} = context
+
+    const ampPostfix = amp ? '/amp' : ''
 
         return (
+
             <header className="header">
                 <div className="headerInner wrapper">
                     <div className="logo">
@@ -18,14 +25,14 @@ const Header = (props) =>  {
                         </Link>
                     </div>
 
-                    <Menu list={props.menu} amp={props.amp} mainID={props.mainID} />
+                    <Menu list={menu} amp={amp} mainID={mainID} />
 
                     <div className="buttons">
-                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.mainLink} split="buttonLog"/>
-                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.mainLink} split="buttonReg"/>
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={amp} link={mainLink} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={amp} link={mainLink} split="buttonReg"/>
                     </div>
 
-                    <MobileMenu list={props.menu} amp={props.amp} link={props.mainLink} />
+                    <MobileMenu list={menu} amp={amp} link={mainLink} />
                 </div>
             </header> 
         )    

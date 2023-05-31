@@ -1,23 +1,27 @@
 import Head from "next/head"
 import FaqSchema from "./FaqSchema";
-import BreadcrumbsSchema from "./BreadcrumbsSchema";
+import BreadcrumbsSchema from "./BreadcrumbsSchema"
+import { useContext } from 'react'
+import { PageContext } from "@/providers/PageContext"
 
-const Heading = function(props) {
+const Heading = function() {
 
-    const content = props.content ? JSON.parse(props.content) : ''
-    const faq = ( Array.isArray(content.blocks) ) ? content.blocks.find( (item) => item.type === 'faq') : {}
+    const context = useContext({...PageContext})
+    const {ampLink, amp, ampStyle, seotitle, seodescription, content, title, link, breadcrumbs} = context
+    const post_content = content ? JSON.parse(content) : ''
+    const faq = ( Array.isArray(post_content.blocks) ) ? post_content.blocks.find( (item) => item.type === 'faq') : {}
 
     return (
         <Head>
-            {props.amp 
-                ? <style amp-custom="">{props.ampStyle}</style> 
-                : <link rel="amphtml" href={`${props.ampLink}/amp`} />
+            {amp 
+                ? <style amp-custom="">{ampStyle}</style> 
+                : <link rel="amphtml" href={`${ampLink}/amp`} />
             }
-            <title>{props.seotitle}</title>
+            <title>{seotitle}</title>
             <meta name="robots" content="noindex,nofollow" />
-            <meta name="description" content={props.seodescription}/>
+            <meta name="description" content={seodescription}/>
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }
-            {props.breadcrumbs ? <BreadcrumbsSchema title={props.title} link={props.link} amp={props.amp}/>: ""}
+            {breadcrumbs ? <BreadcrumbsSchema title={title} link={link} amp={amp}/>: ""}
             <link rel="icon" href="/favicon.png" />
         </Head>
     )
