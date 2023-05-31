@@ -211,10 +211,12 @@ figure {
 
 figure.horizontal { 
 	aspect-ratio: 1/.4687;
+	position: relative;
 }
 
 figure.vertical { 
 	aspect-ratio: .4687/1;
+	position: relative;
 }
 
 figure span {
