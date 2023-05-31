@@ -8,7 +8,7 @@ const Heading = function() {
 
     const context = useContext({...PageContext})
     const {post, amp, ampStyle, sitename, link, breadcrumbs} = context
-    const post_content = post.content ? JSON.parse(post.content) : ''
+    const post_content = post ? JSON.parse(post.content) : ''
     const faq = ( Array.isArray(post_content.blocks) ) ? post_content.blocks.find( (item) => item.type === 'faq') : {}
 
     return (

@@ -33,8 +33,8 @@ const Footer = () =>  {
                     <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={amp} link={mainLink} split="buttonLog"/>
                     <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={amp} link={mainLink} split="buttonReg"/>
                 </div>
-
             </div>
+            { amp ? '' : <script defer src="/uploads/main.js"></script>}
         </>
         
     )
