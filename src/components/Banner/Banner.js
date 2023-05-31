@@ -2,7 +2,7 @@ import Button from "../Button"
 import { useContext } from 'react'
 import { PageContext } from "@/providers/PageContext"
 
-export default function Banner(props){
+export default function Banner(){
 
     const context = useContext({...PageContext})
 

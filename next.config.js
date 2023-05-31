@@ -2,6 +2,9 @@
 const path = require("path");
 
 const nextConfig = {
+  images: {
+    unoptimized: true,
+  },
   trailingSlash: true,
   //output: 'export',
   reactStrictMode: false,

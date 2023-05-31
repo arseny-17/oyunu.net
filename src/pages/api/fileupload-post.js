@@ -30,7 +30,7 @@ try {
         .toBuffer()
         .then(
         newBuffer => {
-          fs.writeFile(`./public/uploads/img/webp/${file.originalname}.webp`, newBuffer, (err) => {
+          fs.writeFile(`./public/uploads/img/webp/${file.originalname.replace('.jpg','').replace('.png','')}.webp`, newBuffer, (err) => {
             console.error(err)
           })   
         })

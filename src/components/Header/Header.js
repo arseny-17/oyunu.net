@@ -20,9 +20,15 @@ const Header = () =>  {
             <header className="header">
                 <div className="headerInner wrapper">
                     <div className="logo">
-                        <Link href={"/" + ampPostfix}>
+                        { amp 
+                        ? <div className="ampLogo">
+                            <Button amp={amp} areaLabel="logo" buttonStyle="logoButton" link={mainLink} split="logo" />
+                            <ImageWrap imgsrc="/1x-logo.png" imgalt="Logo 1xBet" imgwidth={125} imgheight={32}></ImageWrap>
+                        </div>
+                        : <Link href={"/" + ampPostfix}>
                             <ImageWrap imgsrc="/1x-logo.png" imgalt="Logo 1xBet" imgwidth={125} imgheight={32}></ImageWrap>
                         </Link>
+                        }
                     </div>
 
                     <Menu list={menu} amp={amp} mainID={mainID} />

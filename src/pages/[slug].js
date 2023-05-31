@@ -2,13 +2,11 @@ import generate from "../../helpers/generateData"
 import Container from "@/components/Container"
 import { useAmp } from "next/amp"
 
-export const config = { amp: 'hybrid' }
+export const config = { unstable_runtimeJS: false }
 
-export async function getServerSideProps(context){
+export async function getStaticProps({params}){
 
-   let isAmp = context.query.amp ? true : false
-
-   const generatedProps = await generate(isAmp, context.query.slug)
+   const generatedProps = await generate(false, params.slug)
 
    if (!generatedProps.post) {
       return { notFound: true }
@@ -20,6 +18,34 @@ export async function getServerSideProps(context){
 
 }
 
+export async function getStaticPaths() {
+   return {
+      paths: [
+         {
+           params: {
+             slug: '1xbet-canli-mac-izle',
+           },
+         },
+         {
+            params: {
+              slug: '1xbet-bonuslar-ve-promosyon-kodlari',
+            },
+          },
+          {
+            params: {
+              slug: '1xbet-mobil-uygulama-indir',
+            },
+          },
+          {
+            params: {
+              slug: '1xbet-yorumlar-oku',
+            },
+          },
+       ],
+     fallback: false,
+   }
+ }
+
 const Page = (props) => {
    
    const propsClone = {...props}
@@ -30,7 +56,6 @@ const Page = (props) => {
    return (
       <Container {...propsClone} />
    )
-
 }
 
 export default Page

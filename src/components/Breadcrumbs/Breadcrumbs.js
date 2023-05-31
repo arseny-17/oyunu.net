@@ -5,14 +5,14 @@ import { PageContext } from "@/providers/PageContext"
 const Breadcrumbs = () => {
 
     const context = useContext({...PageContext})
-    const {amp, title, sitename} = context
+    const {amp, post, sitename} = context
     const ampPostfix = amp ? 'amp' : ''
 
     return (
         <nav className="breadcrumbs">
             <Link href={"/" + ampPostfix}>{sitename}</Link>
             <span className="sep"></span>
-            <span className="last">{title}</span>
+            <span className="last">{post.shortTitle}</span>
         </nav>
 
     )
