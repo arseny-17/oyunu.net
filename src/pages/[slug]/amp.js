@@ -3,9 +3,9 @@ import Page from "../[slug]"
 export const config = { amp: true }
 export default Page
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
 
-    const generatedProps = await generate(true)
+    const generatedProps = await generate(true, context.query.slug)
    
     return {
         props: generatedProps
