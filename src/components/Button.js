@@ -18,12 +18,12 @@ const Button = (props) => {
                 {props.text}
             </button>
         ) : (
-            <button className={btnClass} 
-                onClick={brandClick} 
-                name={areaLabel}
-            >
-                {props.text}
-            </button>
+            <div dangerouslySetInnerHTML={{__html: `<button class=${btnClass} 
+                onClick=location.href='${props.link}&split=${props.split}'
+                name=${areaLabel}>${ props.text ? props.text : ''}</button>`}}> 
+            </div>
+               
+           
         )
 
     )
