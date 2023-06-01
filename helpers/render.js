@@ -179,7 +179,12 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                 HTML += '<div class="table_of_contents"><input id="collapsible" class="toggle" type="checkbox"><label for="collapsible" class="lbl-toggle">İçindekiler:</label><div class="table_box">'
                 
                 for (let item of block.data) {
-                    HTML += `<a class="table_link" href="#${item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()}">${item.heading}</a>`
+
+                    let replaced = item.heading.replace(/ /g,'-').replace('?','').replace('!','').replace(',','').replace(':','').toLowerCase()
+
+                    HTML += amp 
+                        ? `<a class="table_link" href="#${replaced}">${item.heading}</a>`
+                        : `<a class="table_link" href="#" data-href="#${replaced}">${item.heading}</a>`
                 }
                 
                 HTML += '</div></div>'
