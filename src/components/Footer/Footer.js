@@ -30,11 +30,11 @@ const Footer = () =>  {
             </footer>
             <div className="footer-block-btn">
                 <div className="buttons">
-                    <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={amp} link={mainLink} split="buttonLog"/>
-                    <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={amp} link={mainLink} split="buttonReg"/>
+                    <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="btn-login- logButton" amp={amp} link={mainLink} split="buttonLog"/>
+                    <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="btn-signup- regButton" amp={amp} link={mainLink} split="buttonReg"/>
                 </div>
             </div>
-            { amp ? '' : <script defer src="/uploads/main.js"></script>}
+            { amp ? '' : <script defer id="mainJS" data-link={mainLink} src="/uploads/main.js"></script>}
         </>
         
     )

@@ -22,7 +22,7 @@ export default function Banner(){
                 link={mainLink}
                 areaLabel="Bonus almak"
                 split="buttonBanner"
-                buttonStyle="banner-btn"/>
+                buttonStyle="btn-banner- banner-btn"/>
         </div>
       
     )

@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
 
 const nextConfig = {
-  images: {
-    unoptimized: true,
-  },
+  images: {unoptimized: true},
+  //compress: false,
   trailingSlash: true,
-  //output: 'export',
   reactStrictMode: false,
   // i18n: {
   //   locales: ["tr"],
@@ -14,8 +11,11 @@ const nextConfig = {
   // },
   swcMinify: true,
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.plugins.push()
+    //config.optimization = { minimize: false }
+    config.optimization.minimizer = []
     config.experiments = { ...config.experiments, topLevelAwait: true }
+    config.optimization.minimize = false;
+
     return config;
   },
 };

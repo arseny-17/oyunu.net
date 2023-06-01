@@ -1,8 +1,6 @@
 import Jimp from "jimp"
 import ImageWrap from "@/components/ImageWrap"
-import Button from "@/components/Button"
 import { renderToString } from 'react-dom/server'
-
 
 export default async function renderCustomHTML(post, amp, mainLink) {
 
@@ -24,10 +22,9 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                 
                 let [text, btnClass, splitBtn] = block.data.button.split('/')
                 let ampLink = `tap:AMP.navigateTo(url='${mainLink}&split=${splitBtn}')`
-                let brandClick = `"location.href='${mainLink}&split=${splitBtn}'"`
                 amp 
-                    ? HTML += `<div class="button-block"><button class="${btnClass}" on=${ampLink}>${text}</button></div>`
-                    : HTML += `<div class="button-block"><button class="${btnClass}" onClick=${brandClick}>${text}</button></div>`
+                    ? HTML += `<div class="button-block"><button class="btn-${btnClass}-" on=${ampLink}>${text}</button></div>`
+                    : HTML += `<div class="button-block"><button class="btn-${btnClass}-" data-split=${splitBtn}>${text}</button></div>`
                 break;
             
             case 'paragraph':
@@ -59,10 +56,7 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                     )
 
 
-                    HTML += `<figure class="${imageType}">
-                                    ${imgComponent}
-                                <figcaption>${caption.trim()}</figcaption>
-                           </figure>`
+                    HTML += `<figure class="${imageType}">${imgComponent}<figcaption>${caption.trim()}</figcaption></figure>`
                 })
                 
                 break;

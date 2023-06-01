@@ -26,3 +26,11 @@ function openCloseMenu(){
 document.querySelector('.burger').addEventListener('click', openCloseMenu)
 document.querySelector('.close').addEventListener('click', openCloseMenu)
 document.querySelector('.overlay').addEventListener('click', openCloseMenu)
+
+for ( let b of document.querySelectorAll('button')){
+    b.addEventListener('click', function() {
+        let link = document.getElementById('mainJS').getAttribute('data-link')
+        let split = this.getAttribute('data-split')
+        location.href=`${link}&split=${split}`
+    })
+}

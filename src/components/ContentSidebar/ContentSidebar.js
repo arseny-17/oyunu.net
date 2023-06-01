@@ -32,7 +32,7 @@ const ContentSidebar = () =>  {
                     link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
-                    buttonStyle="btn-android"/>
+                    buttonStyle="btn-app-android- btn-android"/>
                 <ImageWrap 
                     amp={amp} 
                     imgsrc="/android.png" 
@@ -51,7 +51,7 @@ const ContentSidebar = () =>  {
                     link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
-                    buttonStyle="btn-ios"/>
+                    buttonStyle="btn-app-ios- btn-ios"/>
                 <ImageWrap 
                     amp={amp} 
                     imgsrc="/ios.png" 

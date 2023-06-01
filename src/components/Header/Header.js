@@ -34,8 +34,8 @@ const Header = () =>  {
                     <Menu list={menu} amp={amp} mainID={mainID} />
 
                     <div className="buttons">
-                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={amp} link={mainLink} split="buttonLog"/>
-                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={amp} link={mainLink} split="buttonReg"/>
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="btn-login- logButton" amp={amp} link={mainLink} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="btn-signup- regButton" amp={amp} link={mainLink} split="buttonReg"/>
                     </div>
 
                     <MobileMenu list={menu} amp={amp} link={mainLink} />
