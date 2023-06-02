@@ -1,12 +1,9 @@
-import Heading from "@/components/Heading";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import ContentSidebar from "@/components/ContentSidebar/ContentSidebar";
 import axios from "axios"
 import { useAmp } from 'next/amp'
 import { PrismaClient } from '@prisma/client'
-import Link from "next/link";
-import getCSS from "../../helpers/generateCSS";
+import Link from "next/link"
+import getCSS from "../../helpers/generateCSS"
+import Head from "next/head"
 
 const prisma = new PrismaClient()
 
@@ -18,13 +15,10 @@ const Sitemap = (props) => {
  
     return (
        <>
-          <Heading 
-             amp={isAmp}    
-             ampStyle={props.ampStyle}
-             seotitle='Title Sitemap'
-             seodescription="Description sitemap"
-          />
-          <div id="scroll"></div>
+        <Head>
+            <title>Sitemap</title>
+        </Head>
+        <div id="scroll"></div>
           
           <div className="contentMapWrap">
              <div className="contentMap">
@@ -42,8 +36,6 @@ const Sitemap = (props) => {
                 </div>
 
              </div>
- 
-            
  
           </div>
        </>

@@ -11,7 +11,6 @@ const Breadcrumbs = () => {
     return (
         <nav className="breadcrumbs">
             <Link href={"/" + ampPostfix}>{sitename}</Link>
-            <span className="sep"></span>
             <span className="last">{post.shortTitle}</span>
         </nav>
 
