@@ -10,7 +10,7 @@ const BreadcrumbsSchema = (props) => {
         "@type": "ListItem",
         position: 1,
         item: {
-            "@id": `${process.env.NEXT_PUBLIC_HOST}/${props.link}`,
+            "@id": `${props.link}`,
             name: props.title
         }
     })
