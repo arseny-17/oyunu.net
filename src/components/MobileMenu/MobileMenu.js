@@ -54,7 +54,7 @@ const MobileMenu = (props) => {
                         <Link 
                             className={pathname === slug ? "active" : null} 
                             key={id} 
-                            href={slug + ampPostfix}
+                            href={`/${slug}${ampPostfix}`}
                             onClick={openCloseMenu}
                         >
                             {title}

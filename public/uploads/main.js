@@ -6,7 +6,7 @@ for ( let link of table_links ) {
     link.addEventListener('click', function(e){
         e.preventDefault()
 
-        const blockID = this.getAttribute('href').replace('#', '')
+        const blockID = this.getAttribute('data-href').replace('#', '')
 
         window.scrollTo({
             behavior: 'smooth',

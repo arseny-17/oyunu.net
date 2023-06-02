@@ -1,8 +1,9 @@
 import Link from "next/link";
 import {useRouter} from "next/router";
 
-
 const Menu = (props) => {
+
+    console.log('props', props)
 
     const { pathname, asPath } = useRouter()
     const ampPostfix = props.amp ? '/amp' : ''

@@ -1,35 +1,93 @@
 .banner {
-    height: 190px;
-    margin-bottom: 32px;
+  border-radius: 20px;
+  background: url(/uploads/img/back2.jpg);
+  background-size: cover;
+  padding: 40px 20px;
+  position: relative;
+  margin-bottom: 64px;
+
+  .mainText {
+    text-transform: uppercase;
+    font-size: 70px;
+    line-height: 70px;
+    font-weight: bold;
     position: relative;
+    z-index: 3;
+    color: #1e93f7;
 
-    .banner-btn {
-        margin-bottom: 20px;
-        animation: pulse 1.5s infinite;
-        position: absolute;
-        bottom: 0;
-        font-size: 13px;
-        font-weight: 700;
-        border-radius: 3px;
-        width: auto;
-        left: 25px;
-        line-height: 1.2;
-        padding: 10px 15px;
-        color: #fff;
-        text-transform: uppercase;
-        display: inline-block;
-        background-color: #81ad31;
-      }
-}
-
-@keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
+    span {
+      display: block;
+      font-size: 45px;
+      color: inherit;
     }
   }
+
+  .shadow {
+    text-transform: uppercase;
+    font-size: 120px;
+    line-height: 200px;
+    font-weight: bold;
+    color: rgba(251, 251, 251, 0.2);
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    z-index: 2;
+  }
+
+  .secondText {
+    color: #fff;
+    background: #18213e;
+    padding: 10px;
+    position: relative;
+    z-index: 3;
+  }
+  .button {
+    margin-top: 30px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 3;
+  }
+  .info button {
+    background: linear-gradient(
+      90deg,
+      rgba(138, 186, 6, 1) 0%,
+      rgba(105, 143, 59, 1) 80%
+    );
+    color: #fff;
+    padding: 12px 45px;
+    border-radius: 30px;
+    font-size: 24px;
+  }
+
+  .list {
+    display: flex;
+    margin-top: 30px;
+    .listItem {
+      margin-right: 18px;
+      .number {
+        font-size: 60px;
+        color: #1e93f7;
+        font-weight: bold;
+      }
+      .name {
+        font-size: 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+  .bannerImg {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 1;
+    img {
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
