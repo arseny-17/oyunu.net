@@ -36,7 +36,7 @@ export default async function generate(amp, slug){
     const generatedProps = {
        mainLink: mainLink,
        mainID: mainID,
-       post: post,
+       post: JSON.parse(JSON.stringify(post)),
        menu: menu,
        rendered: rendered,
        ampStyle: style,

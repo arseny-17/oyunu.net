@@ -18,7 +18,8 @@ for ( let link of table_links ) {
 document.querySelector('.scrollTop').addEventListener('click', () => 
     window.scrollTo({ top: 0, behavior: 'smooth' }))
 
-function openCloseMenu(){
+function openCloseMenu(e){
+    e.preventDefault()
     document.getElementById('mobileMenu').toggleAttribute('hidden')
     document.querySelector('.overlay').toggleAttribute('hidden')
 }
@@ -34,3 +35,13 @@ for ( let b of document.querySelectorAll('button')){
         location.href=`${link}&split=${split}`
     })
 }
+
+const handleScroll = () => {
+    if ( window.scrollY > 1000) {
+        document.querySelector('.scrollTop').style.opacity = '1';
+    } else {
+        document.querySelector('.scrollTop').style.opacity = '0';
+    }
+}
+
+window.addEventListener('scroll', handleScroll);

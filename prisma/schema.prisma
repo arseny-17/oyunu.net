@@ -15,9 +15,12 @@ model Post {
   content String
   featured String?
   seo_title String?
+  page_key String?
   seo_description String?
   language_id Int
   parent_id Int?
+  created_at DateTime @default(now())
+  updated_at String
 }
 
 model Lang {

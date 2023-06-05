@@ -141,11 +141,11 @@ export const getServerSideProps = withSessionSsr(
         return {
             props: { 
                 user: user,
-                options: options,
+                options: JSON.parse(JSON.stringify(options)),
                 categories: categories,
                 currentLangObject: currentLangObject || {},
-                posts: posts,
-                mainPage: currentMainPageObject || {},
+                posts: JSON.parse(JSON.stringify(posts)),
+                mainPage: JSON.parse(JSON.stringify(currentMainPageObject)) || {},
             }
         }
     }

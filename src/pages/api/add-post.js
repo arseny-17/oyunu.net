@@ -13,7 +13,8 @@ export default async function handler(req, res) {
         title: req.body.title,
         language_id: req.body.category,
         content: req.body.content,
-        slug: req.body.slug
+        slug: req.body.slug,
+        updated_at: Date.now().toString()
       }
     })
     

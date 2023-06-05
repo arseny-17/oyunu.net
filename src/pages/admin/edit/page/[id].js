@@ -285,7 +285,7 @@ export default function Pages(props) {
                 props: { 
                     user: user,
                     categories: categories,
-                    post: post,
+                    post: JSON.parse(JSON.stringify(post)),
                     current_cat: current_cat
                 }
             }

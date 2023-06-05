@@ -17,6 +17,7 @@ export default async function handler(req, res) {
           slug: req.body.slug,
           content: req.body.content,
           language_id: parseInt(req.body.category),
+          updated_at: Date.now().toString()
       }
     })
     

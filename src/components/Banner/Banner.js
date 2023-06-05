@@ -18,13 +18,13 @@ export default function Banner(){
             <div className="info">
                 <p className="mainText">Risksiz <span>bahis</span></p>
                 <p className="shadow">Ücretler</p>
-                <span className="secondText">Her durumda zaferin</span>
+                <span className="secondText">Her durumda zafer senin</span>
                 <div className="button">
                     <Button 
-                        text="Bahse gir"
+                        text="Giriş"
                         amp={amp} 
                         link={mainLink}
-                        areaLabel="Bahse gir"
+                        areaLabel="Giriş"
                         split="buttonBanner"
                         buttonStyle="btn-banner- banner-btn"
                     />
@@ -32,20 +32,20 @@ export default function Banner(){
                 <div className="list">
                     <div className="listItem">
                         <span className="number">1</span>
-                        <span className="name">Gir</span>
+                        <span className="name">GİR</span>
                     </div>
                     <div className="listItem">
                         <span className="number">2</span>
-                        <span className="name">Bahse gir</span>
+                        <span className="name">BAHİS YAP</span>
                     </div>
                     <div className="listItem">
                         <span className="number">3</span>
-                        <span className="name">Parayı al</span>
+                        <span className="name">PARAYI AL</span>
                     </div>
                 </div>
             </div>
             <div className="bannerImg">
-                <ImageWrap imgsrc="/uploads/img/girl.webp" imgwidth={600} imgheight={300} alt="" />
+                <ImageWrap imgsrc="/uploads/img/girl.webp" imgwidth={600} imgheight={300} imgalt="banner" />
             </div>
         </div>
         </>

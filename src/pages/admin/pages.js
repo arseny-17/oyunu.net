@@ -42,7 +42,7 @@ export const getServerSideProps = withSessionSsr(
         return {
             props: { 
                 user: user, 
-                posts: posts,
+                posts: JSON.parse(JSON.stringify(posts)),
                 options: options
             }
         }
