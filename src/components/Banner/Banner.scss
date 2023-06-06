@@ -91,3 +91,63 @@
     }
   }
 }
+
+@media (max-width: 1250px) {
+  .banner {
+    padding: 20px 10px 52px 10px;
+    max-width: 420px;
+    margin: 0 auto 12px;
+
+    .info {
+
+      .button{
+        margin-top: 10px;
+        margin-bottom: 14px;
+        
+        button {
+          padding: 12px 65px;
+        }
+      }
+  
+    }
+    
+    .list {
+      flex-direction: column;
+      margin-top: 5px;
+
+      .listItem .number {
+        font-size: 35px;
+      }
+
+      .listItem .name {
+        font-size: 18px;
+      }
+
+    }
+
+    .bannerImg {
+      top: 110px;
+      right: 0px;
+
+      img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    .mainText {
+      font-size: 32px;
+      line-height: 42px;
+      padding-bottom: 10px;
+    }
+
+    .shadow {
+      display: none;
+    }
+  
+  }
+  
+  .info__text {
+    text-align: center;
+  }
+}
