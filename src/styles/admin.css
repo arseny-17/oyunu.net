@@ -92,6 +92,8 @@ font-size: 15px; color: var(--text);}
 .pages_item .delete:hover, .pages_item .delete:hover i {color: #f80505;}
 
 
+.pageKey { margin-left: 12px; padding: 10px; border: 1px #ccc solid; border-radius: 4px; }
+
 .pages_bound {margin-left: 30px;padding: 20px 0;}
 .pages_bound_item a {text-align: left; font-size: 14px; padding-left: 25px; position: relative;}
 .pages_bound_item a:before {content:''; width: 20px; height: 20px; position: absolute; top: 0px; left: 0;
