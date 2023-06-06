@@ -23,8 +23,8 @@ export default async function renderCustomHTML(post, amp, mainLink) {
                 let [text, btnClass, splitBtn] = block.data.button.split('/')
                 let ampLink = `tap:AMP.navigateTo(url='${mainLink}&split=${splitBtn}')`
                 amp 
-                    ? HTML += `<div class="button-block"><button class="btn-${btnClass}-" on=${ampLink}>${text}</button></div>`
-                    : HTML += `<div class="button-block"><button class="btn-${btnClass}-" data-split=${splitBtn}>${text}</button></div>`
+                    ? HTML += `<div class="button-block"><button class="btn-${btnClass}-${post.page_key}" on=${ampLink}>${text}</button></div>`
+                    : HTML += `<div class="button-block"><button class="btn-${btnClass}-${post.page_key}" data-split=${splitBtn}>${text}</button></div>`
                 break;
             
             case 'paragraph':

@@ -11,7 +11,7 @@ const Header = () =>  {
 
     const context = useContext({...PageContext})
 
-    const {amp, mainLink,mainID, menu} = context
+    const {amp, mainLink, mainID, menu, post} = context
 
     const ampPostfix = amp ? '/amp' : ''
 
@@ -34,8 +34,8 @@ const Header = () =>  {
                     <Menu list={menu} amp={amp} mainID={mainID} />
 
                     <div className="buttons">
-                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="btn-login- logButton" amp={amp} link={mainLink} split="buttonLog"/>
-                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="btn-signup- regButton" amp={amp} link={mainLink} split="buttonReg"/>
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle={`btn-login-${post.page_key} logButton`} amp={amp} link={mainLink} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle={`btn-signup-${post.page_key} regButton`} amp={amp} link={mainLink} split="buttonReg"/>
                     </div>
 
                     <MobileMenu list={menu} amp={amp} link={mainLink} />
