@@ -184,7 +184,7 @@ export default async function renderCustomHTML(post, amp, mainLink) {
 
                     HTML += amp 
                         ? `<a class="table_link" href="#${replaced}">${item.heading}</a>`
-                        : `<a class="table_link" href="#" data-href="#${replaced}">${item.heading}</a>`
+                        : `<a class="table_link" href="#${replaced}" data-href="#${replaced}">${item.heading}</a>`
                 }
                 
                 HTML += '</div></div>'

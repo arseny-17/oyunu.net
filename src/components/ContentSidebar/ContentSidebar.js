@@ -6,7 +6,7 @@ import { PageContext } from "@/providers/PageContext"
 const ContentSidebar = () =>  {
 
     const context = useContext({...PageContext})
-    const {amp, mainLink} = context
+    const {amp, mainLink, post} = context
 
     const brandClick = function(){
         location.href=`${mainLink}`
@@ -32,7 +32,7 @@ const ContentSidebar = () =>  {
                     link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
-                    buttonStyle="btn-app-android- btn-android"/>
+                    buttonStyle={`btn-app-android-${post.page_key} btn-android`}/>
                 <ImageWrap 
                     amp={amp} 
                     imgsrc="/android.png" 
@@ -51,7 +51,7 @@ const ContentSidebar = () =>  {
                     link={mainLink}
                     areaLabel="Android'i indir"
                     split='buttonAndroid'
-                    buttonStyle="btn-app-ios- btn-ios"/>
+                    buttonStyle={`btn-app-ios-${post.page_key} btn-ios`}/>
                 <ImageWrap 
                     amp={amp} 
                     imgsrc="/ios.png" 

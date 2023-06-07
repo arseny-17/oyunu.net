@@ -10,7 +10,7 @@ const Footer = () =>  {
 
     const context = useContext({...PageContext})
 
-    const {amp, mainLink} = context
+    const {amp, mainLink, post} = context
 
     return (
         <>
@@ -30,8 +30,8 @@ const Footer = () =>  {
             </footer>
             <div className="footer-block-btn">
                 <div className="buttons">
-                    <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="btn-login- logButton" amp={amp} link={mainLink} split="buttonLog"/>
-                    <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="btn-signup- regButton" amp={amp} link={mainLink} split="buttonReg"/>
+                    <Button text="KAYIT" areaLabel="KAYIT" buttonStyle={`btn-login-${post.page_key} logButton`} amp={amp} link={mainLink} split="buttonLog"/>
+                    <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle={`btn-signup-${post.page_key} regButton`} amp={amp} link={mainLink} split="buttonReg"/>
                 </div>
             </div>
             { amp ? '' : <script defer id="mainJS" data-link={mainLink} src="/uploads/main.js"></script>}

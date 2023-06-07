@@ -38,7 +38,7 @@ const Header = () =>  {
                         <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle={`btn-signup-${post.page_key} regButton`} amp={amp} link={mainLink} split="buttonReg"/>
                     </div>
 
-                    <MobileMenu list={menu} amp={amp} link={mainLink} />
+                    <MobileMenu list={menu} post={post} amp={amp} link={mainLink} />
                 </div>
             </header> 
         )    

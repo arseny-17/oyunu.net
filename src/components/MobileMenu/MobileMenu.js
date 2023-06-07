@@ -62,8 +62,8 @@ const MobileMenu = (props) => {
                     ))}
                     </div>  
                     <div className="buttons">
-                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle="logButton" amp={props.amp} link={props.link} split="buttonLog"/>
-                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle="regButton" amp={props.amp} link={props.link} split="buttonReg"/>
+                        <Button text="KAYIT" areaLabel="KAYIT" buttonStyle={`btn-login-${props.post.page_key} logButton`} amp={props.amp} link={props.mainLink} split="buttonLog"/>
+                        <Button text="GİRİŞ" areaLabel="GİRİŞ" buttonStyle={`btn-signup-${props.post.page_key} regButton`} amp={props.amp} link={props.mainLink} split="buttonReg"/>
                     </div>           
             </div>
         </>

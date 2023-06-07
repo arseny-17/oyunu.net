@@ -7,7 +7,7 @@ export default function Banner(){
 
     const context = useContext({...PageContext})
 
-    const {amp, mainLink} = context
+    const {amp, mainLink, post} = context
 
     return (
 
@@ -25,7 +25,7 @@ export default function Banner(){
                     link={mainLink}
                     areaLabel="Giriş"
                     split="buttonBanner"
-                    buttonStyle="btn-banner- banner-btn"
+                    buttonStyle={`btn-banner-${post.page_key} banner-btn`}
                 />
             </div>
           </div>

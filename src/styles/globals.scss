@@ -135,7 +135,7 @@ i {
 		margin-bottom: 20px;
 		counter-reset: counter-ol;
 
-		.general-li {
+		li {
 			position: relative;
 			padding-left: 10px;
 			margin-bottom: 10px;
@@ -143,7 +143,7 @@ i {
 			counter-increment: counter-ol;
 		}
 
-		.general-li::before {
+		li::before {
 			position: absolute;
 			content: counter(counter-ol);
 			display: flex;
@@ -284,6 +284,10 @@ figcaption {
 		min-height: 30px;
 		margin-bottom: 20px;
 		border-bottom: 1px solid #205685;
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
 	}
 
 	.faq-item:hover .icon::before,
@@ -653,8 +657,8 @@ figcaption {
 		width: 100%;
 	}
 
-	.content .general-ol .general-li,
-	.content .general-ul .general-li {
+	.content .general-ol li,
+	.content .general-ul li {
 		width: 100%;
 	}
 
@@ -675,6 +679,15 @@ figcaption {
 	.faq-container {
 		.faq-question {
 			max-width: 85%;
+		}
+	}
+
+	.footer-block-btn .buttons {
+		justify-content: space-between;
+		width: 100%;
+
+		button {
+			width: 48%;
 		}
 	}
 }
