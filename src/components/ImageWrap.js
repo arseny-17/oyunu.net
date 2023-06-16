@@ -25,8 +25,8 @@ const ImageWrap = (props) => {
             <Image 
                 src={props.imgsrc}
                 alt={props.imgalt}
-                {...(props.fill ? {...fill} : {...dimensions})}
-                style={{ objectFit: 'cover' }}            
+                {...(props.fill ? {...dimensions} : {...dimensions})}
+                // style={{ objectFit: 'cover' }}            
                 className={imgClass}
             ></Image>
         )

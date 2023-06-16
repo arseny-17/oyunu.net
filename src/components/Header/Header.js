@@ -23,10 +23,10 @@ const Header = () =>  {
                         { amp 
                         ? <div className="ampLogo">
                             <Button amp={amp} areaLabel="logo" buttonStyle="logoButton" link={mainLink} split="logo" />
-                            <ImageWrap imgsrc="/1x-logo.png" imgalt="Logo 1xBet" imgwidth={125} imgheight={32}></ImageWrap>
+                            <ImageWrap imgsrc="/1x-logo.svg" imgalt="Logo 1xBet" imgwidth={160} imgheight={35}></ImageWrap>
                         </div>
                         : <Link href={"/" + ampPostfix}>
-                            <ImageWrap imgsrc="/1x-logo.png" imgalt="Logo 1xBet" imgwidth={125} imgheight={32}></ImageWrap>
+                            <ImageWrap imgsrc="/1x-logo.svg" imgalt="Logo 1xBet" imgwidth={160} imgheight={35}></ImageWrap>
                         </Link>
                         }
                     </div>

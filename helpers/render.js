@@ -39,7 +39,6 @@ export default async function renderCustomHTML(post, amp, mainLink) {
 
                 await Jimp.read(`${process.env.NEXT_PUBLIC_DEV}${jimp_img}`).then((img) => {
 
-                    let imageRatio = img.bitmap.height / img.bitmap.width
                     let imageType = (img.bitmap.height >= img.bitmap.height) ? "horizontal" : "vertical";
                     let imageData = (block.data.caption !== undefined) ? block.data.caption.split('|') : []
                     let [caption, alt,  title] = imageData

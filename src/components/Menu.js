@@ -3,13 +3,11 @@ import {useRouter} from "next/router";
 
 const Menu = (props) => {
 
-    console.log('props', props)
-
     const { pathname, asPath } = useRouter()
     const ampPostfix = props.amp ? '/amp' : ''
     
     return (
-        <div className="menu">
+        <nav className="menu">
             { props.list.value && JSON.parse(props.list.value).map(({ id, title, slug }) => (
                 <>
                     
@@ -21,7 +19,7 @@ const Menu = (props) => {
                 </>
                 
             ))}
-        </div>
+        </nav>
 
     )
 }

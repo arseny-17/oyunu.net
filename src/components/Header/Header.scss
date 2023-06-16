@@ -54,7 +54,8 @@
                 }
             
             &.active {
-                background:#08f;
+                background:#fff;
+                color: #000;
             } 
 
             } 
@@ -68,13 +69,14 @@
 .buttons {
 
     .logButton {
-        background: #92c637;
+        background: #fff;
         margin-right: 15px;
         @include button;
-
+        color: #333;
         &:hover {
             background:#7daa2f;
-            }
+            color: #fff;
+        }
 
     }
     .regButton {

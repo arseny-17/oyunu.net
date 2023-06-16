@@ -209,15 +209,15 @@ figure {
 	text-align: center;
 }
 
-figure.horizontal { 
-	aspect-ratio: 1/.4687;
-	position: relative;
-}
+// figure.horizontal { 
+// 	aspect-ratio: 1/.4687;
+// 	position: relative;
+// }
 
-figure.vertical { 
-	aspect-ratio: .4687/1;
-	position: relative;
-}
+// figure.vertical { 
+// 	aspect-ratio: .4687/1;
+// 	position: relative;
+// }
 
 figure span {
 	height: 50%;
@@ -522,10 +522,10 @@ figcaption {
 
 		button {
 			display: inline-block;
-			background: #7daa2f; 
+			background: #fff; 
 			margin-right: 15px;
 			@include button;
-
+			color: #000;
 			&:hover {
 				background:#92c637;
 			}

@@ -15,10 +15,10 @@ const Heading = function() {
         <Head>
             {amp 
                 ? <style amp-custom="">{ampStyle}</style> 
-                : <link rel="amphtml" href={`${link}/amp`} />
+                : <link rel="amphtml" href={`${link}/amp/`} />
             }
             <title>{post.seo_title}</title>
-            <meta name="robots" content="noindex,nofollow" />
+            <meta name="robots" content="index,follow" />
             <meta name="description" content={post.seo_description}/>
             <meta property="og:locale" content="tr_TR" />
             <meta property="og:type" content="website" />
@@ -31,6 +31,7 @@ const Heading = function() {
             {(Array.isArray(faq.data)) ? <FaqSchema faq={faq.data} /> : '' }
             {breadcrumbs ? <BreadcrumbsSchema title={post.title} link={link} amp={amp}/>: ""}
             <link rel="icon" href="/favicon.png" />
+            <link rel="canonical" href={`${link}/`} />
         </Head>
     )
         

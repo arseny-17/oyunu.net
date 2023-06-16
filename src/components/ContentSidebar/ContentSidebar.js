@@ -20,7 +20,7 @@ const ContentSidebar = () =>  {
             <div className="appImg">
                 <ImageWrap 
                     amp={amp} 
-                    imgsrc="/app.png" 
+                    imgsrc="/app.webp" 
                     imgalt="İndir 1xBet" 
                     imgwidth="170" 
                     imgheight="200"
@@ -35,7 +35,7 @@ const ContentSidebar = () =>  {
                     buttonStyle={`btn-app-android-${post.page_key} btn-android`}/>
                 <ImageWrap 
                     amp={amp} 
-                    imgsrc="/android.png" 
+                    imgsrc="/android.webp" 
                     imgalt="android'i indir" 
                     imgwidth="25" 
                     imgheight="25"
@@ -54,7 +54,7 @@ const ContentSidebar = () =>  {
                     buttonStyle={`btn-app-ios-${post.page_key} btn-ios`}/>
                 <ImageWrap 
                     amp={amp} 
-                    imgsrc="/ios.png" 
+                    imgsrc="/ios.webp" 
                     imgalt="ios'u indirin" 
                     imgwidth="25" 
                     imgheight="25"

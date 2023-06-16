@@ -3,10 +3,10 @@ const BreadcrumbsSchema = (props) => {
     const schema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        mainEntity: []
+        itemListElement: []
     }
 
-    schema.mainEntity.push({
+    schema.itemListElement.push({
         "@type": "ListItem",
         position: 1,
         item: {

@@ -28,7 +28,7 @@ const MobileMenu = (props) => {
                 onClick={openCloseMenu} 
                 {...(props.amp ? ampEvent : '')}
                 ref={mobileOverlay} 
-                href=""
+                href="#"
                 hidden>
             </Link>
           

@@ -7,10 +7,9 @@ const Button = (props) => {
     return(
 
         props.amp ? (
-            <button className={btnClass} name={areaLabel} on={ampLink}> {props.text}
-            </button>
+            <button className={btnClass} name={areaLabel} on={ampLink}> {props.text}</button>
         ) : (
-            <button className={btnClass} data-split={props.split} name={areaLabel}>{ props.text ? props.text : ''}</button>  
+            <button className={btnClass} aria-label={areaLabel} data-split={props.split} name={areaLabel}>{ props.text ? props.text : ''}</button>  
         )
 
     )

@@ -3,6 +3,6 @@ Allow: /*
 Disallow: /admin/*
 Disallow: /api/*
 
-Sitemap: http://80.85.142.237:3000/sitemap.xml
-Host: http://80.85.142.237:3000
+Sitemap: https://ozelguvenlikokullari.com/sitemap.xml
+Host: https://ozelguvenlikokullari.com
 
