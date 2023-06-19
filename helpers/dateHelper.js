@@ -1,7 +1,7 @@
 export function padTo2Digits(num) {
     return num.toString().padStart(2, '0')
-}
-  
+  }
+
 export default function formatDate(date) {
     return [
       date.getFullYear(),
@@ -9,4 +9,3 @@ export default function formatDate(date) {
       padTo2Digits(date.getDate()),
     ].join('-');
 }
-
