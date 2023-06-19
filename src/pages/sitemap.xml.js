@@ -1,18 +1,9 @@
 import { PrismaClient } from '@prisma/client'
+import { formatDate } from '../../helpers/dateHelper';
 
 const prisma = new PrismaClient()
 
-function padTo2Digits(num) {
-  return num.toString().padStart(2, '0')
-}
 
-function formatDate(date) {
-  return [
-    date.getFullYear(),
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-  ].join('-');
-}
 
 function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
